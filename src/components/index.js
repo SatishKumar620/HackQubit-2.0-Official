@@ -11,3 +11,4 @@ export { default as PrizePool } from "./PrizePool";
 export { default as Sponsorship } from "./Sponsorship";
 export { default as Footer } from "./Footer";
 export { default as ScrollToTop } from "./ScrollToTop";
+export { default as Loader } from "./Loader";

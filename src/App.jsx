@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { Hero, About, Timeline, PrizePool, Sponsorship, Footer, ScrollToTop } from "./components";
+import React, { Component, useState } from "react";
+import { Hero, About, Timeline, PrizePool, Sponsorship, Footer, ScrollToTop, Loader } from "./components";
+import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -27,9 +28,15 @@ class ErrorBoundary extends Component {
 }
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <ErrorBoundary>
-      <main className="bg-pirate-bg min-h-screen relative">
+      <AnimatePresence>
+        {loading && <Loader key="loader" onLoadingComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+      
+      <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
         <Hero />
         <About />
         <Timeline />
