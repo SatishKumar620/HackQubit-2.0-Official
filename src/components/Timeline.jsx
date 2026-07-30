@@ -80,8 +80,33 @@ const MILESTONES = [
   },
 ];
 
-/* ── Precise Path (Starts at node 0 y=140 and ends at final node y=1700) ── */
-const PATH_D = "M 375,140 C 560,140 640,280 440,340 C 240,400 120,520 340,580 C 560,640 640,780 420,840 C 200,900 120,1020 340,1080 C 560,1140 640,1280 420,1340 C 240,1400 180,1520 375,1580 L 375,1700";
+/* ── Precise Path (Starts at top near header y=30 and winds down to final node y=1700) ── */
+const PATH_D = "M 375,30 Q 375,80 375,140 C 560,140 640,280 440,340 C 240,400 120,520 340,580 C 560,640 640,780 420,840 C 200,900 120,1020 340,1080 C 560,1140 640,1280 420,1340 C 240,1400 180,1520 375,1580 L 375,1700";
+
+/* ── Hand-Drawn Paper Map Sketch Overlay SVGs (Waves, Sea Monster & Chart Grid) ── */
+const PaperMapSketches = () => (
+  <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30 select-none" xmlns="http://www.w3.org/2000/svg">
+    {/* Hand-Drawn Water Waves */}
+    <path d="M 120,200 Q 130,190 140,200 Q 150,210 160,200" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
+    <path d="M 580,450 Q 590,440 600,450 Q 610,460 620,450" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
+    <path d="M 150,800 Q 160,790 170,800 Q 180,810 190,800" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
+    <path d="M 550,1150 Q 560,1140 570,1150 Q 580,1160 590,1150" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
+    
+    {/* Sea Monster Sketch (Kraken Tentacles) */}
+    <g transform="translate(580, 680) scale(0.6)" opacity="0.7">
+      <path d="M 10,50 Q 20,10 40,30 Q 30,70 10,50 Z" fill="#5C3A1E" />
+      <path d="M 30,60 Q 50,20 70,40 Q 50,80 30,60 Z" fill="#5C3A1E" />
+      <path d="M 50,70 Q 80,30 95,55 Q 70,95 50,70 Z" fill="#5C3A1E" />
+    </g>
+
+    {/* Map Grid Coordinates Line Markings */}
+    <line x1="50" y1="0" x2="50" y2="1850" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="700" y1="0" x2="700" y2="1850" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="0" y1="400" x2="750" y2="400" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="0" y1="1000" x2="750" y2="1000" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="0" y1="1500" x2="750" y2="1500" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+  </svg>
+);
 
 /* ── Compass Rose SVG ── */
 const CompassRose = () => (
@@ -212,8 +237,8 @@ const TreasureMapTimeline = () => {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 25%",
-            end: "bottom 75%",
+            start: "top 80%",
+            end: "bottom 70%",
             scrub: 1.2,
           },
         });
@@ -236,8 +261,8 @@ const TreasureMapTimeline = () => {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 25%",
-            end: "bottom 75%",
+            start: "top 80%",
+            end: "bottom 70%",
             scrub: 1,
           },
         });
@@ -334,6 +359,9 @@ const TreasureMapTimeline = () => {
 
       {/* ── MAP AREA ── */}
       <div className="relative z-10 mx-auto" style={{ maxWidth: 750, minHeight: 1850 }}>
+        {/* Hand-Drawn Paper Map Sketch Overlay */}
+        <PaperMapSketches />
+
         <svg
           className="absolute inset-0 w-full"
           viewBox="0 0 750 1850"
