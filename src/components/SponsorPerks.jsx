@@ -103,7 +103,7 @@ const SponsorPerks = () => {
         {/* Left White Cloud - Centered at Middle (top-1/2) */}
         <div
           ref={cloudLeftRef}
-          className="absolute top-1/2 -left-32 -translate-y-1/2 w-[65vw] md:w-[50vw] max-w-[700px] opacity-95 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+          className="absolute top-1/2 -left-32 -translate-y-1/2 w-[65vw] md:w-[50vw] max-w-[700px]"
         >
           <img
             src={cloudLeftImg}
@@ -115,7 +115,7 @@ const SponsorPerks = () => {
         {/* Right White Cloud - Centered at Middle (top-1/2) */}
         <div
           ref={cloudRightRef}
-          className="absolute top-1/2 -right-32 -translate-y-1/2 w-[65vw] md:w-[50vw] max-w-[700px] opacity-95 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
+          className="absolute top-1/2 -right-32 -translate-y-1/2 w-[65vw] md:w-[50vw] max-w-[700px]"
         >
           <img
             src={cloudRightImg}
