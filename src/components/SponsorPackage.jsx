@@ -82,18 +82,20 @@ const FreelyFlyingParrot = () => {
       ease: "power1.inOut",
     });
 
-    // 2. Free Flight Animation Path inside the section
+    // 2. Smooth Floating Flight Motion
     const parrot = parrotRef.current;
     if (parrot) {
-      gsap.to(parrot, {
-        x: "random(-250, 250)",
-        y: "random(-80, 120)",
-        rotate: "random(-15, 15)",
-        duration: 4,
-        repeat: -1,
-        repeatRefresh: true,
-        ease: "sine.easeInOut",
-      });
+      const animateParrot = () => {
+        gsap.to(parrot, {
+          x: gsap.utils.random(-220, 220),
+          y: gsap.utils.random(-60, 100),
+          rotate: gsap.utils.random(-15, 15),
+          duration: 3.5,
+          ease: "sine.easeInOut",
+          onComplete: animateParrot,
+        });
+      };
+      animateParrot();
     }
 
     return () => wingTl.kill();
