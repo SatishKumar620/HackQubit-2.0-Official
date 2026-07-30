@@ -1,81 +1,191 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ExternalLink, Compass, Trophy, Zap } from "lucide-react";
+import { MapPin, ExternalLink, Compass, ArrowUpRight, Sparkles, Leaf } from "lucide-react";
 import CountdownTimer from "./CountdownTimer";
-import InteractiveTreasureMap from "./InteractiveTreasureMap";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ── Left Side Growing Vines & Foliage SVG Component ────────────────────
+const LeftGrowingVines = () => (
+  <svg
+    className="absolute left-0 top-0 h-full w-40 sm:w-56 lg:w-72 pointer-events-none z-10 opacity-80"
+    viewBox="0 0 300 1000"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+  >
+    {/* Main Stem 1 */}
+    <path
+      className="vine-path-1"
+      d="M0 0 C 80 150, 150 250, 60 400 C -10 520, 140 680, 40 850 C 0 920, 30 1000, 0 1000"
+      stroke="#059669"
+      strokeWidth="4"
+      strokeLinecap="round"
+    />
+    {/* Main Stem 2 (Lighter Green) */}
+    <path
+      className="vine-path-2"
+      d="M0 50 C 120 180, 40 320, 130 500 C 180 620, 30 780, 0 900"
+      stroke="#10b981"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    {/* Branching Tendrils */}
+    <path
+      className="vine-path-3"
+      d="M60 400 Q 180 380, 220 440"
+      stroke="#047857"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      className="vine-path-3"
+      d="M130 500 Q 220 520, 250 580"
+      stroke="#10b981"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+
+    {/* Leaves (Left Side) */}
+    <g className="leaf-group">
+      <path d="M60 400 C 90 370, 130 380, 140 410 C 110 430, 80 420, 60 400 Z" fill="#059669" />
+      <path d="M220 440 C 250 420, 270 440, 260 465 C 235 470, 215 455, 220 440 Z" fill="#10b981" />
+      <path d="M130 500 C 170 470, 190 490, 185 520 C 150 530, 135 515, 130 500 Z" fill="#047857" />
+      <path d="M250 580 C 280 560, 295 585, 280 605 C 255 610, 240 595, 250 580 Z" fill="#10b981" />
+      <path d="M40 850 C 70 820, 110 830, 120 860 C 90 880, 60 870, 40 850 Z" fill="#059669" />
+    </g>
+  </svg>
+);
+
+// ── Right Side Growing Vines & Foliage SVG Component ───────────────────
+const RightGrowingVines = () => (
+  <svg
+    className="absolute right-0 top-0 h-full w-40 sm:w-56 lg:w-72 pointer-events-none z-10 opacity-80"
+    viewBox="0 0 300 1000"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="none"
+  >
+    {/* Main Stem 1 */}
+    <path
+      className="vine-path-1"
+      d="M300 0 C 220 150, 150 250, 240 400 C 310 520, 160 680, 260 850 C 300 920, 270 1000, 300 1000"
+      stroke="#059669"
+      strokeWidth="4"
+      strokeLinecap="round"
+    />
+    {/* Main Stem 2 */}
+    <path
+      className="vine-path-2"
+      d="M300 50 C 180 180, 260 320, 170 500 C 120 620, 270 780, 300 900"
+      stroke="#10b981"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+    />
+    {/* Branching Tendrils */}
+    <path
+      className="vine-path-3"
+      d="M240 400 Q 120 380, 80 440"
+      stroke="#047857"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      className="vine-path-3"
+      d="M170 500 Q 80 520, 50 580"
+      stroke="#10b981"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+
+    {/* Leaves (Right Side) */}
+    <g className="leaf-group">
+      <path d="M240 400 C 210 370, 170 380, 160 410 C 190 430, 220 420, 240 400 Z" fill="#059669" />
+      <path d="M80 440 C 50 420, 30 440, 40 465 C 65 470, 85 455, 80 440 Z" fill="#10b981" />
+      <path d="M170 500 C 130 470, 110 490, 115 520 C 150 530, 165 515, 170 500 Z" fill="#047857" />
+      <path d="M50 580 C 20 560, 5 585, 20 605 C 45 610, 60 595, 50 580 Z" fill="#10b981" />
+      <path d="M260 850 C 230 820, 190 830, 180 860 C 210 880, 240 870, 260 850 Z" fill="#059669" />
+    </g>
+  </svg>
+);
+
 const About = () => {
   const sectionRef = useRef(null);
-  const titleLettersRef = useRef([]);
-  const card1Ref = useRef(null);
-  const card2Ref = useRef(null);
-  const venueCardRef = useRef(null);
-  const statsBarRef = useRef(null);
-
-  const titleText = "About HackQubit 2.0";
+  const titleRef = useRef(null);
+  const cardRef = useRef(null);
+  const venueRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Word-by-Word / Character-by-Character Header Reveal
-      if (titleLettersRef.current.length > 0) {
-        gsap.fromTo(
-          titleLettersRef.current,
-          { y: 50, opacity: 0, rotateX: -90 },
-          {
-            y: 0,
-            opacity: 1,
-            rotateX: 0,
-            duration: 0.6,
-            stagger: 0.03,
-            ease: "back.out(1.7)",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 75%",
-            },
-          }
-        );
-      }
+      // 1. Vine Growth Animation on Scroll
+      const vinePaths = gsap.utils.toArray(".vine-path-1, .vine-path-2, .vine-path-3");
+      vinePaths.forEach((path) => {
+        const length = path.getTotalLength ? path.getTotalLength() : 800;
+        gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
 
-      // Feature Cards Animation
+        gsap.to(path, {
+          strokeDashoffset: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            end: "bottom 40%",
+            scrub: 1.2,
+          },
+        });
+      });
+
+      // 2. Leaf Unfurling / Scaling Animation
       gsap.fromTo(
-        [card1Ref.current, card2Ref.current],
-        { y: 50, opacity: 0 },
+        ".leaf-group path",
+        { scale: 0, transformOrigin: "center center" },
+        {
+          scale: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "back.out(2)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 60%",
+          },
+        }
+      );
+
+      // 3. Header & Card Animations
+      gsap.fromTo(
+        titleRef.current,
+        { y: 30, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
-          stagger: 0.2,
           ease: "power3.out",
-          scrollTrigger: { trigger: card1Ref.current, start: "top 80%" },
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
         }
       );
 
-      // Venue Card Animation
       gsap.fromTo(
-        venueCardRef.current,
-        { y: 50, opacity: 0 },
+        cardRef.current,
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.9,
           ease: "power3.out",
-          scrollTrigger: { trigger: venueCardRef.current, start: "top 80%" },
+          scrollTrigger: { trigger: cardRef.current, start: "top 80%" },
         }
       );
 
-      // Stats Bar Animation
       gsap.fromTo(
-        statsBarRef.current,
-        { scale: 0.95, opacity: 0 },
+        venueRef.current,
+        { y: 40, opacity: 0 },
         {
-          scale: 1,
+          y: 0,
           opacity: 1,
-          duration: 0.8,
-          ease: "back.out(1.5)",
-          scrollTrigger: { trigger: statsBarRef.current, start: "top 85%" },
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: venueRef.current, start: "top 85%" },
         }
       );
     }, sectionRef);
@@ -87,136 +197,83 @@ const About = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative w-full py-24 px-6 sm:px-10 lg:px-16 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #091328 0%, #0d1b3a 50%, #091328 100%)" }}
+      className="relative w-full py-24 px-6 sm:px-10 lg:px-16 overflow-hidden bg-white text-slate-900"
     >
-      {/* Background Glow & Grid */}
+      {/* Growing Vines & Botanical Foliage (Left & Right Sides) */}
+      <LeftGrowingVines />
+      <RightGrowingVines />
+
+      {/* Soft Canopy Sunlight / Forest Aura Background Effect */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] pointer-events-none opacity-40"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.5) 1px,transparent 1px)",
-          backgroundSize: "60px 60px",
+          background: "radial-gradient(ellipse at 50% 0%, rgba(16,185,129,0.15) 0%, transparent 70%)",
         }}
       />
-      <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)" }}
-      />
 
-      <div className="max-w-[1200px] mx-auto relative z-10">
-        {/* Section Header with Character-by-Character Stagger Animation */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 mb-4">
-            <Compass className="w-3.5 h-3.5 text-amber-400" />
-            <span className="font-cinzel text-xs tracking-[0.3em] text-amber-400 uppercase font-semibold">
-              The Grand Voyage
+      <div className="max-w-[1000px] mx-auto relative z-20">
+        {/* Section Header */}
+        <div ref={titleRef} className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-50/80 mb-4">
+            <Leaf className="w-4 h-4 text-emerald-600" />
+            <span className="font-cinzel text-xs tracking-[0.25em] text-emerald-700 uppercase font-bold">
+              The Botanical Voyage
             </span>
           </div>
 
-          {/* Animated Header Text */}
-          <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight flex items-center justify-center flex-wrap gap-x-3">
-            {titleText.split(" ").map((word, wIdx) => (
-              <span key={wIdx} className="inline-block whitespace-nowrap">
-                {word.split("").map((char, cIdx) => (
-                  <span
-                    key={cIdx}
-                    ref={(el) => {
-                      if (el) titleLettersRef.current.push(el);
-                    }}
-                    className={`inline-block perspective-500 ${
-                      word === "HackQubit" || word === "2.0" ? "text-amber-400" : ""
-                    }`}
-                  >
-                    {char}
-                  </span>
-                ))}
-              </span>
-            ))}
+          <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
+            About <span className="text-emerald-600">HackQubit 2.0</span>
           </h2>
-
-          <p className="mt-4 font-cinzel text-white/70 text-sm sm:text-base max-w-[600px] mx-auto leading-relaxed">
-            The premier national-level hackathon hosted by <strong className="text-white">RVSCET, Jamshedpur</strong>. 
-            Gathering India's boldest innovators for a non-stop coding expedition.
+          <p className="mt-4 font-cinzel text-slate-600 text-base max-w-[580px] mx-auto leading-relaxed">
+            Hosted by <strong className="text-slate-900 font-bold">RVSCET, Jamshedpur</strong>. 
+            Empowering India's finest minds to Code, Create & Conquer.
           </p>
         </div>
 
-        {/* Live Countdown Timer Component */}
-        <CountdownTimer />
+        {/* Streamlined Main Overview Card */}
+        <div
+          ref={cardRef}
+          className="relative p-8 sm:p-12 rounded-3xl mb-12 bg-white/90 border border-slate-200/80 shadow-[0_20px_50px_rgba(5,150,105,0.08)] backdrop-blur-xl"
+        >
+          {/* Subtle Accent Corner */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none" />
 
-        {/* Interactive Coordinate Inspector Map Logbook */}
-        <InteractiveTreasureMap />
-
-        {/* Feature Cards Grid (Compact & Modern) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          {/* Card 1: The Initiative */}
-          <div
-            ref={card1Ref}
-            className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
-            style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
-              border: "1px solid rgba(212,175,55,0.3)",
-              backdropFilter: "blur(16px)",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
-            }}
-          >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-amber-400/15 border border-amber-400/30 text-amber-400">
-              <Zap className="w-6 h-6" />
-            </div>
-            <h3 className="font-cinzel text-xl font-bold text-white mb-3">
-              Pirates of the Sea
-            </h3>
-            <p className="font-cinzel text-sm text-white/75 leading-relaxed">
-              A student-led movement at RVSCET driving technical excellence. We empower developers through competitive coding, workshops, and real-world innovation challenges.
+          <div className="space-y-6 text-slate-700 font-cinzel text-base leading-relaxed">
+            <p>
+              <strong className="text-emerald-700 font-bold text-lg block mb-1">
+                🏴‍☠️ Driven by Pirates of the Sea
+              </strong>
+              A student-led initiative at RVSCET dedicated to fostering technical excellence. We cultivate an environment of continuous learning, competitive programming, and practical innovation.
             </p>
-          </div>
 
-          {/* Card 2: The Hackathon */}
-          <div
-            ref={card2Ref}
-            className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
-            style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
-              border: "1px solid rgba(59,130,246,0.3)",
-              backdropFilter: "blur(16px)",
-              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
-            }}
-          >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-blue-500/15 border border-blue-500/30 text-blue-400">
-              <Trophy className="w-6 h-6" />
-            </div>
-            <h3 className="font-cinzel text-xl font-bold text-white mb-3">
-              Pure Innovation. On the Spot.
-            </h3>
-            <p className="font-cinzel text-sm text-white/75 leading-relaxed">
-              No pre-submitted PPTs or prior builds. Problem statements are revealed live on the spot. Test your real-time problem solving, code under pressure, and conquer!
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+            <p>
+              <strong className="text-slate-900 font-bold text-lg block mb-1">
+                ⚡ 24-Hour Non-Stop Hackathon
+              </strong>
+              HackQubit 2.0 is a 24-hour national competition where problem statements are revealed live on the spot. No pre-submitted slides or prior code — just raw innovation and real-time execution.
             </p>
           </div>
         </div>
 
-        {/* Venue & Location Highlight Card (Embedded Map Link) */}
+        {/* Venue & Location Highlight Card with Direct Maps Link */}
         <div
-          ref={venueCardRef}
-          className="relative rounded-2xl p-6 sm:p-8 overflow-hidden mb-12 flex flex-col md:flex-row items-center justify-between gap-6"
-          style={{
-            background: "linear-gradient(135deg, rgba(212,175,55,0.14) 0%, rgba(15,30,60,0.85) 100%)",
-            border: "1px solid rgba(212,175,55,0.35)",
-            backdropFilter: "blur(20px)",
-            boxShadow: "0 15px 40px rgba(0,0,0,0.5)",
-          }}
+          ref={venueRef}
+          className="p-8 rounded-3xl bg-gradient-to-br from-emerald-900 to-slate-900 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6"
         >
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center bg-amber-500 text-slate-950 font-bold shadow-[0_0_20px_rgba(212,175,55,0.4)]">
+            <div className="w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center bg-emerald-500 text-slate-950 font-bold shadow-lg">
               <MapPin className="w-6 h-6" />
             </div>
             <div>
-              <span className="font-cinzel text-xs text-amber-400 tracking-[0.25em] uppercase font-bold">
-                Official Venue & Location
+              <span className="font-cinzel text-xs text-emerald-400 tracking-widest uppercase font-bold">
+                Official Venue
               </span>
-              <h4 className="font-cinzel text-xl sm:text-2xl font-bold text-white mt-1">
+              <h3 className="font-cinzel text-2xl font-bold text-white mt-1">
                 RVSCET, Jamshedpur
-              </h4>
-              <p className="font-cinzel text-sm text-white/70 mt-1">
+              </h3>
+              <p className="font-cinzel text-sm text-slate-300 mt-1">
                 RVS College of Engineering and Technology, Edalbera, Jamshedpur, Jharkhand 831012
               </p>
             </div>
@@ -226,42 +283,11 @@ const About = () => {
             href="https://maps.google.com/?q=RVSCET+Jamshedpur"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-cinzel text-sm text-slate-950 font-bold tracking-wider transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] flex-shrink-0"
-            style={{
-              background: "linear-gradient(135deg, #d4af37 0%, #b89228 100%)",
-              border: "1px solid rgba(255,255,255,0.2)",
-            }}
+            className="group flex items-center gap-2.5 px-6 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-cinzel font-bold text-sm tracking-wider transition-all duration-300 shadow-lg hover:shadow-emerald-500/30 flex-shrink-0"
           >
-            <span>Open in Google Maps</span>
-            <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <span>Open Google Maps</span>
+            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
-        </div>
-
-        {/* Quick Highlights Bar */}
-        <div
-          ref={statsBarRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl text-center"
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          <div>
-            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-amber-400">24 HR</span>
-            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">Non-Stop Hackathon</span>
-          </div>
-          <div>
-            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-blue-400">OCT 7–8</span>
-            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">2025 Event Dates</span>
-          </div>
-          <div>
-            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-cyan-400">NATIONAL</span>
-            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">Level Open for All</span>
-          </div>
-          <div>
-            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-emerald-400">ON-SPOT</span>
-            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">Problem Statements</span>
-          </div>
         </div>
       </div>
     </section>
