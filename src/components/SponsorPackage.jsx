@@ -67,73 +67,67 @@ const SideThickRopes = () => (
   </>
 );
 
-/* ─── Freely Flying Animated Parrot SVG Component ─── */
-const FreelyFlyingParrot = () => {
-  const parrotRef = useRef(null);
-  const wingLeftRef = useRef(null);
-  const wingRightRef = useRef(null);
+/* ─── Multiple Flying Parrots (Flock flying from Left to Right across section) ─── */
+const FlyingParrotsFlock = () => {
+  const parrot1Ref = useRef(null);
+  const parrot2Ref = useRef(null);
+  const parrot3Ref = useRef(null);
 
   useEffect(() => {
-    // 1. Wing Flapping Animation Loop
-    const wingTl = gsap.timeline({ repeat: -1, yoyo: true });
-    wingTl.to([wingLeftRef.current, wingRightRef.current], {
-      scaleY: 0.2,
-      duration: 0.2,
-      ease: "power1.inOut",
-    });
-
-    // 2. Smooth Floating Flight Motion
-    const parrot = parrotRef.current;
-    if (parrot) {
-      const animateParrot = () => {
-        gsap.to(parrot, {
-          x: gsap.utils.random(-220, 220),
-          y: gsap.utils.random(-60, 100),
-          rotate: gsap.utils.random(-15, 15),
-          duration: 3.5,
-          ease: "sine.easeInOut",
-          onComplete: animateParrot,
+    // 1. Continuous Left to Right Flight Paths
+    const animateParrotFlight = (ref, speed, delayY, baseTop) => {
+      if (!ref.current) return;
+      const fly = () => {
+        gsap.set(ref.current, { x: "-15vw", y: baseTop, opacity: 0.9, scale: 0.85 });
+        gsap.to(ref.current, {
+          x: "115vw",
+          y: baseTop + delayY,
+          duration: speed,
+          ease: "none",
+          onComplete: fly,
         });
       };
-      animateParrot();
-    }
+      fly();
+    };
 
-    return () => wingTl.kill();
+    animateParrotFlight(parrot1Ref, 12, -40, 60);
+    animateParrotFlight(parrot2Ref, 16, 50, 180);
+    animateParrotFlight(parrot3Ref, 10, -20, 320);
   }, []);
 
   return (
-    <div
-      ref={parrotRef}
-      className="absolute top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-auto cursor-pointer"
-      title="Click me to squawk!"
-      onClick={() => {
-        if (parrotRef.current) {
-          gsap.to(parrotRef.current, {
-            scale: 1.4,
-            rotate: "+=360",
-            duration: 0.7,
-            ease: "back.out(2)",
-            onComplete: () => gsap.to(parrotRef.current, { scale: 1, duration: 0.3 }),
-          });
-        }
-      }}
-    >
-      <div className="w-20 h-20 filter drop-shadow-[0_10px_20px_rgba(212,175,55,0.4)]">
+    <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden select-none">
+      {/* Parrot 1 (Red / Yellow / Green) */}
+      <div ref={parrot1Ref} className="absolute left-0 w-16 h-16 sm:w-20 sm:h-20 filter drop-shadow-md">
         <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          {/* Wings */}
-          <path ref={wingLeftRef} d="M 35 45 C 10 20, 5 40, 20 60 C 30 55, 35 50, 35 45 Z" fill="#ef4444" />
-          <path ref={wingRightRef} d="M 65 45 C 90 20, 95 40, 80 60 C 70 55, 65 50, 65 45 Z" fill="#3b82f6" />
-          {/* Body */}
+          <path d="M 35 45 C 10 20, 5 40, 20 60 Z" fill="#ef4444" className="animate-pulse" />
+          <path d="M 65 45 C 90 20, 95 40, 80 60 Z" fill="#3b82f6" className="animate-pulse" />
           <path d="M 40 30 Q 50 15 60 30 Q 65 60 50 80 Q 35 60 40 30 Z" fill="#eab308" />
-          {/* Tail */}
-          <path d="M 46 80 L 42 100 L 50 95 L 58 100 L 54 80 Z" fill="#22c55e" />
-          {/* Head & Beak */}
           <circle cx="50" cy="25" r="12" fill="#ef4444" />
           <path d="M 58 22 Q 72 26 62 34 Z" fill="#f97316" />
-          <circle cx="54" cy="22" r="3" fill="white" />
-          <circle cx="55" cy="22" r="1.5" fill="black" />
-          <path d="M 44 19 L 52 26" stroke="black" strokeWidth="1.5" />
-          <circle cx="47" cy="22" r="2.5" fill="black" />
+          <circle cx="54" cy="22" r="2.5" fill="white" />
+        </svg>
+      </div>
+
+      {/* Parrot 2 (Cyan / Gold) */}
+      <div ref={parrot2Ref} className="absolute left-0 w-14 h-14 sm:w-16 sm:h-16 filter drop-shadow-md">
+        <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 35 45 C 10 20, 5 40, 20 60 Z" fill="#06b6d4" />
+          <path d="M 65 45 C 90 20, 95 40, 80 60 Z" fill="#eab308" />
+          <path d="M 40 30 Q 50 15 60 30 Q 65 60 50 80 Q 35 60 40 30 Z" fill="#0284c7" />
+          <circle cx="50" cy="25" r="12" fill="#06b6d4" />
+          <path d="M 58 22 Q 72 26 62 34 Z" fill="#f97316" />
+        </svg>
+      </div>
+
+      {/* Parrot 3 (Emerald / Crimson) */}
+      <div ref={parrot3Ref} className="absolute left-0 w-18 h-18 sm:w-22 sm:h-22 filter drop-shadow-md">
+        <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 35 45 C 10 20, 5 40, 20 60 Z" fill="#10b981" />
+          <path d="M 65 45 C 90 20, 95 40, 80 60 Z" fill="#ef4444" />
+          <path d="M 40 30 Q 50 15 60 30 Q 65 60 50 80 Q 35 60 40 30 Z" fill="#059669" />
+          <circle cx="50" cy="25" r="12" fill="#10b981" />
+          <path d="M 58 22 Q 72 26 62 34 Z" fill="#f97316" />
         </svg>
       </div>
     </div>
@@ -146,8 +140,8 @@ const SponsorPackage = () => {
       {/* Thick Side Ropes with Shadow */}
       <SideThickRopes />
 
-      {/* Freely Flying Parrot */}
-      <FreelyFlyingParrot />
+      {/* Multiple Flying Parrots Flock (Left to Right) */}
+      <FlyingParrotsFlock />
 
       {/* Section Header */}
       <div className="text-center mb-20 relative z-10">
