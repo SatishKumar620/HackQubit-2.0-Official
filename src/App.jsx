@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import {
-  About, Timeline, PrizePool, ProblemStatements,
+  Hero, About, Timeline, PrizePool, ProblemStatements,
   SponsorPackage, SponsorPerks, OurSponsors,
   Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ
 } from "./components";
@@ -42,6 +42,9 @@ function App() {
       </AnimatePresence>
 
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
+        {/* Hero Section at the top */}
+        <Hero />
+
         <TopLand />
         <About />
         <BottomLand />
