@@ -145,7 +145,7 @@ const PirateCaptainGuide = () => {
 
       {/* Young Pirate Captain Image */}
       <div
-        className="w-20 h-20 sm:w-24 sm:h-24 cursor-pointer hover:scale-110 transition-transform duration-300"
+        className="w-28 h-28 sm:w-36 sm:h-36 cursor-pointer hover:scale-110 transition-transform duration-300"
         onClick={() => {
           setBubbleVisible(true);
         }}
