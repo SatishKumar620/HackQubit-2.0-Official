@@ -2,31 +2,42 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, ExternalLink, Compass, Trophy, Zap } from "lucide-react";
+import CountdownTimer from "./CountdownTimer";
+import InteractiveTreasureMap from "./InteractiveTreasureMap";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
+  const titleLettersRef = useRef([]);
   const card1Ref = useRef(null);
   const card2Ref = useRef(null);
   const venueCardRef = useRef(null);
   const statsBarRef = useRef(null);
 
+  const titleText = "About HackQubit 2.0";
+
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header Animation
-      gsap.fromTo(
-        headerRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        }
-      );
+      // Word-by-Word / Character-by-Character Header Reveal
+      if (titleLettersRef.current.length > 0) {
+        gsap.fromTo(
+          titleLettersRef.current,
+          { y: 50, opacity: 0, rotateX: -90 },
+          {
+            y: 0,
+            opacity: 1,
+            rotateX: 0,
+            duration: 0.6,
+            stagger: 0.03,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 75%",
+            },
+          }
+        );
+      }
 
       // Feature Cards Animation
       gsap.fromTo(
@@ -94,22 +105,47 @@ const About = () => {
       />
 
       <div className="max-w-[1200px] mx-auto relative z-10">
-        {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-16">
+        {/* Section Header with Character-by-Character Stagger Animation */}
+        <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 mb-4">
             <Compass className="w-3.5 h-3.5 text-amber-400" />
             <span className="font-cinzel text-xs tracking-[0.3em] text-amber-400 uppercase font-semibold">
               The Grand Voyage
             </span>
           </div>
-          <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            About <span className="text-amber-400">HackQubit 2.0</span>
+
+          {/* Animated Header Text */}
+          <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight flex items-center justify-center flex-wrap gap-x-3">
+            {titleText.split(" ").map((word, wIdx) => (
+              <span key={wIdx} className="inline-block whitespace-nowrap">
+                {word.split("").map((char, cIdx) => (
+                  <span
+                    key={cIdx}
+                    ref={(el) => {
+                      if (el) titleLettersRef.current.push(el);
+                    }}
+                    className={`inline-block perspective-500 ${
+                      word === "HackQubit" || word === "2.0" ? "text-amber-400" : ""
+                    }`}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </span>
+            ))}
           </h2>
+
           <p className="mt-4 font-cinzel text-white/60 text-sm sm:text-base max-w-[600px] mx-auto leading-relaxed">
             The premier national-level hackathon hosted by <strong className="text-white">RVSCET, Jamshedpur</strong>. 
             Gathering India's boldest innovators for a non-stop coding expedition.
           </p>
         </div>
+
+        {/* Live Countdown Timer Component */}
+        <CountdownTimer />
+
+        {/* Interactive Coordinate Inspector Map Logbook */}
+        <InteractiveTreasureMap />
 
         {/* Feature Cards Grid (Compact & Modern) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
