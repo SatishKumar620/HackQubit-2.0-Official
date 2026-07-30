@@ -67,67 +67,134 @@ const SideThickRopes = () => (
   </>
 );
 
-/* ─── Multiple Flying Parrots (Flock flying from Left to Right across section) ─── */
-const FlyingParrotsFlock = () => {
-  const parrot1Ref = useRef(null);
-  const parrot2Ref = useRef(null);
-  const parrot3Ref = useRef(null);
+/* ─── 1. Interactive Freely Roaming Parrot (Click/Touch Spin & Squawk) ─── */
+const InteractiveFreelyRoamingParrot = () => {
+  const parrotRef = useRef(null);
+  const wingLeftRef = useRef(null);
+  const wingRightRef = useRef(null);
 
   useEffect(() => {
-    // 1. Continuous Left to Right Flight Paths
-    const animateParrotFlight = (ref, speed, delayY, baseTop) => {
+    // Wing flap
+    const wingTl = gsap.timeline({ repeat: -1, yoyo: true });
+    wingTl.to([wingLeftRef.current, wingRightRef.current], {
+      scaleY: 0.2,
+      duration: 0.18,
+      ease: "power1.inOut",
+    });
+
+    // Free roaming flight motion
+    const parrot = parrotRef.current;
+    if (parrot) {
+      const animateParrot = () => {
+        gsap.to(parrot, {
+          x: gsap.utils.random(-200, 200),
+          y: gsap.utils.random(-40, 120),
+          rotate: gsap.utils.random(-12, 12),
+          duration: 3.2,
+          ease: "sine.easeInOut",
+          onComplete: animateParrot,
+        });
+      };
+      animateParrot();
+    }
+
+    return () => wingTl.kill();
+  }, []);
+
+  return (
+    <div
+      ref={parrotRef}
+      className="absolute top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-auto cursor-pointer select-none"
+      title="Click or Touch me to spin!"
+      onClick={() => {
+        if (parrotRef.current) {
+          gsap.to(parrotRef.current, {
+            scale: 1.4,
+            rotate: "+=360",
+            duration: 0.6,
+            ease: "back.out(2)",
+            onComplete: () => gsap.to(parrotRef.current, { scale: 1, duration: 0.3 }),
+          });
+        }
+      }}
+    >
+      <div className="w-16 h-16 sm:w-20 sm:h-20 filter drop-shadow-[0_10px_20px_rgba(34,197,94,0.4)]">
+        <svg viewBox="0 0 120 70" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          {/* Green Parrot Body - Horizontal Airplane Orientation */}
+          {/* Wings */}
+          <path ref={wingLeftRef} d="M 50 35 Q 20 5 10 25 Q 30 40 50 35 Z" fill="#16a34a" />
+          <path ref={wingRightRef} d="M 50 35 Q 20 65 10 45 Q 30 30 50 35 Z" fill="#15803d" />
+          {/* Tail */}
+          <path d="M 15 35 L 0 25 L 5 35 L 0 45 Z" fill="#22c55e" />
+          {/* Body Fuselage */}
+          <ellipse cx="55" cy="35" rx="30" ry="14" fill="#22c55e" />
+          {/* Head */}
+          <circle cx="80" cy="35" r="14" fill="#16a34a" />
+          {/* Eye */}
+          <circle cx="85" cy="30" r="3" fill="white" />
+          <circle cx="86" cy="30" r="1.5" fill="black" />
+          {/* Bright Red Beak */}
+          <path d="M 90 28 Q 115 35 90 44 Z" fill="#ef4444" />
+        </svg>
+      </div>
+    </div>
+  );
+};
+
+/* ─── 2. Airplane-Style Flying Parrots (Horizontal Green Body & Bright Red Beak Left-to-Right) ─── */
+const AirplaneStyleFlyingParrots = () => {
+  const p1Ref = useRef(null);
+  const p2Ref = useRef(null);
+
+  useEffect(() => {
+    const flyLeftToRight = (ref, duration, baseTop, delayY) => {
       if (!ref.current) return;
-      const fly = () => {
-        gsap.set(ref.current, { x: "-15vw", y: baseTop, opacity: 0.9, scale: 0.85 });
+      const startFlight = () => {
+        gsap.set(ref.current, { x: "-15vw", y: baseTop, opacity: 0.95 });
         gsap.to(ref.current, {
           x: "115vw",
           y: baseTop + delayY,
-          duration: speed,
+          duration,
           ease: "none",
-          onComplete: fly,
+          onComplete: startFlight,
         });
       };
-      fly();
+      startFlight();
     };
 
-    animateParrotFlight(parrot1Ref, 12, -40, 60);
-    animateParrotFlight(parrot2Ref, 16, 50, 180);
-    animateParrotFlight(parrot3Ref, 10, -20, 320);
+    flyLeftToRight(p1Ref, 11, 80, -30);
+    flyLeftToRight(p2Ref, 15, 240, 40);
   }, []);
 
   return (
     <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden select-none">
-      {/* Parrot 1 (Red / Yellow / Green) */}
-      <div ref={parrot1Ref} className="absolute left-0 w-16 h-16 sm:w-20 sm:h-20 filter drop-shadow-md">
-        <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 35 45 C 10 20, 5 40, 20 60 Z" fill="#ef4444" className="animate-pulse" />
-          <path d="M 65 45 C 90 20, 95 40, 80 60 Z" fill="#3b82f6" className="animate-pulse" />
-          <path d="M 40 30 Q 50 15 60 30 Q 65 60 50 80 Q 35 60 40 30 Z" fill="#eab308" />
-          <circle cx="50" cy="25" r="12" fill="#ef4444" />
-          <path d="M 58 22 Q 72 26 62 34 Z" fill="#f97316" />
-          <circle cx="54" cy="22" r="2.5" fill="white" />
+      {/* Flying Green Parrot 1 */}
+      <div ref={p1Ref} className="absolute left-0 w-20 h-12 filter drop-shadow-md">
+        <svg viewBox="0 0 120 70" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          {/* Wings Horizontal Airplane Pitch */}
+          <path d="M 50 35 Q 20 5 10 25 Q 30 40 50 35 Z" fill="#16a34a" className="animate-pulse" />
+          <path d="M 50 35 Q 20 65 10 45 Q 30 30 50 35 Z" fill="#15803d" className="animate-pulse" />
+          <path d="M 15 35 L 0 25 L 5 35 L 0 45 Z" fill="#22c55e" />
+          <ellipse cx="55" cy="35" rx="30" ry="14" fill="#22c55e" />
+          <circle cx="80" cy="35" r="14" fill="#16a34a" />
+          <circle cx="85" cy="30" r="3" fill="white" />
+          <circle cx="86" cy="30" r="1.5" fill="black" />
+          {/* Red Beak */}
+          <path d="M 90 28 Q 115 35 90 44 Z" fill="#ef4444" />
         </svg>
       </div>
 
-      {/* Parrot 2 (Cyan / Gold) */}
-      <div ref={parrot2Ref} className="absolute left-0 w-14 h-14 sm:w-16 sm:h-16 filter drop-shadow-md">
-        <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 35 45 C 10 20, 5 40, 20 60 Z" fill="#06b6d4" />
-          <path d="M 65 45 C 90 20, 95 40, 80 60 Z" fill="#eab308" />
-          <path d="M 40 30 Q 50 15 60 30 Q 65 60 50 80 Q 35 60 40 30 Z" fill="#0284c7" />
-          <circle cx="50" cy="25" r="12" fill="#06b6d4" />
-          <path d="M 58 22 Q 72 26 62 34 Z" fill="#f97316" />
-        </svg>
-      </div>
-
-      {/* Parrot 3 (Emerald / Crimson) */}
-      <div ref={parrot3Ref} className="absolute left-0 w-18 h-18 sm:w-22 sm:h-22 filter drop-shadow-md">
-        <svg viewBox="0 0 100 100" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 35 45 C 10 20, 5 40, 20 60 Z" fill="#10b981" />
-          <path d="M 65 45 C 90 20, 95 40, 80 60 Z" fill="#ef4444" />
-          <path d="M 40 30 Q 50 15 60 30 Q 65 60 50 80 Q 35 60 40 30 Z" fill="#059669" />
-          <circle cx="50" cy="25" r="12" fill="#10b981" />
-          <path d="M 58 22 Q 72 26 62 34 Z" fill="#f97316" />
+      {/* Flying Green Parrot 2 */}
+      <div ref={p2Ref} className="absolute left-0 w-16 h-10 filter drop-shadow-md opacity-90">
+        <svg viewBox="0 0 120 70" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 50 35 Q 20 5 10 25 Q 30 40 50 35 Z" fill="#15803d" />
+          <path d="M 50 35 Q 20 65 10 45 Q 30 30 50 35 Z" fill="#16a34a" />
+          <path d="M 15 35 L 0 25 L 5 35 L 0 45 Z" fill="#4ade80" />
+          <ellipse cx="55" cy="35" rx="30" ry="14" fill="#16a34a" />
+          <circle cx="80" cy="35" r="14" fill="#15803d" />
+          <circle cx="85" cy="30" r="3" fill="white" />
+          {/* Red Beak */}
+          <path d="M 90 28 Q 115 35 90 44 Z" fill="#dc2626" />
         </svg>
       </div>
     </div>
@@ -140,8 +207,11 @@ const SponsorPackage = () => {
       {/* Thick Side Ropes with Shadow */}
       <SideThickRopes />
 
-      {/* Multiple Flying Parrots Flock (Left to Right) */}
-      <FlyingParrotsFlock />
+      {/* 1 Touch/Click Interactive Freely Roaming Parrot */}
+      <InteractiveFreelyRoamingParrot />
+
+      {/* Airplane-Style Green Flying Parrots Flock (Left-to-Right) */}
+      <AirplaneStyleFlyingParrots />
 
       {/* Section Header */}
       <div className="text-center mb-20 relative z-10">

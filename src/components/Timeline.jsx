@@ -224,12 +224,12 @@ const TreasureMapTimeline = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (shipRef.current && pathRef.current) {
-        // Realistic Sailing Motion along path with natural rotation
+        // Realistic Sailing Motion along path with natural rotation (Front bow oriented along path)
         gsap.to(shipRef.current, {
           motionPath: {
             path: pathRef.current,
             align: pathRef.current,
-            autoRotate: true,
+            autoRotate: 90,
             alignOrigin: [0.5, 0.5],
             start: 0,
             end: 1,
