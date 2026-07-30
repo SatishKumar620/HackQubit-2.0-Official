@@ -88,11 +88,11 @@ const About = () => {
       ref={sectionRef}
       id="about"
       className="relative w-full py-24 px-6 sm:px-10 lg:px-16 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, #020b18 0%, #030e1f 50%, #020b18 100%)" }}
+      style={{ background: "linear-gradient(180deg, #091328 0%, #0d1b3a 50%, #091328 100%)" }}
     >
       {/* Background Glow & Grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
           backgroundImage:
             "linear-gradient(rgba(212,175,55,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.5) 1px,transparent 1px)",
@@ -100,8 +100,8 @@ const About = () => {
         }}
       />
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%)" }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[750px] h-[400px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.14) 0%, transparent 70%)" }}
       />
 
       <div className="max-w-[1200px] mx-auto relative z-10">
@@ -135,7 +135,7 @@ const About = () => {
             ))}
           </h2>
 
-          <p className="mt-4 font-cinzel text-white/60 text-sm sm:text-base max-w-[600px] mx-auto leading-relaxed">
+          <p className="mt-4 font-cinzel text-white/70 text-sm sm:text-base max-w-[600px] mx-auto leading-relaxed">
             The premier national-level hackathon hosted by <strong className="text-white">RVSCET, Jamshedpur</strong>. 
             Gathering India's boldest innovators for a non-stop coding expedition.
           </p>
@@ -154,8 +154,8 @@ const About = () => {
             ref={card1Ref}
             className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
             style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
-              border: "1px solid rgba(212,175,55,0.25)",
+              background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
+              border: "1px solid rgba(212,175,55,0.3)",
               backdropFilter: "blur(16px)",
               boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
             }}
@@ -166,7 +166,7 @@ const About = () => {
             <h3 className="font-cinzel text-xl font-bold text-white mb-3">
               Pirates of the Sea
             </h3>
-            <p className="font-cinzel text-sm text-white/65 leading-relaxed">
+            <p className="font-cinzel text-sm text-white/75 leading-relaxed">
               A student-led movement at RVSCET driving technical excellence. We empower developers through competitive coding, workshops, and real-world innovation challenges.
             </p>
           </div>
@@ -176,8 +176,8 @@ const About = () => {
             ref={card2Ref}
             className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
             style={{
-              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
-              border: "1px solid rgba(59,130,246,0.25)",
+              background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
+              border: "1px solid rgba(59,130,246,0.3)",
               backdropFilter: "blur(16px)",
               boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
             }}
@@ -188,7 +188,7 @@ const About = () => {
             <h3 className="font-cinzel text-xl font-bold text-white mb-3">
               Pure Innovation. On the Spot.
             </h3>
-            <p className="font-cinzel text-sm text-white/65 leading-relaxed">
+            <p className="font-cinzel text-sm text-white/75 leading-relaxed">
               No pre-submitted PPTs or prior builds. Problem statements are revealed live on the spot. Test your real-time problem solving, code under pressure, and conquer!
             </p>
           </div>
@@ -199,8 +199,8 @@ const About = () => {
           ref={venueCardRef}
           className="relative rounded-2xl p-6 sm:p-8 overflow-hidden mb-12 flex flex-col md:flex-row items-center justify-between gap-6"
           style={{
-            background: "linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(10,20,40,0.8) 100%)",
-            border: "1px solid rgba(212,175,55,0.3)",
+            background: "linear-gradient(135deg, rgba(212,175,55,0.14) 0%, rgba(15,30,60,0.85) 100%)",
+            border: "1px solid rgba(212,175,55,0.35)",
             backdropFilter: "blur(20px)",
             boxShadow: "0 15px 40px rgba(0,0,0,0.5)",
           }}
@@ -216,7 +216,7 @@ const About = () => {
               <h4 className="font-cinzel text-xl sm:text-2xl font-bold text-white mt-1">
                 RVSCET, Jamshedpur
               </h4>
-              <p className="font-cinzel text-sm text-white/60 mt-1">
+              <p className="font-cinzel text-sm text-white/70 mt-1">
                 RVS College of Engineering and Technology, Edalbera, Jamshedpur, Jharkhand 831012
               </p>
             </div>
@@ -242,25 +242,25 @@ const About = () => {
           ref={statsBarRef}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl text-center"
           style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.06)",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid rgba(255,255,255,0.08)",
           }}
         >
           <div>
             <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-amber-400">24 HR</span>
-            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Non-Stop Hackathon</span>
+            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">Non-Stop Hackathon</span>
           </div>
           <div>
             <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-blue-400">OCT 7–8</span>
-            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">2025 Event Dates</span>
+            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">2025 Event Dates</span>
           </div>
           <div>
             <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-cyan-400">NATIONAL</span>
-            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Level Open for All</span>
+            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">Level Open for All</span>
           </div>
           <div>
             <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-emerald-400">ON-SPOT</span>
-            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Problem Statements</span>
+            <span className="font-cinzel text-[10px] text-white/60 uppercase tracking-widest mt-1 block">Problem Statements</span>
           </div>
         </div>
       </div>
