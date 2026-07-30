@@ -83,17 +83,42 @@ const MILESTONES = [
 /* ── Precise Path (Starts at top near header y=30 and winds down to final node y=1700) ── */
 const PATH_D = "M 375,30 Q 375,80 375,140 C 560,140 640,280 440,340 C 240,400 120,520 340,580 C 560,640 640,780 420,840 C 200,900 120,1020 340,1080 C 560,1140 640,1280 420,1340 C 240,1400 180,1520 375,1580 L 375,1700";
 
-/* ── Hand-Drawn Paper Map Sketch Overlay SVGs (Waves, Sea Monster & Chart Grid) ── */
+/* ── Hand-Drawn Paper Map Sketch Overlay SVGs (Islands, Ships, Kraken & Grid) ── */
 const PaperMapSketches = () => (
-  <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30 select-none" xmlns="http://www.w3.org/2000/svg">
+  <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40 select-none" xmlns="http://www.w3.org/2000/svg">
     {/* Hand-Drawn Water Waves */}
     <path d="M 120,200 Q 130,190 140,200 Q 150,210 160,200" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     <path d="M 580,450 Q 590,440 600,450 Q 610,460 620,450" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     <path d="M 150,800 Q 160,790 170,800 Q 180,810 190,800" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     <path d="M 550,1150 Q 560,1140 570,1150 Q 580,1160 590,1150" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     
+    {/* Hand-Drawn Island 1 (Skull Island Sketch) near y=450 */}
+    <g transform="translate(100, 420) scale(0.85)">
+      <path d="M 10 40 Q 30 10 70 20 Q 110 30 100 70 Q 80 100 40 90 Q 5 80 10 40 Z" fill="#8B6B3F" opacity="0.15" stroke="#5C3A1E" strokeWidth="1.5" strokeDasharray="3 2" />
+      <path d="M 35 45 Q 45 30 65 45" fill="none" stroke="#5C3A1E" strokeWidth="1" />
+      <text x="35" y="65" fontSize="9" fontFamily="Pirata One" fill="#5C3A1E">Isle of Code</text>
+    </g>
+
+    {/* Hand-Drawn Island 2 (Treasure Cove Sketch) near y=1200 */}
+    <g transform="translate(560, 1180) scale(0.9)">
+      <path d="M 20 20 Q 60 5 90 35 Q 110 75 70 95 Q 20 110 10 60 Z" fill="#8B6B3F" opacity="0.15" stroke="#5C3A1E" strokeWidth="1.5" strokeDasharray="3 2" />
+      <text x="22" y="55" fontSize="9" fontFamily="Pirata One" fill="#5C3A1E">Bounty Cove</text>
+    </g>
+
+    {/* Hand-Drawn Mini Pirate Ship Sketches sailing on paper map */}
+    <g transform="translate(520, 220) scale(0.7)">
+      <path d="M 0 20 L 30 20 L 25 30 L 5 30 Z" fill="#5C3A1E" />
+      <line x1="15" y1="20" x2="15" y2="5" stroke="#5C3A1E" strokeWidth="1.5" />
+      <path d="M 15 5 Q 25 10 15 17 Z" fill="#7A4E2D" />
+    </g>
+    <g transform="translate(140, 1400) scale(0.65)">
+      <path d="M 0 20 L 30 20 L 25 30 L 5 30 Z" fill="#5C3A1E" />
+      <line x1="15" y1="20" x2="15" y2="5" stroke="#5C3A1E" strokeWidth="1.5" />
+      <path d="M 15 5 Q 25 10 15 17 Z" fill="#7A4E2D" />
+    </g>
+
     {/* Sea Monster Sketch (Kraken Tentacles) */}
-    <g transform="translate(580, 680) scale(0.6)" opacity="0.7">
+    <g transform="translate(580, 680) scale(0.6)" opacity="0.8">
       <path d="M 10,50 Q 20,10 40,30 Q 30,70 10,50 Z" fill="#5C3A1E" />
       <path d="M 30,60 Q 50,20 70,40 Q 50,80 30,60 Z" fill="#5C3A1E" />
       <path d="M 50,70 Q 80,30 95,55 Q 70,95 50,70 Z" fill="#5C3A1E" />

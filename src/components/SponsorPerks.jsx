@@ -61,12 +61,12 @@ const SponsorPerks = () => {
           cloudLeftRef.current,
           { x: "0%" },
           {
-            x: "-90%",
-            ease: "power2.out",
+            x: "-100%",
+            ease: "power1.inOut",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              end: "top 20%",
+              start: "top 90%",
+              end: "bottom 30%",
               scrub: 1.2,
             },
           }
@@ -76,12 +76,12 @@ const SponsorPerks = () => {
           cloudRightRef.current,
           { x: "0%" },
           {
-            x: "90%",
-            ease: "power2.out",
+            x: "100%",
+            ease: "power1.inOut",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",
-              end: "top 20%",
+              start: "top 90%",
+              end: "bottom 30%",
               scrub: 1.2,
             },
           }
@@ -96,30 +96,30 @@ const SponsorPerks = () => {
     <section
       ref={sectionRef}
       id="sponsorship-perks"
-      className="relative py-28 px-6 bg-slate-900 text-slate-100 overflow-hidden"
+      className="relative py-28 px-6 bg-pirate-bg text-slate-100 overflow-hidden"
     >
-      {/* ── PARALLEL SCROLLING CLOUDS (PARTS AWAY ON SCROLL) ── */}
+      {/* ── PARALLEL SCROLLING CLOUDS (POSITIONS AT THE MIDDLE & PARTS AWAY ON SCROLL) ── */}
       <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-        {/* Left White Cloud */}
+        {/* Left White Cloud - Centered at Middle (top-1/2) */}
         <div
           ref={cloudLeftRef}
-          className="absolute -top-10 -left-20 w-[60vw] md:w-[45vw] max-w-[650px] opacity-90 filter drop-shadow-2xl"
+          className="absolute top-1/2 -left-32 -translate-y-1/2 w-[65vw] md:w-[50vw] max-w-[700px] opacity-95 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
         >
           <img
             src={cloudLeftImg}
-            alt="Left Cloud"
+            alt="Left White Cloud"
             className="w-full h-auto object-contain"
           />
         </div>
 
-        {/* Right White Cloud */}
+        {/* Right White Cloud - Centered at Middle (top-1/2) */}
         <div
           ref={cloudRightRef}
-          className="absolute -top-10 -right-20 w-[60vw] md:w-[45vw] max-w-[650px] opacity-90 filter drop-shadow-2xl"
+          className="absolute top-1/2 -right-32 -translate-y-1/2 w-[65vw] md:w-[50vw] max-w-[700px] opacity-95 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
         >
           <img
             src={cloudRightImg}
-            alt="Right Cloud"
+            alt="Right White Cloud"
             className="w-full h-auto object-contain"
           />
         </div>

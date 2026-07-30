@@ -118,23 +118,58 @@ const InteractiveFreelyRoamingParrot = () => {
         }
       }}
     >
-      <div className="w-16 h-16 sm:w-20 sm:h-20 filter drop-shadow-[0_10px_20px_rgba(34,197,94,0.4)]">
-        <svg viewBox="0 0 120 70" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          {/* Green Parrot Body - Horizontal Airplane Orientation */}
-          {/* Wings */}
-          <path ref={wingLeftRef} d="M 50 35 Q 20 5 10 25 Q 30 40 50 35 Z" fill="#16a34a" />
-          <path ref={wingRightRef} d="M 50 35 Q 20 65 10 45 Q 30 30 50 35 Z" fill="#15803d" />
-          {/* Tail */}
-          <path d="M 15 35 L 0 25 L 5 35 L 0 45 Z" fill="#22c55e" />
-          {/* Body Fuselage */}
-          <ellipse cx="55" cy="35" rx="30" ry="14" fill="#22c55e" />
-          {/* Head */}
-          <circle cx="80" cy="35" r="14" fill="#16a34a" />
-          {/* Eye */}
-          <circle cx="85" cy="30" r="3" fill="white" />
-          <circle cx="86" cy="30" r="1.5" fill="black" />
-          {/* Bright Red Beak */}
-          <path d="M 90 28 Q 115 35 90 44 Z" fill="#ef4444" />
+      <div className="w-20 h-20 sm:w-24 sm:h-24 filter drop-shadow-[0_12px_24px_rgba(22,163,74,0.5)]">
+        <svg viewBox="0 0 120 80" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="emeraldBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#22c55e" />
+              <stop offset="50%" stopColor="#16a34a" />
+              <stop offset="100%" stopColor="#15803d" />
+            </linearGradient>
+            <linearGradient id="macawWingGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ef4444" />
+              <stop offset="35%" stopColor="#eab308" />
+              <stop offset="70%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="#1d4ed8" />
+            </linearGradient>
+            <radialGradient id="parrotEyeGrad" cx="35%" cy="35%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="60%" stopColor="#e2e8f0" />
+              <stop offset="100%" stopColor="#94a3b8" />
+            </radialGradient>
+          </defs>
+
+          {/* Airplane Horizontal Flying Macaw Parrot */}
+          {/* Layered Tail Feathers */}
+          <path d="M 20 40 L 0 25 L 8 40 L 0 55 Z" fill="#3b82f6" />
+          <path d="M 22 40 L 4 32 L 10 40 L 4 48 Z" fill="#ef4444" />
+
+          {/* Under Wing */}
+          <path ref={wingRightRef} d="M 55 40 Q 25 75 10 50 Q 35 32 55 40 Z" fill="#15803d" />
+
+          {/* Main Aerodynamic Body Fuselage */}
+          <ellipse cx="60" cy="40" rx="32" ry="16" fill="url(#emeraldBodyGrad)" />
+
+          {/* Top Layered Multi-colored Feather Wing */}
+          <g ref={wingLeftRef}>
+            <path d="M 55 40 Q 25 5 8 28 Q 32 46 55 40 Z" fill="url(#macawWingGrad)" />
+            {/* Feather texture lines */}
+            <path d="M 45 35 Q 25 15 15 28" stroke="#facc15" strokeWidth="1.5" fill="none" opacity="0.8" />
+            <path d="M 48 37 Q 32 20 22 32" stroke="#60a5fa" strokeWidth="1.5" fill="none" opacity="0.8" />
+          </g>
+
+          {/* Parrot Head & Crown Crest */}
+          <circle cx="88" cy="40" r="15" fill="#16a34a" />
+          <path d="M 82 25 Q 92 18 95 24 Z" fill="#ef4444" /> {/* Red Crown Crest */}
+
+          {/* Eye Patch & Eye */}
+          <circle cx="92" cy="34" r="5" fill="url(#parrotEyeGrad)" stroke="#cbd5e1" strokeWidth="0.5" />
+          <circle cx="93" cy="34" r="2.2" fill="#0f172a" />
+          <circle cx="94" cy="33" r="0.8" fill="#ffffff" />
+
+          {/* Curved Hooked Bright Red Beak */}
+          <path d="M 96 32 C 118 32 120 48 102 48 C 100 48 98 44 98 40 Z" fill="#dc2626" />
+          <path d="M 98 40 Q 112 43 100 47 Z" fill="#991b1b" opacity="0.4" />
         </svg>
       </div>
     </div>
