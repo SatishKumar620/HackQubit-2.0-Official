@@ -1,5 +1,5 @@
 import React from "react";
-import pirateJewelryImg from "../assets/images/pirate_jewelry.png";
+import hackqubitJewelTitleImg from "../assets/images/hackqubit_jewel_title.png";
 
 const HeroContent = ({ refs }) => {
   return (
@@ -15,37 +15,14 @@ const HeroContent = ({ refs }) => {
         </span>
       </div>
 
-      {/* Main Heading: "HackQubit 2.0" in Golden-Brown with Pirate Jewelry Overlay */}
+      {/* Main Heading Graphic: "HACKQUBIT 2.0" where individual letters wear crowns, necklaces, rings & gems */}
       <div className="relative mb-6 group select-none">
-        {/* Pirate Jewelry Accent Graphic directly wearing/decorating the text */}
-        <div className="absolute -top-12 -left-8 sm:-top-16 sm:-left-12 w-28 sm:w-40 pointer-events-none z-30 drop-shadow-[0_8px_16px_rgba(0,0,0,0.3)] animate-float">
+        <div ref={refs.headingLine1} className="w-full max-w-[650px]">
           <img
-            src={pirateJewelryImg}
-            alt="Pirate Gold Jewelry & Crown"
-            className="w-full h-auto object-contain"
+            src={hackqubitJewelTitleImg}
+            alt="HACKQUBIT 2.0 Pirate Jewelry Title"
+            className="w-full h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
           />
-        </div>
-
-        {/* Text line 1: HackQubit */}
-        <h1
-          ref={refs.headingLine1}
-          className="font-cinzel text-5xl sm:text-7xl md:text-8xl xl:text-9xl font-black tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-700 via-amber-800 to-amber-950 drop-shadow-sm"
-        >
-          HackQubit
-        </h1>
-
-        {/* Text line 2: 2.0 with Golden-Brown Gradient & Glow */}
-        <div className="flex items-baseline gap-4 mt-1">
-          <h1
-            ref={refs.headingLine2}
-            className="font-cinzel text-6xl sm:text-8xl md:text-9xl xl:text-[140px] font-black tracking-tight leading-none text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-800 to-amber-950"
-          >
-            2.0
-          </h1>
-
-          <span className="font-cinzel text-lg sm:text-2xl font-bold text-amber-900/80 tracking-wider">
-            Edition
-          </span>
         </div>
       </div>
 

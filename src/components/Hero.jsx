@@ -2,7 +2,6 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
-import Stats from "./Stats";
 import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
 
@@ -14,7 +13,6 @@ const Hero = () => {
   const descriptionRef = useRef(null);
   const buttonsRef = useRef(null);
   const socialRef = useRef(null);
-  const statsRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
 
   useEffect(() => {
@@ -54,9 +52,6 @@ const Hero = () => {
         <SocialIcons ref={socialRef} />
         <ScrollIndicator ref={scrollIndicatorRef} />
       </div>
-
-      {/* Stats Bar */}
-      <Stats ref={statsRef} />
     </section>
   );
 };
