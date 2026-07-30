@@ -80,8 +80,8 @@ const MILESTONES = [
   },
 ];
 
-/* ── Smooth Winding SVG Path (Height 1600 for Proper Card Spacing) ── */
-const PATH_D = "M 350,80 C 550,80 620,200 420,260 C 220,320 100,420 320,480 C 540,540 620,660 400,720 C 180,780 100,900 320,960 C 540,1020 620,1140 400,1200 C 180,1260 100,1380 350,1440 C 520,1490 550,1540 350,1580";
+/* ── Precise Path (Starts at node 0 y=140 and ends at final node y=1700) ── */
+const PATH_D = "M 375,140 C 560,140 640,280 440,340 C 240,400 120,520 340,580 C 560,640 640,780 420,840 C 200,900 120,1020 340,1080 C 560,1140 640,1280 420,1340 C 240,1400 180,1520 375,1580 L 375,1700";
 
 /* ── Compass Rose SVG ── */
 const CompassRose = () => (
@@ -101,20 +101,59 @@ const CompassRose = () => (
   </svg>
 );
 
-/* ── Pirate Ship SVG (Corrected Orientation: Bow Points Downward Along Path) ── */
-const ShipSVG = () => (
-  <svg viewBox="0 0 80 60" className="w-full h-full filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transform rotate-90" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10,40 Q15,50 40,52 Q65,50 70,40 L65,36 Q40,38 15,36 Z" fill="#5C3A1E" stroke="#3D2510" strokeWidth="1"/>
-    <rect x="18" y="33" width="44" height="4" rx="1" fill="#7A4E2D" stroke="#3D2510" strokeWidth="0.5"/>
-    <line x1="40" y1="33" x2="40" y2="5" stroke="#4A2E1B" strokeWidth="2"/>
-    <path d="M41,7 Q55,14 41,28" fill="#F5E6C8" stroke="#D4AF37" strokeWidth="0.8" opacity="0.95"/>
-    <path d="M39,7 Q25,14 39,28" fill="#EDD9B5" stroke="#D4AF37" strokeWidth="0.8" opacity="0.9"/>
-    <rect x="38" y="2" width="10" height="7" fill="#1a1a1a" rx="1"/>
-    <circle cx="41" cy="5" r="1.5" fill="white"/>
-    <circle cx="45" cy="5" r="1.5" fill="white"/>
-    <text x="43" y="7.5" fontSize="3" fill="white" textAnchor="middle">✕</text>
-    <line x1="12" y1="36" x2="2" y2="30" stroke="#4A2E1B" strokeWidth="1.5"/>
-    <rect x="22" y="34" width="8" height="3" rx="1" fill="#333" opacity="0.8"/>
+/* ── Detailed Realistic Pirate Galleon SVG (Bow at Top = Natural Motion Forward) ── */
+const PirateGalleonSVG = () => (
+  <svg viewBox="0 0 100 120" className="w-full h-full filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.6)]" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="hullWood" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stopColor="#2b1404"/>
+        <stop offset="50%" stopColor="#4a2506"/>
+        <stop offset="100%" stopColor="#2b1404"/>
+      </linearGradient>
+      <linearGradient id="galleonSail" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#fef3c7"/>
+        <stop offset="50%" stopColor="#fde047"/>
+        <stop offset="100%" stopColor="#d97706"/>
+      </linearGradient>
+    </defs>
+
+    {/* Ship Hull (Curved Bow Pointing Top Y=10) */}
+    <path d="M 50 10 Q 75 40 72 95 Q 50 115 28 95 Q 25 40 50 10 Z" fill="url(#hullWood)" stroke="#1a0c02" strokeWidth="2" />
+    <path d="M 50 15 Q 68 42 66 90 Q 50 105 34 90 Q 32 42 50 15 Z" fill="#3b1d05" />
+
+    {/* Deck Planks */}
+    <line x1="36" y1="40" x2="64" y2="40" stroke="#251203" strokeWidth="1" />
+    <line x1="34" y1="60" x2="66" y2="60" stroke="#251203" strokeWidth="1" />
+    <line x1="32" y1="80" x2="68" y2="80" stroke="#251203" strokeWidth="1" />
+
+    {/* Bowsprit Pole (Front Spike) */}
+    <line x1="50" y1="15" x2="50" y2="2" stroke="#1a0c02" strokeWidth="3" strokeLinecap="round" />
+
+    {/* Foremast Yards & Billowing Main Sails */}
+    <line x1="20" y1="35" x2="80" y2="35" stroke="#1a0c02" strokeWidth="2.5" />
+    <path d="M 22 35 Q 50 22 78 35 Q 50 44 22 35 Z" fill="url(#galleonSail)" stroke="#b45309" strokeWidth="0.8" />
+
+    {/* Mainmast Yards & Main Sail */}
+    <line x1="12" y1="62" x2="88" y2="62" stroke="#1a0c02" strokeWidth="3" />
+    <path d="M 14 62 Q 50 48 86 62 Q 50 74 14 62 Z" fill="url(#galleonSail)" stroke="#b45309" strokeWidth="1" />
+
+    {/* Mizzenmast Yard & Rear Sail */}
+    <line x1="25" y1="85" x2="75" y2="85" stroke="#1a0c02" strokeWidth="2" />
+    <path d="M 27 85 Q 50 75 73 85 Q 50 94 27 85 Z" fill="url(#galleonSail)" stroke="#b45309" strokeWidth="0.8" />
+
+    {/* Jolly Roger Pirate Flag on Mainmast Top */}
+    <g transform="translate(50, 52)">
+      <rect x="0" y="-8" width="14" height="9" fill="#0f172a" rx="1" />
+      <circle cx="7" cy="-4" r="1.8" fill="#ffffff" />
+      <line x1="4" y1="-2" x2="10" y2="-6" stroke="#ffffff" strokeWidth="0.8" />
+      <line x1="10" y1="-2" x2="4" y2="-6" stroke="#ffffff" strokeWidth="0.8" />
+    </g>
+
+    {/* Gold Side Shields */}
+    <circle cx="28" cy="55" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
+    <circle cx="72" cy="55" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
+    <circle cx="30" cy="75" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
+    <circle cx="70" cy="75" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
   </svg>
 );
 
@@ -144,9 +183,23 @@ const TreasureMapTimeline = () => {
   const shipRef = useRef(null);
   const pathRef = useRef(null);
 
+  // Exact 9 Node Positions along Height = 1850
+  const NODES = [
+    { x: 375, y: 140 },  // 0. Set Sail! (Boat starts exactly here)
+    { x: 440, y: 340 },  // 1. Opening
+    { x: 340, y: 580 },  // 2. Hacking
+    { x: 420, y: 840 },  // 3. Lunch
+    { x: 340, y: 1080 }, // 4. Midnight
+    { x: 420, y: 1340 }, // 5. Dawn
+    { x: 375, y: 1540 }, // 6. Drop Anchor
+    { x: 375, y: 1620 }, // 7. Battle of Wits
+    { x: 375, y: 1700 }, // 8. Bounty Trophy
+  ];
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (shipRef.current && pathRef.current) {
+        // Realistic Sailing Motion along path with natural rotation
         gsap.to(shipRef.current, {
           motionPath: {
             path: pathRef.current,
@@ -159,23 +212,32 @@ const TreasureMapTimeline = () => {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 20%",
-            end: "bottom 80%",
+            start: "top 25%",
+            end: "bottom 75%",
             scrub: 1.2,
           },
+        });
+
+        // Gentle Swaying Water Pitch (Wave rocking)
+        gsap.to(shipRef.current, {
+          rotate: "+=4",
+          yoyo: true,
+          repeat: -1,
+          duration: 2.2,
+          ease: "sine.easeInOut",
         });
       }
 
       if (pathRef.current) {
-        const length = pathRef.current.getTotalLength?.() || 2400;
+        const length = pathRef.current.getTotalLength?.() || 2600;
         gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
         gsap.to(pathRef.current, {
           strokeDashoffset: 0,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 20%",
-            end: "bottom 80%",
+            start: "top 25%",
+            end: "bottom 75%",
             scrub: 1,
           },
         });
@@ -271,10 +333,10 @@ const TreasureMapTimeline = () => {
       </div>
 
       {/* ── MAP AREA ── */}
-      <div className="relative z-10 mx-auto" style={{ maxWidth: 750, minHeight: 1650 }}>
+      <div className="relative z-10 mx-auto" style={{ maxWidth: 750, minHeight: 1850 }}>
         <svg
           className="absolute inset-0 w-full"
-          viewBox="0 0 750 1650"
+          viewBox="0 0 750 1850"
           preserveAspectRatio="xMidYMid meet"
           style={{ height: "100%" }}
           xmlns="http://www.w3.org/2000/svg"
@@ -308,32 +370,20 @@ const TreasureMapTimeline = () => {
           />
         </svg>
 
-        {/* ── PIRATE SHIP ── */}
+        {/* ── REALISTIC DETAILED PIRATE GALLEON (Starts directly at Set Sail! Card 0) ── */}
         <div
           ref={shipRef}
           className="absolute z-30 pointer-events-none"
-          style={{ width: 70, height: 52, marginLeft: -35, marginTop: -26, top: 0, left: 0 }}
+          style={{ width: 85, height: 100, marginLeft: -42.5, marginTop: -50, top: 0, left: 0 }}
         >
-          <div className="absolute -inset-3 rounded-full bg-amber-400/30 blur-md" />
-          <ShipSVG />
+          <div className="absolute inset-0 rounded-full bg-amber-400/25 blur-lg" />
+          <PirateGalleonSVG />
         </div>
 
-        {/* ── MILESTONE CARDS (Properly Spaced & Alternating Sides) ── */}
+        {/* ── MILESTONE CARDS (Non-Overlapping & Spaced Out) ── */}
         {MILESTONES.map((ms, i) => {
-          // Precisely spaced coordinates along height=1650
-          const nodes = [
-            { x: 350, y: 80 },
-            { x: 420, y: 260 },
-            { x: 320, y: 480 },
-            { x: 400, y: 720 },
-            { x: 320, y: 960 },
-            { x: 400, y: 1200 },
-            { x: 350, y: 1440 },
-            { x: 350, y: 1540 },
-            { x: 350, y: 1580 },
-          ];
-          const node = nodes[i] || nodes[nodes.length - 1];
-          const goesLeft = i % 2 === 1; // Alternating sides to avoid overlap
+          const node = NODES[i] || NODES[NODES.length - 1];
+          const goesLeft = i % 2 === 1; // Alternating sides
 
           return (
             <div
@@ -341,7 +391,7 @@ const TreasureMapTimeline = () => {
               className="milestone-card absolute"
               style={{
                 left: `${(node.x / 750) * 100}%`,
-                top: `${(node.y / 1650) * 100}%`,
+                top: `${(node.y / 1850) * 100}%`,
                 transform: "translate(-50%, -50%)",
                 zIndex: 20,
               }}
@@ -351,7 +401,7 @@ const TreasureMapTimeline = () => {
 
                 <div
                   className={`absolute top-1/2 -translate-y-1/2 w-52 sm:w-64 md:w-72
-                    ${goesLeft ? "right-[115%]" : "left-[115%]"}
+                    ${goesLeft ? "right-[120%]" : "left-[120%]"}
                   `}
                 >
                   <div
@@ -362,12 +412,10 @@ const TreasureMapTimeline = () => {
                       boxShadow: `0 15px 35px -5px rgba(80,50,20,0.35), 0 0 20px ${ms.color}22, inset 0 1px 0 rgba(255,255,255,0.6)`,
                     }}
                   >
-                    {/* Decorative ambient shadow glow on hover */}
+                    {/* Ambient Glow */}
                     <div 
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl"
-                      style={{
-                        boxShadow: `0 0 30px ${ms.color}55`,
-                      }}
+                      style={{ boxShadow: `0 0 30px ${ms.color}55` }}
                     />
 
                     {/* Corner Flourishes */}
@@ -410,7 +458,7 @@ const TreasureMapTimeline = () => {
                       )}
                     </div>
 
-                    {/* Arrow */}
+                    {/* Arrow Pointer */}
                     <div
                       className={`absolute top-1/2 -translate-y-1/2 w-0 h-0
                         ${goesLeft
@@ -433,15 +481,15 @@ const TreasureMapTimeline = () => {
         {/* ── Ultimate Bounty Trophy ── */}
         <div
           className="absolute z-20"
-          style={{ left: `${(350 / 750) * 100}%`, top: `${(1580 / 1650) * 100}%`, transform: "translate(-50%, -50%)" }}
+          style={{ left: `${(375 / 750) * 100}%`, top: `${(1700 / 1850) * 100}%`, transform: "translate(-50%, -50%)" }}
         >
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="p-3 rounded-full bg-amber-400 border-2 border-amber-600 shadow-[0_15px_35px_rgba(212,175,55,0.6)] cursor-pointer"
+            className="p-3.5 rounded-full bg-amber-400 border-2 border-amber-600 shadow-[0_15px_35px_rgba(212,175,55,0.6)] cursor-pointer"
             title="The Ultimate Treasure!"
           >
-            <Trophy className="w-8 h-8 text-amber-950" />
+            <Trophy className="w-9 h-9 text-amber-950" />
           </motion.div>
         </div>
       </div>
