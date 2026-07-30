@@ -58,7 +58,7 @@ const Hero = () => {
       </div>
 
       {/* Cinematic Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#002b5c] via-transparent to-[#dc143c]/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#002b5c] via-transparent to-[#d4af37]/20" />
 
       {/* Navbar */}
       <Navbar ref={navbarRef} />

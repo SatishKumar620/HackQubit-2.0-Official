@@ -46,9 +46,9 @@ const StatIcons = {
   ),
 };
 
-// accent colors per card
+// accent colors per card (Gold, Cyan, Amber, Emerald - Crimson replaced with Gold)
 const CARD_ACCENTS = [
-  { border: "rgba(220,20,60,0.45)",  glow: "rgba(220,20,60,0.18)",  icon: "#dc143c",  label: "#dc143c" },
+  { border: "rgba(212,175,55,0.45)",  glow: "rgba(212,175,55,0.18)",  icon: "#d4af37",  label: "#d4af37" },
   { border: "rgba(59,130,246,0.45)", glow: "rgba(59,130,246,0.18)", icon: "#3b82f6",  label: "#3b82f6" },
   { border: "rgba(234,179,8,0.45)",  glow: "rgba(234,179,8,0.18)",  icon: "#eab308",  label: "#eab308" },
   { border: "rgba(34,197,94,0.45)",  glow: "rgba(34,197,94,0.18)",  icon: "#22c55e",  label: "#22c55e" },

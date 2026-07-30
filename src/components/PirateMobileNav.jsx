@@ -33,7 +33,7 @@ export const HamburgerToggle = ({ isOpen, toggle }) => {
   return (
     <button
       onClick={toggle}
-      className="lg:hidden flex flex-col items-center justify-center w-10 h-10 gap-0 rounded-md border border-white/10 bg-white/5 hover:bg-[#dc143c]/20 hover:border-[#dc143c]/40 transition-all duration-300"
+      className="lg:hidden flex flex-col items-center justify-center w-10 h-10 gap-0 rounded-md border border-white/10 bg-white/5 hover:bg-amber-400/20 hover:border-amber-400/40 transition-all duration-300"
       aria-label="Toggle menu"
     >
       <span ref={line1} className="block w-5 h-[1.5px] bg-white rounded-full origin-center" />
@@ -64,8 +64,8 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
         className="fixed top-0 right-0 w-4/5 max-w-sm h-full lg:hidden flex flex-col pt-6 px-6 pb-10 overflow-y-auto"
         style={{
           zIndex: 40,
-          background: 'linear-gradient(160deg, #060d18 0%, #0a1628 60%, #0d0008 100%)',
-          borderLeft: '1px solid rgba(220,20,60,0.2)',
+          background: 'linear-gradient(160deg, #060d18 0%, #0a1628 60%, #0d1220 100%)',
+          borderLeft: '1px solid rgba(212,175,55,0.2)',
           boxShadow: '-20px 0 60px rgba(0,0,0,0.8)',
           transform: isOpen ? 'translateX(0)' : 'translateX(110%)',
           visibility: isOpen ? 'visible' : 'hidden',
@@ -75,14 +75,14 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
         {/* Header row */}
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-white/8">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full border border-[#dc143c]/50 bg-[#dc143c]/15 flex items-center justify-center">
-              <Compass className="w-4 h-4 text-[#dc143c]" />
+            <div className="w-8 h-8 rounded-full border border-amber-400/50 bg-amber-400/15 flex items-center justify-center">
+              <Compass className="w-4 h-4 text-amber-400" />
             </div>
             <span className="font-cinzel text-sm font-bold text-white tracking-wider">Navigation</span>
           </div>
           <button
             onClick={close}
-            className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:border-[#dc143c]/50 hover:bg-[#dc143c]/10 transition-all duration-300"
+            className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/60 hover:text-white hover:border-amber-400/50 hover:bg-amber-400/10 transition-all duration-300"
           >
             <X className="w-4 h-4" />
           </button>
@@ -98,18 +98,18 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
                 href={item.href}
                 onClick={close}
                 style={{ transitionDelay: isOpen ? `${0.05 * i}s` : '0s' }}
-                className={`group relative flex items-center gap-4 px-4 py-3.5 rounded-lg border border-white/5 bg-white/3 hover:bg-[#dc143c]/10 hover:border-[#dc143c]/30 transition-all duration-300 ${
+                className={`group relative flex items-center gap-4 px-4 py-3.5 rounded-lg border border-white/5 bg-white/3 hover:bg-amber-400/10 hover:border-amber-400/30 transition-all duration-300 ${
                   isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
                 }`}
               >
-                <div className="w-8 h-8 rounded-md flex items-center justify-center bg-white/5 group-hover:bg-[#dc143c]/20 transition-colors duration-300">
-                  <Icon className="w-4 h-4 text-white/50 group-hover:text-[#dc143c] transition-colors duration-300" />
+                <div className="w-8 h-8 rounded-md flex items-center justify-center bg-white/5 group-hover:bg-amber-400/20 transition-colors duration-300">
+                  <Icon className="w-4 h-4 text-white/50 group-hover:text-amber-400 transition-colors duration-300" />
                 </div>
                 <span className="font-cinzel text-sm text-white/70 tracking-widest group-hover:text-white transition-colors duration-300">
                   {item.label}
                 </span>
                 {/* right arrow indicator */}
-                <span className="ml-auto text-white/20 group-hover:text-[#dc143c] transition-colors duration-300 text-xs">›</span>
+                <span className="ml-auto text-white/20 group-hover:text-amber-400 transition-colors duration-300 text-xs">›</span>
               </a>
             );
           })}
@@ -120,14 +120,14 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
           <a
             href="#register"
             onClick={close}
-            className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 bg-[#dc143c] hover:bg-[#b01030] rounded-lg font-cinzel text-sm text-white tracking-wider transition-all duration-300 hover:shadow-[0_0_30px_rgba(220,20,60,0.4)]"
+            className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg font-cinzel text-sm text-slate-950 font-bold tracking-wider transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
           >
             <Compass className="w-4 h-4" />
             Register Now
           </a>
           <div className="mt-4 flex items-center gap-3">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-            <Compass className="w-4 h-4 text-[#dc143c]/40" />
+            <Compass className="w-4 h-4 text-amber-400/40" />
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
           </div>
         </div>

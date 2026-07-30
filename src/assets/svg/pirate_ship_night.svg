@@ -49,24 +49,24 @@
       <stop offset="100%" stop-color="#2d1200"/>
     </linearGradient>
 
-    <!-- Crimson sail gradient -->
+    <!-- Golden sail gradient (Crimson replaced with Gold/Amber) -->
     <linearGradient id="sailMain" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7f1d1d"/>
-      <stop offset="40%" stop-color="#dc143c"/>
-      <stop offset="70%" stop-color="#991b1b"/>
-      <stop offset="100%" stop-color="#450a0a"/>
+      <stop offset="0%" stop-color="#785c1d"/>
+      <stop offset="40%" stop-color="#d4af37"/>
+      <stop offset="70%" stop-color="#997b1b"/>
+      <stop offset="100%" stop-color="#45380a"/>
     </linearGradient>
 
     <linearGradient id="sailFore" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6b1c1c"/>
-      <stop offset="50%" stop-color="#b91c1c"/>
-      <stop offset="100%" stop-color="#3d0808"/>
+      <stop offset="0%" stop-color="#6b531c"/>
+      <stop offset="50%" stop-color="#b9941c"/>
+      <stop offset="100%" stop-color="#3d3008"/>
     </linearGradient>
 
     <linearGradient id="sailMizzen" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7f1d1d"/>
-      <stop offset="50%" stop-color="#dc143c"/>
-      <stop offset="100%" stop-color="#450a0a"/>
+      <stop offset="0%" stop-color="#785c1d"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#45380a"/>
     </linearGradient>
 
     <!-- Foam gradient -->
@@ -84,8 +84,8 @@
 
     <!-- Water reflection -->
     <linearGradient id="reflectionGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#dc143c" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#dc143c" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#d4af37" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
     </linearGradient>
 
     <!-- Clip for ocean area -->
@@ -276,7 +276,7 @@
     <path d="M300 440 Q270 450 240 470 Q230 460 250 445 Q270 430 300 440 Z" fill="#d4af37"/>
     <!-- Figurehead (dragon head) -->
     <path d="M240 465 Q225 455 215 470 Q225 480 240 475 Z" fill="#b45309"/>
-    <circle cx="222" cy="468" r="3" fill="#dc143c"/>
+    <circle cx="222" cy="468" r="3" fill="#d4af37"/>
 
     <!-- STERN (back ornate) -->
     <path d="M760 440 Q790 445 800 460 Q810 475 800 490 L780 510" fill="#3d1a00" stroke="#d4af37" stroke-width="2"/>
@@ -579,7 +579,7 @@
 
     <!-- Fore mast flag -->
     <g transform="translate(430, 65)">
-      <path d="M0 0 L40 8 L0 16 Z" fill="#dc143c">
+      <path d="M0 0 L40 8 L0 16 Z" fill="#d4af37">
         <animate attributeName="d" values="
           M0 0 L40 8 L0 16 Z;
           M0 0 Q20 3 40 10 L0 16 Z;
@@ -590,7 +590,7 @@
     </g>
     <!-- Mizzen pennant -->
     <g transform="translate(695, 155)">
-      <path d="M0 0 L35 6 L0 12 Z" fill="#dc143c">
+      <path d="M0 0 L35 6 L0 12 Z" fill="#d4af37">
         <animate attributeName="d" values="
           M0 0 L35 6 L0 12 Z;
           M0 0 Q18 2 35 8 L0 12 Z;
@@ -785,8 +785,8 @@
   <rect x="0" y="400" width="1200" height="55" fill="#001f3f" opacity="0.45"/>
   <rect x="0" y="415" width="1200" height="30" fill="#001a35" opacity="0.3"/>
 
-  <!-- Subtle crimson horizon glow (from sails) -->
-  <ellipse cx="560" cy="425" rx="320" ry="22" fill="#dc143c" opacity="0.08">
+  <!-- Subtle gold horizon glow (from sails) -->
+  <ellipse cx="560" cy="425" rx="320" ry="22" fill="#d4af37" opacity="0.08">
     <animate attributeName="opacity" values="0.08;0.14;0.06;0.1;0.08" dur="5s" repeatCount="indefinite"/>
   </ellipse>
 

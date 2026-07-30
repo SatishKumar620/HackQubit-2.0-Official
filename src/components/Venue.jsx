@@ -9,15 +9,15 @@ const LocationPinSVG = () => (
   <svg viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
     <defs>
       <radialGradient id="pinGrad" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stopColor="#ff3860"/>
-        <stop offset="100%" stopColor="#dc143c"/>
+        <stop offset="0%" stopColor="#ffd700"/>
+        <stop offset="100%" stopColor="#d4af37"/>
       </radialGradient>
       <radialGradient id="shadowGrad" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#dc143c" stopOpacity="0.4"/>
-        <stop offset="100%" stopColor="#dc143c" stopOpacity="0"/>
+        <stop offset="0%" stopColor="#d4af37" stopOpacity="0.4"/>
+        <stop offset="100%" stopColor="#d4af37" stopOpacity="0"/>
       </radialGradient>
       <filter id="pinShadow">
-        <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#dc143c" floodOpacity="0.5"/>
+        <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#d4af37" floodOpacity="0.4"/>
       </filter>
     </defs>
     {/* Shadow on ground */}
@@ -53,7 +53,7 @@ const LocationPinSVG = () => (
         keySplines="0.4 0 0.6 1; 0.4 0 0.6 1"
       />
     </circle>
-    <circle cx="60" cy="48" r="10" fill="white" opacity="0.9">
+    <circle cx="60" cy="48" r="10" fill="#0f172a" opacity="0.9">
       <animateTransform
         attributeName="transform"
         type="translate"
@@ -65,11 +65,11 @@ const LocationPinSVG = () => (
       />
     </circle>
     {/* Pulse rings */}
-    <circle cx="60" cy="48" r="30" stroke="#dc143c" strokeWidth="2" fill="none" opacity="0">
+    <circle cx="60" cy="48" r="30" stroke="#d4af37" strokeWidth="2" fill="none" opacity="0">
       <animate attributeName="r" values="18;45" dur="2s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="0.6;0" dur="2s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="60" cy="48" r="30" stroke="#dc143c" strokeWidth="1.5" fill="none" opacity="0">
+    <circle cx="60" cy="48" r="30" stroke="#d4af37" strokeWidth="1.5" fill="none" opacity="0">
       <animate attributeName="r" values="18;55" dur="2s" begin="0.5s" repeatCount="indefinite"/>
       <animate attributeName="opacity" values="0.4;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
     </circle>
@@ -79,20 +79,20 @@ const LocationPinSVG = () => (
 // ── SVG: Compass Rose ─────────────────────────────────────────────────
 const CompassSVG = () => (
   <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-    <circle cx="40" cy="40" r="36" stroke="#dc143c" strokeWidth="1" opacity="0.3"/>
-    <circle cx="40" cy="40" r="28" stroke="#dc143c" strokeWidth="0.5" opacity="0.2"/>
+    <circle cx="40" cy="40" r="36" stroke="#d4af37" strokeWidth="1" opacity="0.3"/>
+    <circle cx="40" cy="40" r="28" stroke="#d4af37" strokeWidth="0.5" opacity="0.2"/>
     {/* N arrow */}
-    <path d="M40 6 L44 32 L40 36 L36 32 Z" fill="#dc143c"/>
+    <path d="M40 6 L44 32 L40 36 L36 32 Z" fill="#d4af37"/>
     {/* S arrow */}
     <path d="M40 74 L44 48 L40 44 L36 48 Z" fill="white" opacity="0.4"/>
     {/* E arrow */}
     <path d="M74 40 L48 44 L44 40 L48 36 Z" fill="white" opacity="0.4"/>
     {/* W arrow */}
     <path d="M6 40 L32 44 L36 40 L32 36 Z" fill="white" opacity="0.4"/>
-    <circle cx="40" cy="40" r="5" fill="#dc143c"/>
+    <circle cx="40" cy="40" r="5" fill="#d4af37"/>
     <circle cx="40" cy="40" r="2.5" fill="white"/>
     {/* Labels */}
-    <text x="37" y="20" fill="#dc143c" fontSize="8" fontWeight="bold">N</text>
+    <text x="37" y="20" fill="#d4af37" fontSize="8" fontWeight="bold">N</text>
     <text x="37" y="68" fill="white" fontSize="6" opacity="0.5">S</text>
     <text x="66" y="43" fill="white" fontSize="6" opacity="0.5">E</text>
     <text x="10" y="43" fill="white" fontSize="6" opacity="0.5">W</text>
@@ -102,11 +102,11 @@ const CompassSVG = () => (
 // ── SVG: Calendar ────────────────────────────────────────────────────
 const CalendarSVG = ({ day }) => (
   <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-    <rect x="4" y="12" width="56" height="48" rx="6" fill="#0a0f1e" stroke="#dc143c" strokeWidth="1.5"/>
-    <rect x="4" y="12" width="56" height="18" rx="6" fill="#dc143c"/>
-    <rect x="4" y="24" width="56" height="6" fill="#dc143c"/>
-    <line x1="20" y1="6" x2="20" y2="20" stroke="#dc143c" strokeWidth="3" strokeLinecap="round"/>
-    <line x1="44" y1="6" x2="44" y2="20" stroke="#dc143c" strokeWidth="3" strokeLinecap="round"/>
+    <rect x="4" y="12" width="56" height="48" rx="6" fill="#0a0f1e" stroke="#d4af37" strokeWidth="1.5"/>
+    <rect x="4" y="12" width="56" height="18" rx="6" fill="#d4af37"/>
+    <rect x="4" y="24" width="56" height="6" fill="#d4af37"/>
+    <line x1="20" y1="6" x2="20" y2="20" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
+    <line x1="44" y1="6" x2="44" y2="20" stroke="#d4af37" strokeWidth="3" strokeLinecap="round"/>
     <text x="32" y="50" textAnchor="middle" fill="white" fontSize="20" fontWeight="bold" fontFamily="serif">{day}</text>
   </svg>
 );
@@ -159,16 +159,16 @@ const Venue = () => {
       style={{ background: "linear-gradient(180deg, #020b18 0%, #030e1f 60%, #050818 100%)" }}
     >
       {/* ── Background decorations ── */}
-      {/* Crimson radial glow top-center */}
+      {/* Gold radial glow top-center */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(220,20,60,0.12) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.1) 0%, transparent 70%)" }}
       />
       {/* Grid lines */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
-          backgroundImage: "linear-gradient(rgba(220,20,60,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(220,20,60,0.5) 1px,transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(212,175,55,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.5) 1px,transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
@@ -182,16 +182,16 @@ const Venue = () => {
 
         {/* ── Section heading ── */}
         <div ref={headingRef} className="text-center mb-16">
-          <p className="font-cinzel text-xs tracking-[0.4em] text-[#dc143c] uppercase mb-3">
+          <p className="font-cinzel text-xs tracking-[0.4em] text-amber-400 uppercase mb-3">
             ⚓ Drop Anchor Here
           </p>
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
             The Venue
           </h2>
           <div className="mt-4 flex items-center justify-center gap-4">
-            <div className="flex-1 max-w-[120px] h-px bg-gradient-to-r from-transparent to-[#dc143c]/60" />
-            <div className="w-2 h-2 rounded-full bg-[#dc143c]" />
-            <div className="flex-1 max-w-[120px] h-px bg-gradient-to-l from-transparent to-[#dc143c]/60" />
+            <div className="flex-1 max-w-[120px] h-px bg-gradient-to-r from-transparent to-amber-400/60" />
+            <div className="w-2 h-2 rounded-full bg-amber-400" />
+            <div className="flex-1 max-w-[120px] h-px bg-gradient-to-l from-transparent to-amber-400/60" />
           </div>
           <p className="mt-5 font-cinzel text-white/50 text-sm sm:text-base tracking-wider max-w-[480px] mx-auto">
             Set your compass and chart your course to the epicentre of innovation.
@@ -214,20 +214,20 @@ const Venue = () => {
               ref={card1Ref}
               className="group relative flex flex-col gap-3 p-6 rounded-2xl overflow-hidden cursor-default transition-all duration-400 hover:-translate-y-2"
               style={{
-                background: "linear-gradient(135deg,rgba(220,20,60,0.12) 0%,rgba(255,255,255,0.03) 100%)",
-                border: "1px solid rgba(220,20,60,0.3)",
+                background: "linear-gradient(135deg,rgba(212,175,55,0.12) 0%,rgba(255,255,255,0.03) 100%)",
+                border: "1px solid rgba(212,175,55,0.3)",
                 boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
               }}
             >
               {/* top glow on hover */}
-              <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-[#dc143c] to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-400" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-400" />
               {/* icon */}
               <div className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl"
-                   style={{ background: "rgba(220,20,60,0.15)", border: "1px solid rgba(220,20,60,0.3)" }}>
+                   style={{ background: "rgba(212,175,55,0.15)", border: "1px solid rgba(212,175,55,0.3)" }}>
                 🏛️
               </div>
               <div>
-                <p className="font-cinzel text-[10px] tracking-[0.3em] text-[#dc143c] uppercase mb-1">Venue</p>
+                <p className="font-cinzel text-[10px] tracking-[0.3em] text-amber-400 uppercase mb-1">Venue</p>
                 <p className="font-cinzel text-lg font-bold text-white leading-snug">RVSCET</p>
                 <p className="font-cinzel text-sm text-white/55 mt-1 leading-relaxed">
                   Ramgovind Ruia Science College of Engineering & Technology
@@ -293,18 +293,18 @@ const Venue = () => {
           ref={mapRef}
           className="relative rounded-2xl overflow-hidden"
           style={{
-            border: "1px solid rgba(220,20,60,0.2)",
+            border: "1px solid rgba(212,175,55,0.2)",
             boxShadow: "0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04) inset",
           }}
         >
           {/* Map header bar */}
           <div
             className="flex items-center justify-between px-5 py-4"
-            style={{ background: "rgba(0,10,25,0.95)", borderBottom: "1px solid rgba(220,20,60,0.15)" }}
+            style={{ background: "rgba(0,10,25,0.95)", borderBottom: "1px solid rgba(212,175,55,0.15)" }}
           >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base"
-                   style={{ background: "rgba(220,20,60,0.15)", border: "1px solid rgba(220,20,60,0.3)" }}>
+                   style={{ background: "rgba(212,175,55,0.15)", border: "1px solid rgba(212,175,55,0.3)" }}>
                 📍
               </div>
               <div>
@@ -316,10 +316,10 @@ const Venue = () => {
               href="https://maps.google.com/?q=RVSCET+Jamshedpur+Jharkhand"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 px-4 py-2 rounded-lg font-cinzel text-xs text-white tracking-wider transition-all duration-300 hover:shadow-[0_0_20px_rgba(220,20,60,0.4)]"
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg font-cinzel text-xs text-slate-950 font-bold tracking-wider transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
               style={{
-                background: "linear-gradient(135deg, #dc143c 0%, #9b0e2a 100%)",
-                border: "1px solid rgba(220,20,60,0.5)",
+                background: "linear-gradient(135deg, #d4af37 0%, #b89228 100%)",
+                border: "1px solid rgba(255,255,255,0.2)",
               }}
             >
               <span>Open in Maps</span>

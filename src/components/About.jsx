@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ExternalLink, Compass, Clock, Trophy, ShieldCheck, Zap } from "lucide-react";
+import { MapPin, ExternalLink, Compass, Trophy, Zap } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,26 +84,26 @@ const About = () => {
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(220,20,60,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(220,20,60,0.5) 1px,transparent 1px)",
+            "linear-gradient(rgba(212,175,55,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.5) 1px,transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
       <div
         className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(220,20,60,0.12) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 70%)" }}
       />
 
       <div className="max-w-[1200px] mx-auto relative z-10">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#dc143c]/30 bg-[#dc143c]/10 mb-4">
-            <Compass className="w-3.5 h-3.5 text-[#dc143c]" />
-            <span className="font-cinzel text-xs tracking-[0.3em] text-[#dc143c] uppercase font-semibold">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 mb-4">
+            <Compass className="w-3.5 h-3.5 text-amber-400" />
+            <span className="font-cinzel text-xs tracking-[0.3em] text-amber-400 uppercase font-semibold">
               The Grand Voyage
             </span>
           </div>
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            About <span className="text-[#dc143c]">HackQubit 2.0</span>
+            About <span className="text-amber-400">HackQubit 2.0</span>
           </h2>
           <p className="mt-4 font-cinzel text-white/60 text-sm sm:text-base max-w-[600px] mx-auto leading-relaxed">
             The premier national-level hackathon hosted by <strong className="text-white">RVSCET, Jamshedpur</strong>. 
@@ -119,12 +119,12 @@ const About = () => {
             className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
             style={{
               background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
-              border: "1px solid rgba(220,20,60,0.25)",
+              border: "1px solid rgba(212,175,55,0.25)",
               backdropFilter: "blur(16px)",
               boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
             }}
           >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#dc143c]/15 border border-[#dc143c]/30 text-[#dc143c]">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-amber-400/15 border border-amber-400/30 text-amber-400">
               <Zap className="w-6 h-6" />
             </div>
             <h3 className="font-cinzel text-xl font-bold text-white mb-3">
@@ -163,18 +163,18 @@ const About = () => {
           ref={venueCardRef}
           className="relative rounded-2xl p-6 sm:p-8 overflow-hidden mb-12 flex flex-col md:flex-row items-center justify-between gap-6"
           style={{
-            background: "linear-gradient(135deg, rgba(220,20,60,0.12) 0%, rgba(10,20,40,0.8) 100%)",
-            border: "1px solid rgba(220,20,60,0.35)",
+            background: "linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(10,20,40,0.8) 100%)",
+            border: "1px solid rgba(212,175,55,0.3)",
             backdropFilter: "blur(20px)",
             boxShadow: "0 15px 40px rgba(0,0,0,0.5)",
           }}
         >
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#dc143c] text-white shadow-[0_0_20px_rgba(220,20,60,0.5)]">
+            <div className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center bg-amber-500 text-slate-950 font-bold shadow-[0_0_20px_rgba(212,175,55,0.4)]">
               <MapPin className="w-6 h-6" />
             </div>
             <div>
-              <span className="font-cinzel text-xs text-[#dc143c] tracking-[0.25em] uppercase font-bold">
+              <span className="font-cinzel text-xs text-amber-400 tracking-[0.25em] uppercase font-bold">
                 Official Venue & Location
               </span>
               <h4 className="font-cinzel text-xl sm:text-2xl font-bold text-white mt-1">
@@ -190,9 +190,9 @@ const About = () => {
             href="https://maps.google.com/?q=RVSCET+Jamshedpur"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-cinzel text-sm text-white font-semibold tracking-wider transition-all duration-300 hover:shadow-[0_0_25px_rgba(220,20,60,0.6)] flex-shrink-0"
+            className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-cinzel text-sm text-slate-950 font-bold tracking-wider transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] flex-shrink-0"
             style={{
-              background: "linear-gradient(135deg, #dc143c 0%, #a00c2a 100%)",
+              background: "linear-gradient(135deg, #d4af37 0%, #b89228 100%)",
               border: "1px solid rgba(255,255,255,0.2)",
             }}
           >
@@ -201,7 +201,7 @@ const About = () => {
           </a>
         </div>
 
-        {/* Quick Highlights Bar (Corrected to 24 Hours) */}
+        {/* Quick Highlights Bar */}
         <div
           ref={statsBarRef}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl text-center"
@@ -211,7 +211,7 @@ const About = () => {
           }}
         >
           <div>
-            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-[#dc143c]">24 HR</span>
+            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-amber-400">24 HR</span>
             <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Non-Stop Hackathon</span>
           </div>
           <div>
@@ -219,7 +219,7 @@ const About = () => {
             <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">2025 Event Dates</span>
           </div>
           <div>
-            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-amber-400">NATIONAL</span>
+            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-cyan-400">NATIONAL</span>
             <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Level Open for All</span>
           </div>
           <div>
