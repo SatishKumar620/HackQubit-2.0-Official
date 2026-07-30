@@ -1,5 +1,9 @@
 import React, { Component, useState } from "react";
-import { About, Timeline, PrizePool, SponsorPackage, SponsorPerks, Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ } from "./components";
+import {
+  About, Timeline, PrizePool, ProblemStatements,
+  SponsorPackage, SponsorPerks, OurSponsors,
+  Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ
+} from "./components";
 import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
@@ -35,22 +39,34 @@ function App() {
       <AnimatePresence>
         {loading && <Loader key="loader" onLoadingComplete={() => setLoading(false)} />}
       </AnimatePresence>
-      
+
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
         <TopLand />
         <About />
         <BottomLand />
+
+        {/* Timeline → Prize Pool → Problem Statements */}
         <Timeline />
         <BottomLand />
         <PrizePool />
+        <BottomLand />
+        <ProblemStatements />
+
+        {/* Gallery */}
         <TopLand />
         <Gallery />
         <BottomLand />
+
+        {/* Sponsor Package → Sponsor Perks → Our Sponsors */}
         <TopLand />
         <SponsorPackage />
         <BottomLand />
         <SponsorPerks />
         <TopLand />
+        <OurSponsors />
+        <BottomLand />
+
+        {/* FAQ → Footer */}
         <FAQ />
         <Footer />
         <ScrollToTop />
