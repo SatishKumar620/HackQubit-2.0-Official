@@ -38,7 +38,7 @@ const MILESTONES = [
   {
     id: "hacking", day: "Day 1", time: "11:30 AM",
     title: "Raise The Sails!", subtitle: "Hacking Begins",
-    desc: "All hands on deck! 48 hours of intense building, creating and innovating starts now.",
+    desc: "All hands on deck! 24 hours of intense building, creating and innovating starts now.",
     Icon: Code, color: "#3C5F8B",
   },
   {
@@ -80,8 +80,8 @@ const MILESTONES = [
   },
 ];
 
-/* ── Winding SVG Path ── */
-const PATH_D = "M 300,60 C 500,60 600,160 400,200 C 200,240 100,320 300,360 C 500,400 620,480 420,520 C 220,560 80,640 280,680 C 480,720 600,800 400,840 C 200,880 100,960 320,1000 C 500,1040 560,1100 400,1140";
+/* ── Smooth Winding SVG Path (Height 1600 for Proper Card Spacing) ── */
+const PATH_D = "M 350,80 C 550,80 620,200 420,260 C 220,320 100,420 320,480 C 540,540 620,660 400,720 C 180,780 100,900 320,960 C 540,1020 620,1140 400,1200 C 180,1260 100,1380 350,1440 C 520,1490 550,1540 350,1580";
 
 /* ── Compass Rose SVG ── */
 const CompassRose = () => (
@@ -101,9 +101,9 @@ const CompassRose = () => (
   </svg>
 );
 
-/* ── Pirate Ship SVG ── */
+/* ── Pirate Ship SVG (Corrected Orientation: Bow Points Downward Along Path) ── */
 const ShipSVG = () => (
-  <svg viewBox="0 0 80 60" className="w-full h-full filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)]" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 80 60" className="w-full h-full filter drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transform rotate-90" xmlns="http://www.w3.org/2000/svg">
     <path d="M10,40 Q15,50 40,52 Q65,50 70,40 L65,36 Q40,38 15,36 Z" fill="#5C3A1E" stroke="#3D2510" strokeWidth="1"/>
     <rect x="18" y="33" width="44" height="4" rx="1" fill="#7A4E2D" stroke="#3D2510" strokeWidth="0.5"/>
     <line x1="40" y1="33" x2="40" y2="5" stroke="#4A2E1B" strokeWidth="2"/>
@@ -159,23 +159,23 @@ const TreasureMapTimeline = () => {
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 10%",
-            end: "bottom 90%",
-            scrub: 1.5,
+            start: "top 20%",
+            end: "bottom 80%",
+            scrub: 1.2,
           },
         });
       }
 
       if (pathRef.current) {
-        const length = pathRef.current.getTotalLength?.() || 2000;
+        const length = pathRef.current.getTotalLength?.() || 2400;
         gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
         gsap.to(pathRef.current, {
           strokeDashoffset: 0,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 10%",
-            end: "bottom 90%",
+            start: "top 20%",
+            end: "bottom 80%",
             scrub: 1,
           },
         });
@@ -184,10 +184,10 @@ const TreasureMapTimeline = () => {
       gsap.utils.toArray(".milestone-card").forEach((card) => {
         gsap.from(card, {
           opacity: 0,
-          scale: 0.8,
-          y: 20,
+          scale: 0.85,
+          y: 25,
           duration: 0.6,
-          ease: "back.out(1.7)",
+          ease: "back.out(1.5)",
           scrollTrigger: {
             trigger: card,
             start: "top 85%",
@@ -203,7 +203,7 @@ const TreasureMapTimeline = () => {
     <section
       ref={sectionRef}
       id="timeline"
-      className="relative overflow-hidden py-16"
+      className="relative overflow-hidden py-20"
       style={{
         background: "linear-gradient(180deg, #f5e6c8 0%, #edd9b5 30%, #e8d0a0 60%, #dfc090 100%)",
       }}
@@ -235,7 +235,7 @@ const TreasureMapTimeline = () => {
       </div>
 
       {/* ── Section Header ── */}
-      <div className="text-center mb-8 relative z-10 px-4">
+      <div className="text-center mb-12 relative z-10 px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -271,10 +271,10 @@ const TreasureMapTimeline = () => {
       </div>
 
       {/* ── MAP AREA ── */}
-      <div className="relative z-10 mx-auto" style={{ maxWidth: 700, minHeight: 1240 }}>
+      <div className="relative z-10 mx-auto" style={{ maxWidth: 750, minHeight: 1650 }}>
         <svg
           className="absolute inset-0 w-full"
-          viewBox="0 0 700 1200"
+          viewBox="0 0 750 1650"
           preserveAspectRatio="xMidYMid meet"
           style={{ height: "100%" }}
           xmlns="http://www.w3.org/2000/svg"
@@ -318,29 +318,30 @@ const TreasureMapTimeline = () => {
           <ShipSVG />
         </div>
 
-        {/* ── MILESTONE CARDS WITH RICH DECORATIVE SHADOWS ── */}
+        {/* ── MILESTONE CARDS (Properly Spaced & Alternating Sides) ── */}
         {MILESTONES.map((ms, i) => {
+          // Precisely spaced coordinates along height=1650
           const nodes = [
-            { x: 300, y: 60 },
-            { x: 400, y: 200 },
-            { x: 300, y: 360 },
-            { x: 420, y: 520 },
-            { x: 280, y: 680 },
-            { x: 400, y: 840 },
-            { x: 320, y: 1000 },
-            { x: 400, y: 1100 },
-            { x: 400, y: 1140 },
+            { x: 350, y: 80 },
+            { x: 420, y: 260 },
+            { x: 320, y: 480 },
+            { x: 400, y: 720 },
+            { x: 320, y: 960 },
+            { x: 400, y: 1200 },
+            { x: 350, y: 1440 },
+            { x: 350, y: 1540 },
+            { x: 350, y: 1580 },
           ];
           const node = nodes[i] || nodes[nodes.length - 1];
-          const goesLeft = node.x > 350;
+          const goesLeft = i % 2 === 1; // Alternating sides to avoid overlap
 
           return (
             <div
               key={ms.id}
               className="milestone-card absolute"
               style={{
-                left: `${(node.x / 700) * 100}%`,
-                top: `${(node.y / 1200) * 100}%`,
+                left: `${(node.x / 750) * 100}%`,
+                top: `${(node.y / 1650) * 100}%`,
                 transform: "translate(-50%, -50%)",
                 zIndex: 20,
               }}
@@ -349,8 +350,8 @@ const TreasureMapTimeline = () => {
                 <IslandNode Icon={ms.Icon} isFinal={ms.isFinal} color={ms.color} />
 
                 <div
-                  className={`absolute top-1/2 -translate-y-1/2 w-52 md:w-64
-                    ${goesLeft ? "right-[110%]" : "left-[110%]"}
+                  className={`absolute top-1/2 -translate-y-1/2 w-52 sm:w-64 md:w-72
+                    ${goesLeft ? "right-[115%]" : "left-[115%]"}
                   `}
                 >
                   <div
@@ -432,7 +433,7 @@ const TreasureMapTimeline = () => {
         {/* ── Ultimate Bounty Trophy ── */}
         <div
           className="absolute z-20"
-          style={{ left: `${(400 / 700) * 100}%`, top: `${(1145 / 1200) * 100}%`, transform: "translate(-50%, -50%)" }}
+          style={{ left: `${(350 / 750) * 100}%`, top: `${(1580 / 1650) * 100}%`, transform: "translate(-50%, -50%)" }}
         >
           <motion.div
             animate={{ y: [0, -8, 0] }}
