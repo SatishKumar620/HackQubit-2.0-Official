@@ -1,60 +1,71 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import shipNightImg from "../assets/images/about image left side.jpeg";
+import { MapPin, ExternalLink, Compass, Clock, Trophy, ShieldCheck, Zap } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  const sectionRef   = useRef(null);
-  const tagRef       = useRef(null);
-  const titleRef     = useRef(null);
-  const dividerRef   = useRef(null);
-  const imgRef       = useRef(null);
-  const para1Ref     = useRef(null);
-  const para2Ref     = useRef(null);
-  const divLine2Ref  = useRef(null);
-  const para3Ref     = useRef(null);
-  const para4Ref     = useRef(null);
-  const badgesRef    = useRef(null);
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const card1Ref = useRef(null);
+  const card2Ref = useRef(null);
+  const venueCardRef = useRef(null);
+  const statsBarRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const trigger = { trigger: sectionRef.current, start: "top 75%" };
-
-      // tag + title
-      gsap.fromTo(tagRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out", scrollTrigger: trigger }
-      );
-      gsap.fromTo(titleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", delay: 0.1, scrollTrigger: trigger }
-      );
-      gsap.fromTo(dividerRef.current,
-        { scaleX: 0, opacity: 0 },
-        { scaleX: 1, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.3, scrollTrigger: trigger }
-      );
-
-      // image
-      gsap.fromTo(imgRef.current,
-        { x: -60, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.2, scrollTrigger: { trigger: sectionRef.current, start: "top 70%" } }
-      );
-
-      // paragraphs stagger
+      // Header Animation
       gsap.fromTo(
-        [para1Ref.current, para2Ref.current, divLine2Ref.current, para3Ref.current, para4Ref.current],
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.15, delay: 0.3,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 65%" } }
+        headerRef.current,
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        }
       );
 
-      // badges
-      gsap.fromTo(badgesRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.5)", delay: 0.6,
-          scrollTrigger: { trigger: sectionRef.current, start: "top 60%" } }
+      // Feature Cards Animation
+      gsap.fromTo(
+        [card1Ref.current, card2Ref.current],
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: { trigger: card1Ref.current, start: "top 80%" },
+        }
+      );
+
+      // Venue Card Animation
+      gsap.fromTo(
+        venueCardRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: venueCardRef.current, start: "top 80%" },
+        }
+      );
+
+      // Stats Bar Animation
+      gsap.fromTo(
+        statsBarRef.current,
+        { scale: 0.95, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: "back.out(1.5)",
+          scrollTrigger: { trigger: statsBarRef.current, start: "top 85%" },
+        }
       );
     }, sectionRef);
 
@@ -66,206 +77,154 @@ const About = () => {
       ref={sectionRef}
       id="about"
       className="relative w-full py-24 px-6 sm:px-10 lg:px-16 overflow-hidden"
-      style={{ background: "linear-gradient(180deg,#020b18 0%,#030e1f 50%,#020b18 100%)" }}
+      style={{ background: "linear-gradient(180deg, #020b18 0%, #030e1f 50%, #020b18 100%)" }}
     >
-      {/* ── background grid ── */}
+      {/* Background Glow & Grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(220,20,60,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(220,20,60,0.4) 1px,transparent 1px)",
-          backgroundSize: "70px 70px",
+            "linear-gradient(rgba(220,20,60,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(220,20,60,0.5) 1px,transparent 1px)",
+          backgroundSize: "60px 60px",
         }}
       />
-      {/* ── radial glow ── */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 0%,rgba(220,20,60,0.1) 0%,transparent 70%)" }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(220,20,60,0.12) 0%, transparent 70%)" }}
       />
 
       <div className="max-w-[1200px] mx-auto relative z-10">
-
-        {/* ── Section label + title ── */}
-        <div className="mb-16 text-center">
-          <p
-            ref={tagRef}
-            className="font-cinzel text-xs tracking-[0.4em] text-[#dc143c] uppercase mb-3"
-          >
-            ⚓ Our Story
-          </p>
-          <h2
-            ref={titleRef}
-            className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
-          >
-            About <span style={{ color: "#dc143c" }}>HackQubit</span>
+        {/* Section Header */}
+        <div ref={headerRef} className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#dc143c]/30 bg-[#dc143c]/10 mb-4">
+            <Compass className="w-3.5 h-3.5 text-[#dc143c]" />
+            <span className="font-cinzel text-xs tracking-[0.3em] text-[#dc143c] uppercase font-semibold">
+              The Grand Voyage
+            </span>
+          </div>
+          <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            About <span className="text-[#dc143c]">HackQubit 2.0</span>
           </h2>
+          <p className="mt-4 font-cinzel text-white/60 text-sm sm:text-base max-w-[600px] mx-auto leading-relaxed">
+            The premier national-level hackathon hosted by <strong className="text-white">RVSCET, Jamshedpur</strong>. 
+            Gathering India's boldest innovators for a non-stop coding expedition.
+          </p>
+        </div>
+
+        {/* Feature Cards Grid (Compact & Modern) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          {/* Card 1: The Initiative */}
           <div
-            ref={dividerRef}
-            className="mt-5 flex items-center justify-center gap-4"
-            style={{ transformOrigin: "center" }}
+            ref={card1Ref}
+            className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+              border: "1px solid rgba(220,20,60,0.25)",
+              backdropFilter: "blur(16px)",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+            }}
           >
-            <div className="flex-1 max-w-[140px] h-px bg-gradient-to-r from-transparent to-[#dc143c]/60" />
-            <div className="w-2 h-2 rounded-full bg-[#dc143c]" />
-            <div className="flex-1 max-w-[140px] h-px bg-gradient-to-l from-transparent to-[#dc143c]/60" />
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-[#dc143c]/15 border border-[#dc143c]/30 text-[#dc143c]">
+              <Zap className="w-6 h-6" />
+            </div>
+            <h3 className="font-cinzel text-xl font-bold text-white mb-3">
+              Pirates of the Sea
+            </h3>
+            <p className="font-cinzel text-sm text-white/65 leading-relaxed">
+              A student-led movement at RVSCET driving technical excellence. We empower developers through competitive coding, workshops, and real-world innovation challenges.
+            </p>
+          </div>
+
+          {/* Card 2: The Hackathon */}
+          <div
+            ref={card2Ref}
+            className="group relative p-8 rounded-2xl transition-all duration-400 hover:-translate-y-1.5"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+              border: "1px solid rgba(59,130,246,0.25)",
+              backdropFilter: "blur(16px)",
+              boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+            }}
+          >
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 bg-blue-500/15 border border-blue-500/30 text-blue-400">
+              <Trophy className="w-6 h-6" />
+            </div>
+            <h3 className="font-cinzel text-xl font-bold text-white mb-3">
+              Pure Innovation. On the Spot.
+            </h3>
+            <p className="font-cinzel text-sm text-white/65 leading-relaxed">
+              No pre-submitted PPTs or prior builds. Problem statements are revealed live on the spot. Test your real-time problem solving, code under pressure, and conquer!
+            </p>
           </div>
         </div>
 
-        {/* ── Main layout ── */}
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-
-          {/* Left — image */}
-          <div
-            ref={imgRef}
-            className="w-full lg:w-[42%] flex-shrink-0"
-          >
-            <div
-              className="relative rounded-2xl overflow-hidden"
-              style={{
-                border: "1px solid rgba(220,20,60,0.25)",
-                boxShadow: "0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04) inset",
-              }}
-            >
-              <img
-                src={shipNightImg}
-                alt="About HackQubit"
-                className="w-full h-full object-cover"
-                style={{ minHeight: "320px", maxHeight: "520px" }}
-              />
-              {/* image overlay gradient */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(to bottom,transparent 40%,rgba(2,11,24,0.7) 100%)",
-                }}
-              />
-              {/* bottom label on image */}
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg"
-                  style={{
-                    background: "rgba(220,20,60,0.15)",
-                    border: "1px solid rgba(220,20,60,0.3)",
-                    backdropFilter: "blur(8px)",
-                  }}
-                >
-                  <div className="w-2 h-2 rounded-full bg-[#dc143c] animate-pulse" />
-                  <span className="font-cinzel text-xs text-white/80 tracking-widest uppercase">
-                    National Level Hackathon
-                  </span>
-                </div>
-              </div>
+        {/* Venue & Location Highlight Card (Embedded Map Link) */}
+        <div
+          ref={venueCardRef}
+          className="relative rounded-2xl p-6 sm:p-8 overflow-hidden mb-12 flex flex-col md:flex-row items-center justify-between gap-6"
+          style={{
+            background: "linear-gradient(135deg, rgba(220,20,60,0.12) 0%, rgba(10,20,40,0.8) 100%)",
+            border: "1px solid rgba(220,20,60,0.35)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 15px 40px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center bg-[#dc143c] text-white shadow-[0_0_20px_rgba(220,20,60,0.5)]">
+              <MapPin className="w-6 h-6" />
+            </div>
+            <div>
+              <span className="font-cinzel text-xs text-[#dc143c] tracking-[0.25em] uppercase font-bold">
+                Official Venue & Location
+              </span>
+              <h4 className="font-cinzel text-xl sm:text-2xl font-bold text-white mt-1">
+                RVSCET, Jamshedpur
+              </h4>
+              <p className="font-cinzel text-sm text-white/60 mt-1">
+                RVS College of Engineering and Technology, Edalbera, Jamshedpur, Jharkhand 831012
+              </p>
             </div>
           </div>
 
-          {/* Right — content */}
-          <div className="flex-1 flex flex-col gap-6">
+          <a
+            href="https://maps.google.com/?q=RVSCET+Jamshedpur"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-cinzel text-sm text-white font-semibold tracking-wider transition-all duration-300 hover:shadow-[0_0_25px_rgba(220,20,60,0.6)] flex-shrink-0"
+            style={{
+              background: "linear-gradient(135deg, #dc143c 0%, #a00c2a 100%)",
+              border: "1px solid rgba(255,255,255,0.2)",
+            }}
+          >
+            <span>Open in Google Maps</span>
+            <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
+        </div>
 
-            {/* Badges row */}
-            <div ref={badgesRef} className="flex flex-wrap gap-3">
-              {[
-                { label: "48 Hours",        color: "#dc143c" },
-                { label: "National Level",  color: "#3b82f6" },
-                { label: "RVSCET, Jamshedpur", color: "#eab308" },
-                { label: "Oct 7–8, 2025",  color: "#22c55e" },
-              ].map(({ label, color }) => (
-                <span
-                  key={label}
-                  className="font-cinzel text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 rounded-full"
-                  style={{
-                    background: `${color}18`,
-                    border: `1px solid ${color}40`,
-                    color: color,
-                  }}
-                >
-                  {label}
-                </span>
-              ))}
-            </div>
-
-            {/* Para 1 */}
-            <p
-              ref={para1Ref}
-              className="font-cinzel text-sm sm:text-base text-white/65 leading-relaxed"
-            >
-              <strong className="text-[#dc143c] font-bold">Pirates of the Sea</strong> is a
-              student-driven initiative dedicated to{" "}
-              <strong className="text-white/90 font-semibold">fostering technical excellence and
-              innovation</strong> within the college community. The club provides a structured
-              platform for students to enhance their programming skills, engage in collaborative
-              learning, and apply their knowledge through practical projects.
-            </p>
-
-            {/* Para 2 */}
-            <p
-              ref={para2Ref}
-              className="font-cinzel text-sm sm:text-base text-white/65 leading-relaxed"
-            >
-              With a focus on coding challenges,{" "}
-              <strong className="text-white/90 font-semibold">
-                technical workshops, hackathons,
-              </strong>{" "}
-              and knowledge-sharing sessions, we nurture problem-solving abilities and encourage
-              members to explore diverse areas of computer science — cultivating creativity,
-              discipline, and continuous learning.
-            </p>
-
-            {/* divider */}
-            <div
-              ref={divLine2Ref}
-              className="w-full h-px"
-              style={{ background: "linear-gradient(90deg,transparent,rgba(220,20,60,0.4),transparent)" }}
-            />
-
-            {/* Para 3 */}
-            <p
-              ref={para3Ref}
-              className="font-cinzel text-sm sm:text-base text-white/65 leading-relaxed"
-            >
-              <strong className="text-[#dc143c] font-bold">Hack Qubit 2.0</strong> is a{" "}
-              <strong className="text-white/90 font-semibold">48-hour national-level hackathon</strong>{" "}
-              hosted by RVSCET, Jamshedpur — designed to bring together the brightest minds in
-              technology, innovation, and creativity. This competition challenges participants to{" "}
-              <strong className="text-white/90 font-semibold">Code, Create, and Conquer</strong>.
-            </p>
-
-            {/* Para 4 */}
-            <p
-              ref={para4Ref}
-              className="font-cinzel text-sm sm:text-base text-white/65 leading-relaxed"
-            >
-              This year, the event welcomes students from across{" "}
-              <strong className="text-white/90 font-semibold">India</strong> — regardless of
-              background or branch.{" "}
-              <strong className="text-[#dc143c] font-bold">
-                No pre-submissions, no PPTs — just pure innovation.
-              </strong>{" "}
-              Problem statements are revealed on the spot, testing real-time problem-solving under
-              pressure. Teams collaborate, strategize, and push limits to claim the pirate's bounty.
-            </p>
-
-            {/* CTA row */}
-            <div className="flex flex-wrap items-center gap-4 mt-2">
-              <a
-                href="#register"
-                className="group relative flex items-center gap-2 px-6 py-3 rounded-lg font-cinzel text-sm text-white tracking-wider overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(220,20,60,0.5)]"
-                style={{
-                  background: "linear-gradient(135deg,#dc143c 0%,#9b0e2a 100%)",
-                  border: "1px solid rgba(220,20,60,0.5)",
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <span className="relative z-10">Register Now</span>
-              </a>
-              <a
-                href="#timeline"
-                className="flex items-center gap-2 px-6 py-3 rounded-lg font-cinzel text-sm text-white/70 tracking-wider transition-all duration-300 hover:text-white hover:border-white/30"
-                style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-              >
-                View Timeline →
-              </a>
-            </div>
-
+        {/* Quick Highlights Bar (Corrected to 24 Hours) */}
+        <div
+          ref={statsBarRef}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl text-center"
+          style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}
+        >
+          <div>
+            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-[#dc143c]">24 HR</span>
+            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Non-Stop Hackathon</span>
+          </div>
+          <div>
+            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-blue-400">OCT 7–8</span>
+            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">2025 Event Dates</span>
+          </div>
+          <div>
+            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-amber-400">NATIONAL</span>
+            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Level Open for All</span>
+          </div>
+          <div>
+            <span className="block font-cinzel text-2xl sm:text-3xl font-bold text-emerald-400">ON-SPOT</span>
+            <span className="font-cinzel text-[10px] text-white/50 uppercase tracking-widest mt-1 block">Problem Statements</span>
           </div>
         </div>
       </div>
