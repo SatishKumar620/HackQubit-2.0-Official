@@ -14,6 +14,7 @@ export { default as ScrollToTop } from "./ScrollToTop";
 export { default as Loader } from "./Loader";
 export { TopLand, BottomLand } from "./Decorations";
 export { default as SponsorPackage } from "./SponsorPackage";
+export { default as SponsorPerks } from "./SponsorPerks";
 export { default as PastSponsors } from "./PastSponsors";
 export { default as Gallery } from "./Gallery";
 export { default as FAQ } from "./FAQ";
