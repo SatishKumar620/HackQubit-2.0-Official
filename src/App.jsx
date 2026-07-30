@@ -1,3 +1,4 @@
+import React, { Component, useState } from "react";
 import { About, Timeline, SponsorPackage, Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ } from "./components";
 import { AnimatePresence } from "framer-motion";
 
