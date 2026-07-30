@@ -6,7 +6,7 @@ const OurSponsors = () => {
   return (
     <section
       id="our-sponsors"
-      className="relative py-24 px-6 bg-slate-900 text-slate-900 overflow-hidden"
+      className="relative py-24 px-6 bg-pirate-bg text-slate-900 overflow-hidden"
     >
       {/* Background radial glow */}
       <div className="absolute inset-0 pointer-events-none opacity-30 bg-[radial-gradient(circle_at_50%_50%,rgba(245,158,11,0.2),transparent_70%)]" />

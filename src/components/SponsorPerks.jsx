@@ -96,7 +96,7 @@ const SponsorPerks = () => {
     <section
       ref={sectionRef}
       id="sponsorship-perks"
-      className="relative py-28 px-6 bg-slate-900 text-slate-900 overflow-hidden"
+      className="relative py-28 px-6 bg-pirate-bg text-slate-900 overflow-hidden"
     >
       {/* ── PARALLEL SCROLLING CLOUDS (POSITIONS AT THE MIDDLE & PARTS AWAY ON SCROLL) ── */}
       <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">

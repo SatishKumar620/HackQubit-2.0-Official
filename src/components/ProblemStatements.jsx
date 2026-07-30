@@ -20,7 +20,7 @@ const ProblemStatements = () => {
     <section
       ref={sectionRef}
       id="problem-statements"
-      className="relative py-24 px-6 bg-slate-900 text-slate-900 overflow-hidden"
+      className="relative py-24 px-6 bg-pirate-bg text-slate-900 overflow-hidden"
     >
       {/* Soft warm gradient backdrop */}
       <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(circle_at_50%_30%,rgba(251,191,36,0.15),transparent_70%)]" />
