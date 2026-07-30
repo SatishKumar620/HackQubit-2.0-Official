@@ -32,8 +32,8 @@ const Hero = () => {
       // Swaying swinging motion for pirate hero on rope across diagonal
       if (pirateHeroRef.current) {
         gsap.to(pirateHeroRef.current, {
-          rotate: 4,
-          y: -15,
+          rotate: 3,
+          y: -12,
           duration: 2.5,
           repeat: -1,
           yoyo: true,
@@ -51,7 +51,7 @@ const Hero = () => {
       className="relative w-full min-h-screen overflow-hidden bg-pirate-bg flex flex-col justify-between"
     >
       {/* ── 1. BACKGROUND: Anime Ocean Island Image ── */}
-      <div className="absolute inset-0 z-0 opacity-45 mix-blend-multiply pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply pointer-events-none">
         <img
           src={animeOceanIslandImg}
           alt="Anime Ocean Island Background"
@@ -59,11 +59,11 @@ const Hero = () => {
         />
       </div>
 
-      {/* Soft Sky Gradient Overlay to maintain sky theme */}
+      {/* Soft Sky Gradient Overlay */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-pirate-bg/60 via-transparent to-pirate-bg/80 pointer-events-none" />
 
-      {/* ── 2. MIDDLE LAYER: Pirate Ship with Crew sailing on Ocean ── */}
-      <div className="absolute bottom-10 right-4 sm:right-16 md:right-24 z-10 w-[280px] sm:w-[420px] md:w-[520px] pointer-events-none filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.4)]">
+      {/* ── 2. MIDDLE LAYER: Pirate Ship with Crew (Full Details Preserved) ── */}
+      <div className="absolute bottom-8 right-2 sm:right-12 md:right-20 z-10 w-[300px] sm:w-[460px] md:w-[580px] pointer-events-none filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.4)]">
         <img
           src={pirateShipCrewImg}
           alt="Pirate Ship with Crew"
@@ -71,38 +71,38 @@ const Hero = () => {
         />
       </div>
 
-      {/* ── 3. TOP FOREGROUND: Diagonal Rigging Rope stretched from Corner to Corner ── */}
+      {/* ── 3. TOP FOREGROUND: Corner-to-Corner Diagonal Rigging Rope (Touches Top-Left & Bottom-Right Corners on All Screen Sizes) ── */}
       <svg
-        className="absolute inset-0 w-full h-full z-20 pointer-events-none"
+        className="absolute inset-0 w-full h-full z-20 pointer-events-none overflow-visible"
         viewBox="0 0 1000 1000"
         preserveAspectRatio="none"
       >
-        {/* Thick Main Diagonal Rigging Rope */}
+        {/* Main Thick Braided Rigging Rope stretching exactly from (0,0) to (1000,1000) */}
         <path
           d="M 0 0 C 350 250, 650 750, 1000 1000"
           fill="none"
-          stroke="#451a03"
-          strokeWidth="12"
-          strokeLinecap="round"
+          stroke="#381400"
+          strokeWidth="16"
+          strokeLinecap="square"
         />
         <path
           d="M 0 0 C 350 250, 650 750, 1000 1000"
           fill="none"
           stroke="#92400e"
-          strokeWidth="5"
-          strokeDasharray="16 8"
-          strokeLinecap="round"
+          strokeWidth="7"
+          strokeDasharray="20 10"
+          strokeLinecap="square"
         />
       </svg>
 
-      {/* ── 4. TOP FOREGROUND: Handsome Pirate Hero Swinging on Rope ── */}
+      {/* ── 4. TOP FOREGROUND: Large Handsome Pirate Hero Swinging directly on the Diagonal Rope ── */}
       <div
         ref={pirateHeroRef}
-        className="absolute top-16 sm:top-20 right-6 sm:right-28 md:right-44 z-30 w-[240px] sm:w-[380px] md:w-[460px] pointer-events-none filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.45)]"
+        className="absolute top-10 sm:top-14 right-2 sm:right-12 md:right-28 z-40 w-[320px] sm:w-[480px] md:w-[600px] pointer-events-none filter drop-shadow-[0_25px_40px_rgba(0,0,0,0.5)]"
       >
         <img
           src={handsomePirateRopeImg}
-          alt="Handsome Pirate Hero Holding Rope"
+          alt="Handsome Pirate Hero Swinging on Rope"
           className="w-full h-auto object-contain"
         />
       </div>
@@ -110,7 +110,7 @@ const Hero = () => {
       {/* Navbar */}
       <Navbar ref={navbarRef} />
 
-      {/* Hero Main Content (Left Aligned) */}
+      {/* ── 5. HERO MAIN CONTENT: Positioned BELOW the Swinging Pirate Rope (z-30) ── */}
       <HeroContent
         refs={{
           subtitle: subtitleRef,
