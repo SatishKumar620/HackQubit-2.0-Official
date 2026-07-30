@@ -424,3 +424,68 @@
   50% { transform: translateX(30px) scale(1.1); opacity: 0.06; }
   100% { transform: translateX(-20px) scale(0.95); opacity: 0.03; }
 }
+
+/* ── Dark Mode Night Sky Stars ── */
+html.dark .hero-gradient-overlay {
+  background:
+    linear-gradient(90deg, rgba(10,14,26,0.97) 0%, rgba(10,14,26,0.85) 25%, rgba(10,14,26,0.4) 55%, transparent 80%),
+    linear-gradient(180deg, rgba(10,14,26,0.7) 0%, transparent 30%, transparent 70%, rgba(10,14,26,0.9) 100%),
+    linear-gradient(0deg, rgba(10,14,26,0.8) 0%, transparent 40%) !important;
+}
+
+html.dark section {
+  border-color: rgba(212,175,55,0.1);
+}
+
+html.dark .glass-card {
+  background: linear-gradient(135deg, rgba(26,32,53,0.9) 0%, rgba(15,23,42,0.85) 50%, rgba(26,32,53,0.8) 100%) !important;
+  border-color: rgba(212,175,55,0.25) !important;
+}
+
+/* Night sky star twinkle - applied to dark body pseudo element */
+html.dark body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 8%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 22%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 5%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 18%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 10%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 28%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 38%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 18% 45%, rgba(212,175,55,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 33% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 42%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 38%, rgba(212,175,55,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 48%, rgba(255,255,255,0.5) 0%, transparent 100%);
+  animation: starTwinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+/* Smooth theme transition for Hero bg */
+section#home {
+  transition: background-color 0.5s ease !important;
+}
+
+html.dark section#home {
+  background-color: #0A0E1A !important;
+}
+
+html.dark section#about {
+  background-color: #0F172A !important;
+}
+
+html.dark footer {
+  background-color: #060A14 !important;
+  border-top-color: rgba(212,175,55,0.1) !important;
+}

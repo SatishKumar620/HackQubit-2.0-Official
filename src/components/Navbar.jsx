@@ -1,5 +1,6 @@
 import { useState, useRef, forwardRef } from "react";
-import { Skull, Anchor } from "lucide-react";
+import { Skull, Anchor, Sun, Moon } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 import { NAV_LINKS, SITE_NAME } from "../constants";
 import { useScrollPosition } from "../hooks";
 import { gsap } from "gsap";
@@ -7,6 +8,7 @@ import { BoneToggle, PirateMobileMenu } from "./PirateMobileNav";
 const Navbar = forwardRef((props, ref) => {
   const isScrolled = useScrollPosition(50);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const linkRefs = useRef([]);
 
   const handleLinkHover = (index) => {
@@ -52,10 +54,10 @@ const Navbar = forwardRef((props, ref) => {
               <div className="absolute inset-0 w-8 h-8 bg-pirate-gold/10 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             <div className="flex flex-col leading-none">
-              <span className="font-cinzel text-lg font-bold text-pirate-white tracking-wider">
+              <span className="font-cinzel text-lg font-bold text-slate-800 dark:text-amber-200 tracking-wider">
                 {SITE_NAME.split(" ")[0]}
               </span>
-              <span className="font-cinzel text-[10px] text-pirate-gold/70 tracking-[0.3em] uppercase">
+              <span className="font-cinzel text-[10px] text-amber-600 dark:text-amber-500/70 tracking-[0.3em] uppercase">
                 {SITE_NAME.split(" ").slice(1).join(" ")}
               </span>
             </div>
@@ -70,7 +72,7 @@ const Navbar = forwardRef((props, ref) => {
                 href={link.href}
                 onMouseEnter={() => handleLinkHover(i)}
                 onMouseLeave={() => handleLinkLeave(i)}
-                className="relative px-5 py-2 font-cinzel text-sm text-pirate-white/90 tracking-wide transition-colors duration-300 group"
+                className="relative px-5 py-2 font-cinzel text-sm text-slate-700 dark:text-amber-200/90 tracking-wide transition-colors duration-300 group"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-pirate-gold to-transparent group-hover:w-4/5 transition-all duration-500" />
@@ -78,15 +80,22 @@ const Navbar = forwardRef((props, ref) => {
             ))}
           </div>
 
-          {/* CTA Button - Desktop */}
-          <div className="hidden lg:block">
+          {/* CTA Button & Theme Toggle - Desktop */}
+          <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full border border-sky-300 dark:border-amber-600/50 hover:bg-sky-100 dark:hover:bg-amber-900/20 text-amber-600 dark:text-amber-500 transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            </button>
             <a
               href="#crew"
-              className="relative group flex items-center gap-2.5 px-6 py-2.5 border border-pirate-gold/50 rounded font-cinzel text-sm text-pirate-gold tracking-wider transition-all duration-500 hover:border-pirate-gold hover:bg-pirate-gold/10 hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]"
+              className="relative group flex items-center gap-2.5 px-6 py-2.5 border border-sky-600 dark:border-amber-600/50 rounded font-cinzel text-sm text-sky-700 dark:text-amber-500 tracking-wider transition-all duration-500 hover:border-sky-700 dark:hover:border-amber-500 hover:bg-sky-50 dark:hover:bg-amber-900/10 hover:shadow-[0_0_15px_rgba(2,132,199,0.15)] dark:hover:shadow-[0_0_30px_rgba(212,175,55,0.15)]"
             >
               <span>Join The Crew</span>
               <Anchor className="w-4 h-4 transition-transform duration-500 group-hover:rotate-12" />
-              <div className="absolute inset-0 rounded bg-gradient-to-r from-pirate-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 rounded bg-gradient-to-r from-sky-200/20 dark:from-amber-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </a>
           </div>
 
