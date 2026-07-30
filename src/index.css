@@ -33,6 +33,8 @@
 }
 
 @theme {
+  --color-dark-navy: #001f3f;
+  --color-crimson: #dc143c;
   --color-pirate-bg: #E0F2FE; /* Sky light */
   --color-pirate-gold: #D4AF37;
   --color-pirate-bronze: #8B6B3F;

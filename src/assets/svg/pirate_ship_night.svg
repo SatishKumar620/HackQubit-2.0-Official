@@ -1,0 +1,34 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Detailed night view pirate ship SVG placeholder -->
+  <!-- Sea background -->
+  <rect width="800" height="600" fill="#001f3f" />
+  <!-- Moon -->
+  <circle cx="650" cy="100" r="50" fill="#f5f3ce" />
+  <!-- Stars -->
+  <g fill="#fff" opacity="0.8">
+    <circle cx="100" cy="80" r="2" />
+    <circle cx="200" cy="50" r="1.5" />
+    <circle cx="300" cy="120" r="2" />
+    <circle cx="400" cy="70" r="1" />
+    <circle cx="500" cy="90" r="1.5" />
+    <circle cx="600" cy="60" r="2" />
+  </g>
+  <!-- Waves -->
+  <path d="M0 500 Q100 480 200 500 T400 500 T600 500 T800 500 V600 H0 Z" fill="#0a0a2a" />
+  <!-- Pirate ship hull -->
+  <path d="M200 420 L250 350 L350 350 L400 420 Z" fill="#2c2c2c" stroke="#8b4513" stroke-width="2" />
+  <!-- Mast -->
+  <line x1="300" y1="350" x2="300" y2="200" stroke="#8b4513" stroke-width="4" />
+  <!-- Sail -->
+  <polygon points="300,200 260,350 340,350" fill="#1a1a1a" stroke="#8b4513" stroke-width="2" />
+  <!-- Lanterns -->
+  <circle cx="300" cy="210" r="5" fill="#ffdd55" />
+  <circle cx="280" cy="260" r="4" fill="#ffdd55" />
+  <circle cx="320" cy="260" r="4" fill="#ffdd55" />
+  <!-- Details -->
+  <g stroke="#555" stroke-width="0.5" opacity="0.6">
+    <line x1="250" y1="350" x2="260" y2="300" />
+    <line x1="350" y1="350" x2="340" y2="300" />
+    <line x1="300" y1="350" x2="300" y2="300" />
+  </g>
+</svg>

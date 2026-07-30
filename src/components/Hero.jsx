@@ -7,7 +7,6 @@ import HeroContent from "./HeroContent";
 import Stats from "./Stats";
 import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
-import heroBg from "../assets/images/hero-bg.png";
 
 const Hero = () => {
   const parallax = useMouseParallax(0.015);
@@ -17,13 +16,11 @@ const Hero = () => {
   const subtitleRef = useRef(null);
   const headingLine1Ref = useRef(null);
   const headingLine2Ref = useRef(null);
-  const skullIconRef = useRef(null);
   const descriptionRef = useRef(null);
   const buttonsRef = useRef(null);
   const socialRef = useRef(null);
   const statsRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
-  const bgRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -32,7 +29,6 @@ const Hero = () => {
         subtitle: subtitleRef.current,
         headingLine1: headingLine1Ref.current,
         headingLine2: headingLine2Ref.current,
-        skullIcon: skullIconRef.current,
         description: descriptionRef.current,
         buttons: buttonsRef.current,
         social: socialRef.current,
@@ -47,26 +43,22 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative w-full h-screen min-h-[700px] overflow-hidden bg-sky-200"
+      className="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#001f3f]"
     >
-      {/* Background Image with Parallax & Slow Zoom */}
+      {/* Night Pirate Ship SVG */}
       <div
-        ref={bgRef}
-        className="absolute inset-0 w-full h-full animate-slow-zoom"
-        style={{
-          transform: `scale(1) translate(${parallax.x}px, ${parallax.y}px)`,
-        }}
+        className="absolute inset-0 w-full h-full flex items-center justify-center"
       >
         <img
-          src={heroBg}
-          alt="Pirate ship on stormy seas"
-          className="w-full h-full object-contain object-center"
+          src={require('../assets/svg/pirate_ship_night.svg').default}
+          alt="Night pirate ship"
+          className="w-full h-full object-contain"
           loading="eager"
         />
       </div>
 
       {/* Cinematic Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-sky-200 via-transparent to-sky-100/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#002b5c] via-transparent to-[#dc143c]/30" />
 
       {/* Navbar */}
       <Navbar ref={navbarRef} />
@@ -77,7 +69,6 @@ const Hero = () => {
           subtitle: subtitleRef,
           headingLine1: headingLine1Ref,
           headingLine2: headingLine2Ref,
-          skullIcon: skullIconRef,
           description: descriptionRef,
           buttons: buttonsRef,
         }}

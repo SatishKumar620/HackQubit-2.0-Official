@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { Skull } from "lucide-react";
+
 import { HERO_CONTENT } from "../constants";
 import Buttons from "./Buttons";
 
@@ -31,14 +31,6 @@ const HeroContent = forwardRef(({ refs }, ref) => {
         >
           2.0
         </h1>
-      </div>
-
-      {/* Skull Divider */}
-      <div ref={refs.skullIcon} className="mb-5 sm:mb-6 self-start">
-        <Skull
-          className="w-6 h-6 sm:w-7 sm:h-7 text-amber-500"
-          strokeWidth={1.5}
-        />
       </div>
 
       {/* Description */}
