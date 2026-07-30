@@ -303,19 +303,19 @@ const PackageCard = ({ pkg, index }) => {
   };
 
   return (
-    <div className="package-card-container relative pt-16" style={{ perspective: "1500px" }}>
-      {/* ── TOP MIDDLE HANDSOME PIRATE CHARACTER ── */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex justify-center">
-        <div className="relative w-28 h-28 sm:w-32 sm:h-32 transition-transform duration-500 hover:scale-110">
-          {/* Character Ambient Glow */}
+    <div className="package-card-container relative pt-20 mt-6" style={{ perspective: "1500px" }}>
+      {/* ── TOP MIDDLE HANDSOME PIRATE CHARACTER (PROUDLY FLOATING OUTSIDE CARD) ── */}
+      <div className="absolute -top-14 left-1/2 -translate-x-1/2 z-40 pointer-events-none flex justify-center">
+        <div className="relative w-32 h-32 sm:w-36 sm:h-36 transition-transform duration-500 hover:scale-110">
+          {/* Character Ambient Glow Ring */}
           <div
-            className="absolute inset-0 rounded-full blur-md opacity-60"
+            className="absolute inset-2 rounded-full blur-lg opacity-80"
             style={{ background: pkg.accentGlow }}
           />
           <img
             src={pkg.characterImg}
             alt={pkg.characterAlt}
-            className="relative w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]"
+            className="relative w-full h-full object-contain filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.9)] scale-110"
           />
         </div>
       </div>
@@ -335,15 +335,18 @@ const PackageCard = ({ pkg, index }) => {
         />
 
         {/* Card body */}
-        <div className="relative rounded-2xl overflow-hidden h-full flex flex-col pt-12" style={{ background: style.cardBg }}>
-          {/* Wood grain texture */}
-          <div
-            className="absolute inset-0 opacity-[0.06] pointer-events-none"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(to bottom, transparent, transparent 5px, rgba(139,107,63,0.25) 5px, rgba(139,107,63,0.25) 6px)",
-            }}
-          />
+        <div className="relative rounded-2xl overflow-visible h-full flex flex-col pt-16" style={{ background: style.cardBg }}>
+          {/* Inner Clipping Container for Background Textures & Glows Only */}
+          <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+            {/* Wood grain texture */}
+            <div
+              className="absolute inset-0 opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(to bottom, transparent, transparent 5px, rgba(139,107,63,0.25) 5px, rgba(139,107,63,0.25) 6px)",
+              }}
+            />
+          </div>
 
           {/* Cursor-following glow */}
           <div

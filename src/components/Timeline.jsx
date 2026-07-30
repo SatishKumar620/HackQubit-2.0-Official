@@ -110,10 +110,10 @@ const PirateGalleonSVG = () => (
         <stop offset="50%" stopColor="#4a2506"/>
         <stop offset="100%" stopColor="#2b1404"/>
       </linearGradient>
-      <linearGradient id="galleonSail" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor="#fef3c7"/>
-        <stop offset="50%" stopColor="#fde047"/>
-        <stop offset="100%" stopColor="#d97706"/>
+      <linearGradient id="whiteGalleonSail" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor="#ffffff"/>
+        <stop offset="50%" stopColor="#f8fafc"/>
+        <stop offset="100%" stopColor="#e2e8f0"/>
       </linearGradient>
     </defs>
 
@@ -129,17 +129,17 @@ const PirateGalleonSVG = () => (
     {/* Bowsprit Pole (Front Spike) */}
     <line x1="50" y1="15" x2="50" y2="2" stroke="#1a0c02" strokeWidth="3" strokeLinecap="round" />
 
-    {/* Foremast Yards & Billowing Main Sails */}
+    {/* Foremast Yards & Pure White Sails */}
     <line x1="20" y1="35" x2="80" y2="35" stroke="#1a0c02" strokeWidth="2.5" />
-    <path d="M 22 35 Q 50 22 78 35 Q 50 44 22 35 Z" fill="url(#galleonSail)" stroke="#b45309" strokeWidth="0.8" />
+    <path d="M 22 35 Q 50 22 78 35 Q 50 44 22 35 Z" fill="url(#whiteGalleonSail)" stroke="#94a3b8" strokeWidth="1" />
 
-    {/* Mainmast Yards & Main Sail */}
+    {/* Mainmast Yards & Main White Sail */}
     <line x1="12" y1="62" x2="88" y2="62" stroke="#1a0c02" strokeWidth="3" />
-    <path d="M 14 62 Q 50 48 86 62 Q 50 74 14 62 Z" fill="url(#galleonSail)" stroke="#b45309" strokeWidth="1" />
+    <path d="M 14 62 Q 50 48 86 62 Q 50 74 14 62 Z" fill="url(#whiteGalleonSail)" stroke="#94a3b8" strokeWidth="1" />
 
-    {/* Mizzenmast Yard & Rear Sail */}
+    {/* Mizzenmast Yard & Rear White Sail */}
     <line x1="25" y1="85" x2="75" y2="85" stroke="#1a0c02" strokeWidth="2" />
-    <path d="M 27 85 Q 50 75 73 85 Q 50 94 27 85 Z" fill="url(#galleonSail)" stroke="#b45309" strokeWidth="0.8" />
+    <path d="M 27 85 Q 50 75 73 85 Q 50 94 27 85 Z" fill="url(#whiteGalleonSail)" stroke="#94a3b8" strokeWidth="1" />
 
     {/* Jolly Roger Pirate Flag on Mainmast Top */}
     <g transform="translate(50, 52)">
@@ -149,11 +149,11 @@ const PirateGalleonSVG = () => (
       <line x1="10" y1="-2" x2="4" y2="-6" stroke="#ffffff" strokeWidth="0.8" />
     </g>
 
-    {/* Gold Side Shields */}
-    <circle cx="28" cy="55" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
-    <circle cx="72" cy="55" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
-    <circle cx="30" cy="75" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
-    <circle cx="70" cy="75" r="2.5" fill="#fbbf24" stroke="#78350f" strokeWidth="0.5" />
+    {/* Pure White / Silver Side Shields */}
+    <circle cx="28" cy="55" r="2.5" fill="#ffffff" stroke="#64748b" strokeWidth="0.5" />
+    <circle cx="72" cy="55" r="2.5" fill="#ffffff" stroke="#64748b" strokeWidth="0.5" />
+    <circle cx="30" cy="75" r="2.5" fill="#ffffff" stroke="#64748b" strokeWidth="0.5" />
+    <circle cx="70" cy="75" r="2.5" fill="#ffffff" stroke="#64748b" strokeWidth="0.5" />
   </svg>
 );
 
