@@ -4,6 +4,7 @@ import {
   SponsorPackage, SponsorPerks, OurSponsors,
   Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ
 } from "./components";
+import PirateCaptainGuide from "./components/PirateCaptainGuide";
 import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
@@ -70,6 +71,9 @@ function App() {
         <FAQ />
         <Footer />
         <ScrollToTop />
+
+        {/* Fixed Position Pirate Captain Guide with Speech Bubbles */}
+        {!loading && <PirateCaptainGuide />}
       </main>
     </ErrorBoundary>
   );
