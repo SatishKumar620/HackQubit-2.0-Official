@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Hero, About, Timeline, PrizePool, Sponsorship, Footer, ScrollToTop, Loader } from "./components";
+import { Hero, About, Timeline, PrizePool, Sponsorship, Footer, ScrollToTop, Loader, TopLand, BottomLand, SponsorPackage, PastSponsors, Gallery, FAQ } from "./components";
 import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
@@ -38,10 +38,19 @@ function App() {
       
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
         <Hero />
+        <TopLand />
         <About />
+        <BottomLand />
         <Timeline />
+        <TopLand />
+        <Gallery />
+        <BottomLand />
         <PrizePool />
-        <Sponsorship />
+        <TopLand />
+        <SponsorPackage />
+        <PastSponsors />
+        <BottomLand />
+        <FAQ />
         <Footer />
         <ScrollToTop />
       </main>

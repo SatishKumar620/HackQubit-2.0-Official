@@ -40,7 +40,7 @@ const About = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative min-h-screen py-24 px-6 sm:px-10 lg:px-16 flex flex-col items-center bg-[#0a0a0a] overflow-hidden"
+      className="relative min-h-screen py-24 px-6 sm:px-10 lg:px-16 flex flex-col items-center bg-sky-100 overflow-hidden"
     >
 
       {/* Subtle Mist/Fog Overlay */}
@@ -78,7 +78,7 @@ const About = () => {
             {/* Right Background Image */}
             <div className="absolute inset-0 z-0 opacity-80 pointer-events-none">
               <img src={treasureImg} className="w-full h-full object-cover rounded-md" alt="Right Background" />
-              <div className="absolute inset-0 bg-black/60 rounded-md" /> {/* Darken to make text readable */}
+              <div className="absolute inset-0 bg-white/90 rounded-md" /> {/* Lighten to make text readable */}
             </div>
 
             {/* Content Container */}
@@ -86,23 +86,23 @@ const About = () => {
 
 
               {/* Typography & Content */}
-              <div className="relative z-10 font-inter text-sm sm:text-base text-pirate-white/70 leading-relaxed space-y-6">
+              <div className="relative z-10 font-inter text-sm sm:text-base text-slate-700 leading-relaxed space-y-6">
                 <p>
-                  <strong className="text-pirate-gold font-semibold">Pirates of the Sea</strong> is a student-driven initiative dedicated to <strong className="text-pirate-gold/90 font-medium">fostering technical excellence and innovation</strong> within the college community. The club provides a structured platform for students to enhance their <strong className="text-pirate-gold/90 font-medium">programming skills</strong>, engage in <strong className="text-pirate-gold/90 font-medium">collaborative learning</strong>, and apply their knowledge through practical projects. With a focus on coding challenges, <strong className="text-pirate-gold/90 font-medium">technical workshops, hackathons</strong>, and <strong className="text-pirate-gold/90 font-medium">knowledge-sharing sessions</strong>, Helix nurtures <strong className="text-pirate-gold/90 font-medium">problem-solving abilities</strong> and encourages members to explore diverse areas of computer science.
+                  <strong className="text-amber-600 font-bold">Pirates of the Sea</strong> is a student-driven initiative dedicated to <strong className="text-amber-600 font-bold">fostering technical excellence and innovation</strong> within the college community. The club provides a structured platform for students to enhance their <strong className="text-amber-600 font-bold">programming skills</strong>, engage in <strong className="text-amber-600 font-bold">collaborative learning</strong>, and apply their knowledge through practical projects. With a focus on coding challenges, <strong className="text-amber-600 font-bold">technical workshops, hackathons</strong>, and <strong className="text-amber-600 font-bold">knowledge-sharing sessions</strong>, Helix nurtures <strong className="text-amber-600 font-bold">problem-solving abilities</strong> and encourages members to explore diverse areas of computer science.
                 </p>
 
                 <p>
-                  The club emphasizes both individual growth and teamwork, equipping students with the skills required to excel in academic pursuits, industry roles, and competitive programming. By cultivating an environment of discipline, <strong className="text-pirate-gold/90 font-medium">creativity</strong>, and continuous learning, Helix aspires to inspire <strong className="text-pirate-gold/90 font-medium">future technologists</strong> and innovators who can contribute meaningfully to the <strong className="text-pirate-gold/90 font-medium">ever-evolving digital landscape</strong>.
+                  The club emphasizes both individual growth and teamwork, equipping students with the skills required to excel in academic pursuits, industry roles, and competitive programming. By cultivating an environment of discipline, <strong className="text-amber-600 font-bold">creativity</strong>, and continuous learning, Helix aspires to inspire <strong className="text-amber-600 font-bold">future technologists</strong> and innovators who can contribute meaningfully to the <strong className="text-amber-600 font-bold">ever-evolving digital landscape</strong>.
                 </p>
 
-                <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-pirate-gold/20 to-transparent my-8" />
+                <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent my-8" />
 
                 <p>
-                  <strong className="text-pirate-gold font-semibold">Hack Qubit 2025</strong> is a <strong className="text-pirate-gold/90 font-medium">24-hour national-level hackathon</strong> hosted by RVSCET, Jamshedpur, designed to bring together the brightest minds in technology, innovation, and creativity. Fueled by the thrill of an F1 race, this competition challenges participants to <strong className="text-pirate-gold/90 font-medium">Code, Create, and Conquer</strong> as they race against time to develop groundbreaking solutions.
+                  <strong className="text-amber-600 font-bold">Hack Qubit 2.0</strong> is a <strong className="text-amber-600 font-bold">48-hour national-level hackathon</strong> hosted by RVSCET, Jamshedpur, designed to bring together the brightest minds in technology, innovation, and creativity. This competition challenges participants to <strong className="text-amber-600 font-bold">Code, Create, and Conquer</strong> as they race against time to develop groundbreaking solutions.
                 </p>
 
                 <p>
-                  This year, the event welcomes students from across <strong className="text-pirate-gold/90 font-medium">India</strong> — regardless of background or branch — to compete in diverse domains. <strong className="text-pirate-gold font-medium">No pre-submissions, no PPTs — just pure innovation.</strong> Problem statements will be revealed on the spot, adding to the excitement and testing real-time problem-solving skills. From ideation to execution, teams will collaborate, strategize, and push their limits to claim the chequered flag and take home exciting prizes.
+                  This year, the event welcomes students from across <strong className="text-amber-600 font-bold">India</strong> — regardless of background or branch — to compete in diverse domains. <strong className="text-amber-600 font-bold">No pre-submissions, no PPTs — just pure innovation.</strong> Problem statements will be revealed on the spot, adding to the excitement and testing real-time problem-solving skills. From ideation to execution, teams will collaborate, strategize, and push their limits to claim the pirate's bounty and take home exciting prizes.
                 </p>
               </div>
 

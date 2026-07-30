@@ -12,7 +12,7 @@ const HeroContent = forwardRef(({ refs }, ref) => {
       {/* Subtitle */}
       <p
         ref={refs.subtitle}
-        className="font-cormorant italic text-lg sm:text-xl lg:text-2xl text-pirate-gold/90 tracking-wider mb-4 sm:mb-5"
+        className="font-['Cormorant'] italic text-lg sm:text-xl lg:text-2xl text-amber-600 tracking-wider mb-4 sm:mb-5 font-bold"
       >
         {HERO_CONTENT.subtitle}
       </p>
@@ -21,13 +21,13 @@ const HeroContent = forwardRef(({ refs }, ref) => {
       <div className="mb-4 sm:mb-5 flex flex-col items-start w-fit">
         <h1 
           ref={refs.headingLine1}
-          className="font-pirate text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-normal text-pirate-gold leading-[0.9] tracking-wider text-shadow-cinematic"
+          className="font-['Trade_Winds'] text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-normal text-slate-800 leading-[0.9] tracking-wider"
         >
           HackQubit
         </h1>
         <h1 
           ref={refs.headingLine2}
-          className="font-pirate text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-normal text-pirate-gold leading-[1] tracking-wider text-shadow-cinematic mt-1 sm:mt-2"
+          className="font-['Trade_Winds'] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-normal text-amber-600 leading-[1] tracking-wider mt-1 sm:mt-2"
         >
           2.0
         </h1>
@@ -36,15 +36,15 @@ const HeroContent = forwardRef(({ refs }, ref) => {
       {/* Skull Divider */}
       <div ref={refs.skullIcon} className="mb-5 sm:mb-6 self-start">
         <Skull
-          className="w-6 h-6 sm:w-7 sm:h-7 text-pirate-gold/60"
-          strokeWidth={1}
+          className="w-6 h-6 sm:w-7 sm:h-7 text-amber-500"
+          strokeWidth={1.5}
         />
       </div>
 
       {/* Description */}
       <p
         ref={refs.description}
-        className="font-cormorant text-base sm:text-lg lg:text-xl text-pirate-white/60 max-w-[480px] leading-relaxed mb-8 sm:mb-10"
+        className="font-['Cinzel'] text-base sm:text-lg lg:text-xl text-slate-700 max-w-[480px] leading-relaxed mb-8 sm:mb-10 font-bold"
       >
         {HERO_CONTENT.description}
       </p>
