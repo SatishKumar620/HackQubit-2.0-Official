@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { About, Timeline, SponsorPackage, Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ } from "./components";
+import { About, Timeline, PrizePool, SponsorPackage, Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ } from "./components";
 import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
@@ -41,6 +41,8 @@ function App() {
         <About />
         <BottomLand />
         <Timeline />
+        <BottomLand />
+        <PrizePool />
         <TopLand />
         <Gallery />
         <BottomLand />
