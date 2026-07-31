@@ -58,10 +58,7 @@ const ProblemStatements = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-4 relative z-10 pt-6">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-700 to-amber-900 flex items-center justify-center shadow-lg text-amber-50 mb-1">
-              <ScrollText className="w-7 h-7 stroke-[2.2]" />
-            </div>
+          <div className="flex flex-col items-center justify-center gap-4 relative z-10 pt-8">
             
             <h3 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-amber-950">
               To Be Announced Live
