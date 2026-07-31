@@ -242,12 +242,6 @@ const SponsorPackage = () => {
       {/* Thick Side Ropes with Shadow */}
       <SideThickRopes />
 
-      {/* 1 Touch/Click Interactive Freely Roaming Parrot */}
-      <InteractiveFreelyRoamingParrot />
-
-      {/* Airplane-Style Green Flying Parrots Flock (Left-to-Right) */}
-      <AirplaneStyleFlyingParrots />
-
       {/* Section Header */}
       <div className="text-center mb-20 relative z-10">
         <motion.h2 
