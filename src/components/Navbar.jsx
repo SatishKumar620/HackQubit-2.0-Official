@@ -52,13 +52,13 @@ const Navbar = forwardRef((props, ref) => {
               {/* RVSCET */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-11 h-11 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 hover:border-amber-400/50 transition-all duration-300 overflow-hidden p-1 shadow-md"
+                className="group flex items-center justify-center w-11 h-11 rounded-full bg-white border-2 border-amber-400/40 hover:border-amber-400 hover:shadow-[0_0_14px_rgba(212,175,55,0.5)] transition-all duration-300 overflow-hidden p-0.5 shadow-md"
                 title="RVSCET"
               >
                 <img
                   src={logoRvscet}
                   alt="RVSCET Logo"
-                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-contain rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
               </a>
 
@@ -68,13 +68,13 @@ const Navbar = forwardRef((props, ref) => {
               {/* Red logo */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 hover:border-red-400/50 transition-all duration-300 overflow-hidden p-1 shadow-md"
+                className="group flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-red-400/40 hover:border-red-400 hover:shadow-[0_0_14px_rgba(239,68,68,0.5)] transition-all duration-300 overflow-hidden p-0.5 shadow-md"
                 title="Partner"
               >
                 <img
                   src={logoRed}
                   alt="Partner Logo"
-                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-contain rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
               </a>
 
@@ -84,13 +84,13 @@ const Navbar = forwardRef((props, ref) => {
               {/* HELIX */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 border border-white/20 hover:bg-white/20 hover:border-blue-400/50 transition-all duration-300 overflow-hidden p-0.5 shadow-md"
+                className="group flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-blue-400/40 hover:border-blue-400 hover:shadow-[0_0_14px_rgba(96,165,250,0.5)] transition-all duration-300 overflow-hidden p-0 shadow-md"
                 title="Helix"
               >
                 <img
                   src={logoHelix}
                   alt="Helix Logo"
-                  className="w-full h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
               </a>
 
