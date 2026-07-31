@@ -35,7 +35,7 @@ const Loader = ({ onLoadingComplete }) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-pirate-bg text-amber-950 px-6 overflow-hidden select-none"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-amber-100 px-6 overflow-hidden select-none"
     >
       {/* Decorative ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
@@ -95,9 +95,9 @@ const Loader = ({ onLoadingComplete }) => {
         </div>
 
         {/* ── PERCENTAGE & STATUS TEXT ── */}
-        <div className="mt-3 flex items-center justify-between w-full max-w-xs font-cinzel text-xs font-black text-amber-950">
-          <span className="uppercase tracking-widest text-amber-900">Setting Sail...</span>
-          <span className="tracking-wider">{progress}%</span>
+        <div className="mt-3 flex items-center justify-between w-full max-w-xs font-cinzel text-xs font-black text-amber-100">
+          <span className="uppercase tracking-widest text-amber-400">Setting Sail...</span>
+          <span className="tracking-wider text-amber-300">{progress}%</span>
         </div>
 
       </div>

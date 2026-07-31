@@ -20,9 +20,6 @@ const Footer = () => {
       {/* Top Divider */}
       <div className="w-full flex justify-center absolute top-0 left-0 right-0">
         <div className="w-[85%] max-w-[1200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
-        <div className="absolute top-0 -translate-y-1/2 bg-slate-900 p-2 rounded-full border border-amber-500/30 z-10">
-          <Compass className="w-5 h-5 text-amber-400 animate-[spin_20s_linear_infinite]" />
-        </div>
       </div>
 
       <div className="max-w-[1300px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
