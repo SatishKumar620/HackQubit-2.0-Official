@@ -110,13 +110,13 @@ const EventCountdownCard = () => {
   ];
 
   return (
-    <div className="relative w-full rounded-3xl border-2 border-amber-900/20 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl overflow-hidden text-amber-950 flex flex-col justify-between hover:border-amber-700/50 transition-all duration-300">
+    <div className="relative w-full max-w-3xl mx-auto rounded-3xl border-2 border-amber-900/20 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl overflow-hidden text-amber-950 flex flex-col justify-between hover:border-amber-700/50 transition-all duration-300 mb-16">
       {/* Top Gradient Highlight Bar */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-900" />
 
       {/* Header Info */}
-      <div>
-        <div className="flex items-center gap-3 mb-5">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="flex items-center gap-3">
           <SVGDarkPirateClock />
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel text-[10px] font-black uppercase tracking-wider mb-1">
@@ -132,39 +132,40 @@ const EventCountdownCard = () => {
           </div>
         </div>
 
-        {/* Live Countdown Section Header */}
-        <div className="flex items-center gap-2 mb-3">
-          <Clock className="w-4 h-4 text-amber-800 animate-pulse" />
-          <span className="font-cinzel text-xs font-black text-amber-950 uppercase tracking-widest">
-            Set Sail Countdown
-          </span>
-        </div>
+        {/* Live Countdown Section Header & Digit Pills */}
+        <div className="flex flex-col items-center sm:items-end">
+          <div className="flex items-center gap-2 mb-2">
+            <Clock className="w-4 h-4 text-amber-800 animate-pulse" />
+            <span className="font-cinzel text-xs font-black text-amber-950 uppercase tracking-widest">
+              Set Sail Countdown
+            </span>
+          </div>
 
-        {/* Countdown Pill Cards Grid */}
-        <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-6">
-          {units.map((unit) => (
-            <div
-              key={unit.label}
-              className="flex flex-col items-center justify-center p-3 rounded-2xl bg-amber-50/90 border border-amber-300/70 shadow-sm"
-            >
-              <span className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950">
-                {String(unit.value).padStart(2, "0")}
-              </span>
-              <span className="font-cinzel text-[9px] sm:text-[10px] font-extrabold text-amber-800 uppercase tracking-widest mt-0.5">
-                {unit.label}
-              </span>
-            </div>
-          ))}
+          <div className="grid grid-cols-4 gap-2">
+            {units.map((unit) => (
+              <div
+                key={unit.label}
+                className="flex flex-col items-center justify-center px-3 py-2 rounded-2xl bg-amber-50/90 border border-amber-300/70 shadow-sm min-w-[58px]"
+              >
+                <span className="font-cinzel text-xl sm:text-2xl font-black text-amber-950">
+                  {String(unit.value).padStart(2, "0")}
+                </span>
+                <span className="font-cinzel text-[8px] sm:text-[9px] font-extrabold text-amber-800 uppercase tracking-widest mt-0.5">
+                  {unit.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Footer Feature Info */}
-      <div className="pt-4 border-t border-amber-900/15 flex items-center justify-between text-xs font-cinzel text-amber-950 font-black">
+      <div className="mt-6 pt-4 border-t border-amber-900/15 flex items-center justify-between text-xs font-cinzel text-amber-950 font-black">
         <span className="flex items-center gap-1.5">
           <ShieldCheck className="w-4 h-4 text-amber-800" />
           <span>24-Hour Live Challenge</span>
         </span>
-        <span>✦ Spot Reveal</span>
+        <span>✦ Live On-Spot Problem Statements</span>
       </div>
     </div>
   );
@@ -261,7 +262,7 @@ const About = () => {
         {/* ── 2 CARDS IN THE SAME ROW ── */}
         <div
           ref={cardsContainerRef}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-20"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-16"
         >
           {/* Card 1: 24-Hour Live Challenge */}
           <div className="relative p-8 rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl shadow-2xl flex flex-col justify-between hover:border-amber-700/50 transition-all duration-300">
@@ -341,34 +342,27 @@ const About = () => {
           </div>
         </div>
 
-        {/* ── BOTTOM FEATURE: YOUNG ANIME PIRATES (LEFT) + EVENT COUNTDOWN CARD (RIGHT) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* ── EVENT COUNTDOWN CARD PLACED ABOVE YOUNG PIRATES CREW ── */}
+        <EventCountdownCard />
 
-          {/* Left: Young Anime Pirates Cutout */}
-          <div ref={crewImgRef} className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-extrabold text-xs mb-3">
-              <Anchor className="w-3.5 h-3.5 text-amber-800" />
-              <span>Meet The Pirate Hacker Crew</span>
-            </div>
-
-            <h3 className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950 tracking-wide mb-4">
-              500+ Developers Sailing Together!
-            </h3>
-
-            <div className="relative w-full max-w-lg">
-              <img
-                src={youngPiratesCrewImg}
-                alt="Young Anime Pirate Hackers Cutout"
-                className="w-full h-auto max-h-[420px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)]"
-              />
-            </div>
+        {/* ── YOUNG ANIME PIRATES CREW AT THE BOTTOM ── */}
+        <div ref={crewImgRef} className="flex flex-col items-center justify-center text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-extrabold text-xs mb-3">
+            <Anchor className="w-3.5 h-3.5 text-amber-800" />
+            <span>Meet The Pirate Hacker Crew</span>
           </div>
 
-          {/* Right: Premium Event Countdown Card */}
-          <div className="lg:col-span-6 flex justify-center lg:justify-end">
-            <EventCountdownCard />
-          </div>
+          <p className="font-cinzel text-xl sm:text-2xl font-black text-amber-950 max-w-xl mx-auto tracking-wide mb-6">
+            Join 500+ developers sailing the digital ocean together!
+          </p>
 
+          <div className="relative max-w-3xl w-full flex items-center justify-center">
+            <img
+              src={youngPiratesCrewImg}
+              alt="Young Anime Pirate Hackers Cutout"
+              className="w-full h-auto max-h-[460px] object-contain drop-shadow-[0_20px_35px_rgba(120,70,10,0.3)]"
+            />
+          </div>
         </div>
 
       </div>

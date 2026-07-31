@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import shipWheelImg from "../assets/images/captain_ship_wheel.png";
+import islandBgImg from "../assets/images/wheel_island_bg.png";
+import hackqubitLogo from "../assets/images/hackqubit_jewel_title.png";
 
 const Loader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -13,13 +16,14 @@ const Loader = ({ onLoadingComplete }) => {
 
     const timer = setInterval(() => {
       currentStep++;
-      setProgress((currentStep / steps) * 100);
+      const currentProgress = Math.min(100, Math.floor((currentStep / steps) * 100));
+      setProgress(currentProgress);
 
       if (currentStep >= steps) {
         clearInterval(timer);
         setTimeout(() => {
           onLoadingComplete();
-        }, 500); // Wait a bit after 100% before firing complete
+        }, 400);
       }
     }, intervalTime);
 
@@ -29,66 +33,73 @@ const Loader = ({ onLoadingComplete }) => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0B0B0B] text-white"
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.7, ease: "easeInOut" }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-pirate-bg text-amber-950 px-6 overflow-hidden select-none"
     >
-      <div className="relative flex flex-col items-center">
-        {/* Ship's Wheel */}
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
-          className="mb-8 text-amber-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="120"
-            height="120"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+      {/* Decorative ambient background glows */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative flex flex-col items-center z-10 max-w-sm w-full">
+        
+        {/* ── ROTATING SHIP WHEEL WITH TROPICAL ISLAND IN THE CENTER BG ── */}
+        <div className="relative w-56 h-56 sm:w-64 sm:h-64 mb-8 flex items-center justify-center">
+          
+          {/* Island background image centered specifically inside the wheel's hole */}
+          <div className="absolute w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden shadow-inner z-0">
+            <img
+              src={islandBgImg}
+              alt="Pirate Island Center"
+              className="w-full h-full object-cover transform scale-110"
+            />
+          </div>
+
+          {/* Smoothly Rotating Captain Ship Steering Wheel */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+            className="absolute inset-0 z-10 flex items-center justify-center"
           >
-            <circle cx="12" cy="12" r="8" />
-            <circle cx="12" cy="12" r="3" />
-            <line x1="12" y1="1" x2="12" y2="4" />
-            <line x1="12" y1="20" x2="12" y2="23" />
-            <line x1="1" y1="12" x2="4" y2="12" />
-            <line x1="20" y1="12" x2="23" y2="12" />
-            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
-            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
-            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
-            <line x1="17.66" y1="4.22" x2="19.78" y2="6.34" />
-          </svg>
+            <img
+              src={shipWheelImg}
+              alt="Captain's Ship Steering Wheel"
+              className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)]"
+            />
+          </motion.div>
+
+        </div>
+
+        {/* ── HACKQUBIT 2.0 JEWEL TITLE LOGO ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-6 flex justify-center"
+        >
+          <img
+            src={hackqubitLogo}
+            alt="HackQubit 2.0 Title Logo"
+            className="h-14 sm:h-16 w-auto object-contain filter drop-shadow-[0_6px_12px_rgba(120,70,10,0.35)]"
+          />
         </motion.div>
 
-        {/* Text */}
-        <motion.h1 
-          className="text-4xl md:text-5xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-500 to-amber-700 mb-6 font-['Trade_Winds']"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          HACKQUBIT 2.0
-        </motion.h1>
-
-        {/* Progress Bar Container */}
-        <div className="w-64 h-2 bg-gray-800 rounded-full overflow-hidden relative border border-gray-700">
-          {/* Progress Bar Fill */}
+        {/* ── PROGRESS BAR CONTAINER ── */}
+        <div className="w-full max-w-xs h-3 bg-amber-950/20 rounded-full p-0.5 border border-amber-900/30 shadow-inner relative overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-amber-600 to-amber-400"
-            initial={{ width: 0 }}
+            className="h-full rounded-full bg-gradient-to-r from-amber-700 via-amber-500 to-amber-800 shadow-md"
+            initial={{ width: "0%" }}
             animate={{ width: `${progress}%` }}
-            transition={{ ease: "linear", duration: 0.1 }}
+            transition={{ ease: "linear", duration: 0.05 }}
           />
         </div>
-        
-        {/* Percentage */}
-        <div className="mt-2 text-amber-500 font-mono text-sm">
-          {Math.floor(progress)}%
+
+        {/* ── PERCENTAGE & STATUS TEXT ── */}
+        <div className="mt-3 flex items-center justify-between w-full max-w-xs font-cinzel text-xs font-black text-amber-950">
+          <span className="uppercase tracking-widest text-amber-900">Setting Sail...</span>
+          <span className="tracking-wider">{progress}%</span>
         </div>
+
       </div>
     </motion.div>
   );
