@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, ArrowUpRight, Compass, Zap } from "lucide-react";
 import pirateHackerCrewImg from "../assets/images/pirate_hacker_crew.png";
+import youngPirateImg from "../assets/images/young_pirate_about.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +11,7 @@ const About = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const cardsContainerRef = useRef(null);
+  const pirateRef = useRef(null);
   const crewImgRef = useRef(null);
 
   useEffect(() => {
@@ -50,6 +52,30 @@ const About = () => {
           scrollTrigger: { trigger: crewImgRef.current, start: "top 90%" },
         }
       );
+
+      // Young pirate slide-in from right + float loop
+      if (pirateRef.current) {
+        gsap.fromTo(
+          pirateRef.current,
+          { x: 80, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1.0,
+            ease: "power3.out",
+            scrollTrigger: { trigger: pirateRef.current, start: "top 90%" },
+          }
+        );
+        // Continuous gentle float
+        gsap.to(pirateRef.current, {
+          y: -18,
+          duration: 2.6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+          delay: 0.8,
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -80,8 +106,22 @@ const About = () => {
           </p>
         </div>
 
-        {/* Info Cards */}
-        <div ref={cardsContainerRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        {/* Young Pirate + Info Cards Row */}
+        <div ref={cardsContainerRef} className="grid grid-cols-1 lg:grid-cols-[auto_1fr_1fr] gap-8 items-center">
+
+          {/* Young Anime Pirate — no background */}
+          <div
+            ref={pirateRef}
+            className="hidden lg:flex items-end justify-center"
+            style={{ minWidth: "180px", maxWidth: "220px" }}
+          >
+            <img
+              src={youngPirateImg}
+              alt="Young Anime Pirate"
+              className="w-full h-auto object-contain drop-shadow-2xl"
+              style={{ filter: "drop-shadow(0 8px 24px rgba(139,90,43,0.35))" }}
+            />
+          </div>
 
           {/* Card 1: 24-Hour Live Challenge */}
           <div className="relative p-8 rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl shadow-2xl flex flex-col justify-between">
