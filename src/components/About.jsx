@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ArrowUpRight, Compass, Zap, Clock, Calendar } from "lucide-react";
+import { MapPin, ArrowUpRight, Compass, Zap, Clock, Calendar, Anchor } from "lucide-react";
 import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.png";
 
 gsap.registerPlugin(ScrollTrigger);
