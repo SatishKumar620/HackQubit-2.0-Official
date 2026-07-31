@@ -6,88 +6,75 @@ import { Users, Eye, FileCheck, ShieldCheck, Sparkles, Award } from "lucide-reac
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Pure inline SVG cloud shapes — no external file needed
-const CloudSVG = ({ className, opacity = 0.9 }) => (
-  <svg
-    className={className}
-    viewBox="0 0 500 200"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ opacity }}
-  >
+/* ── Three cloud shapes ── */
+const CloudA = ({ style }) => (
+  <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style={style}>
     <g fill="white">
-      <ellipse cx="250" cy="130" rx="200" ry="70" />
-      <ellipse cx="150" cy="110" rx="110" ry="70" />
-      <ellipse cx="340" cy="105" rx="120" ry="75" />
-      <ellipse cx="250" cy="90" rx="140" ry="80" />
-      <ellipse cx="100" cy="130" rx="80" ry="55" />
-      <ellipse cx="400" cy="125" rx="90" ry="60" />
+      <ellipse cx="300" cy="150" rx="240" ry="75" />
+      <ellipse cx="180" cy="130" rx="130" ry="80" />
+      <ellipse cx="420" cy="120" rx="145" ry="88" />
+      <ellipse cx="300" cy="105" rx="165" ry="92" />
+      <ellipse cx="75"  cy="155" rx="90"  ry="58" />
+      <ellipse cx="525" cy="148" rx="100" ry="62" />
+      <ellipse cx="300" cy="78"  rx="105" ry="68" />
     </g>
   </svg>
 );
 
-const CloudSVG2 = ({ className, opacity = 0.85 }) => (
-  <svg
-    className={className}
-    viewBox="0 0 600 220"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ opacity }}
-  >
+const CloudB = ({ style }) => (
+  <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style={style}>
     <g fill="white">
-      <ellipse cx="300" cy="140" rx="240" ry="80" />
-      <ellipse cx="180" cy="120" rx="130" ry="80" />
-      <ellipse cx="420" cy="115" rx="140" ry="85" />
-      <ellipse cx="300" cy="100" rx="160" ry="90" />
-      <ellipse cx="80"  cy="145" rx="90"  ry="60" />
-      <ellipse cx="520" cy="140" rx="100" ry="65" />
-      <ellipse cx="300" cy="75"  rx="100" ry="65" />
+      <ellipse cx="250" cy="140" rx="200" ry="68" />
+      <ellipse cx="145" cy="118" rx="115" ry="72" />
+      <ellipse cx="350" cy="112" rx="125" ry="78" />
+      <ellipse cx="250" cy="94"  rx="145" ry="82" />
+      <ellipse cx="55"  cy="142" rx="78"  ry="52" />
+      <ellipse cx="445" cy="136" rx="88"  ry="58" />
     </g>
   </svg>
 );
 
-const CloudSVG3 = ({ className, opacity = 0.8 }) => (
-  <svg
-    className={className}
-    viewBox="0 0 400 180"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ opacity }}
-  >
+const CloudC = ({ style }) => (
+  <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style={style}>
     <g fill="white">
-      <ellipse cx="200" cy="120" rx="170" ry="60" />
-      <ellipse cx="110" cy="100" rx="100" ry="65" />
-      <ellipse cx="290" cy="95"  rx="110" ry="68" />
-      <ellipse cx="200" cy="80"  rx="130" ry="70" />
-      <ellipse cx="50"  cy="120" rx="70"  ry="48" />
-      <ellipse cx="350" cy="115" rx="80"  ry="50" />
+      <ellipse cx="350" cy="160" rx="280" ry="82" />
+      <ellipse cx="200" cy="138" rx="155" ry="90" />
+      <ellipse cx="500" cy="130" rx="165" ry="96" />
+      <ellipse cx="350" cy="112" rx="190" ry="100" />
+      <ellipse cx="80"  cy="165" rx="105" ry="65" />
+      <ellipse cx="620" cy="158" rx="118" ry="70" />
+      <ellipse cx="350" cy="82"  rx="120" ry="75" />
     </g>
   </svg>
 );
 
-// Cloud configuration: position, size, shape, scroll speed & direction
+/*
+  Cloud config:
+  - Each cloud starts covering the section (x: 0, fully visible from its position)
+  - On scroll it moves off to left (negative) or right (positive) by a large amount
+  - dir: 'L' = moves left, 'R' = moves right
+  - Clouds are large enough (60-80vw) so they cover the section fully when centred
+*/
 const CLOUDS = [
-  // ── TOP ROW ──
-  { id: 0, top: "2%",  left: "-10%",  w: "38vw", shape: 1, speed: -60,  dir: "x", opacity: 0.92 },
-  { id: 1, top: "1%",  left: "30%",   w: "30vw", shape: 3, speed: 40,   dir: "x", opacity: 0.85 },
-  { id: 2, top: "0%",  left: "65%",   w: "42vw", shape: 2, speed: -50,  dir: "x", opacity: 0.90 },
+  // TOP band — covers full width with left+right pair
+  { id: 0, shape: "C", top: "-6%",  startX: "-5%",   endX: "-120%", w: "70vw", opacity: 0.95, scrub: 1.2 },
+  { id: 1, shape: "A", top: "-4%",  startX: "38%",   endX: "120%",  w: "72vw", opacity: 0.90, scrub: 1.0 },
 
-  // ── UPPER-MID ROW ──
-  { id: 3, top: "18%", left: "-15%",  w: "45vw", shape: 2, speed: 55,   dir: "x", opacity: 0.80 },
-  { id: 4, top: "22%", left: "45%",   w: "36vw", shape: 1, speed: -45,  dir: "x", opacity: 0.75 },
-  { id: 5, top: "15%", left: "72%",   w: "35vw", shape: 3, speed: 35,   dir: "x", opacity: 0.82 },
+  // UPPER-MID band
+  { id: 2, shape: "B", top: "16%",  startX: "-8%",   endX: "-130%", w: "65vw", opacity: 0.88, scrub: 1.4 },
+  { id: 3, shape: "A", top: "18%",  startX: "42%",   endX: "125%",  w: "68vw", opacity: 0.85, scrub: 1.1 },
 
-  // ── MIDDLE ROW ──
-  { id: 6, top: "42%", left: "-8%",   w: "40vw", shape: 3, speed: -70,  dir: "x", opacity: 0.78 },
-  { id: 7, top: "45%", left: "38%",   w: "50vw", shape: 2, speed: 60,   dir: "x", opacity: 0.72 },
-  { id: 8, top: "40%", left: "70%",   w: "38vw", shape: 1, speed: -40,  dir: "x", opacity: 0.80 },
+  // MID band
+  { id: 4, shape: "C", top: "36%",  startX: "-5%",   endX: "-115%", w: "75vw", opacity: 0.92, scrub: 1.3 },
+  { id: 5, shape: "B", top: "38%",  startX: "36%",   endX: "118%",  w: "70vw", opacity: 0.88, scrub: 0.9 },
 
-  // ── LOWER ROW ──
-  { id: 9,  top: "65%", left: "-12%", w: "44vw", shape: 1, speed: 65,   dir: "x", opacity: 0.85 },
-  { id: 10, top: "68%", left: "42%",  w: "34vw", shape: 3, speed: -55,  dir: "x", opacity: 0.80 },
-  { id: 11, top: "63%", left: "68%",  w: "46vw", shape: 2, speed: 45,   dir: "x", opacity: 0.88 },
+  // LOWER-MID band
+  { id: 6, shape: "A", top: "58%",  startX: "-10%",  endX: "-120%", w: "68vw", opacity: 0.90, scrub: 1.5 },
+  { id: 7, shape: "C", top: "56%",  startX: "40%",   endX: "122%",  w: "72vw", opacity: 0.86, scrub: 1.0 },
 
-  // ── BOTTOM ROW ──
-  { id: 12, top: "85%", left: "-5%",  w: "36vw", shape: 2, speed: -50,  dir: "x", opacity: 0.90 },
-  { id: 13, top: "88%", left: "35%",  w: "42vw", shape: 1, speed: 40,   dir: "x", opacity: 0.82 },
-  { id: 14, top: "83%", left: "70%",  w: "40vw", shape: 3, speed: -60,  dir: "x", opacity: 0.87 },
+  // BOTTOM band
+  { id: 8, shape: "B", top: "78%",  startX: "-6%",   endX: "-118%", w: "66vw", opacity: 0.93, scrub: 1.2 },
+  { id: 9, shape: "A", top: "80%",  startX: "44%",   endX: "120%",  w: "70vw", opacity: 0.88, scrub: 1.1 },
 ];
 
 const PERKS = [
@@ -131,24 +118,25 @@ const PERKS = [
 
 const SponsorPerks = () => {
   const sectionRef = useRef(null);
-  const cloudRefs = useRef([]);
+  const cloudRefs  = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       cloudRefs.current.forEach((el, i) => {
         if (!el) return;
         const cloud = CLOUDS[i];
+        // Start at startX (covering section), animate to endX (moved off screen)
         gsap.fromTo(
           el,
-          { x: 0 },
+          { x: cloud.startX },
           {
-            x: cloud.speed,
+            x: cloud.endX,
             ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.5 + (i % 4) * 0.3,
+              start: "top 80%",   // start parting early
+              end:   "center center", // fully gone by mid-section
+              scrub: cloud.scrub,
             },
           }
         );
@@ -158,10 +146,11 @@ const SponsorPerks = () => {
     return () => ctx.revert();
   }, []);
 
-  const getShape = (shape, className, opacity) => {
-    if (shape === 1) return <CloudSVG className={className} opacity={opacity} />;
-    if (shape === 2) return <CloudSVG2 className={className} opacity={opacity} />;
-    return <CloudSVG3 className={className} opacity={opacity} />;
+  const renderCloud = (cloud, idx) => {
+    const sharedStyle = { width: "100%", height: "auto" };
+    if (cloud.shape === "A") return <CloudA style={{ ...sharedStyle, opacity: cloud.opacity }} />;
+    if (cloud.shape === "B") return <CloudB style={{ ...sharedStyle, opacity: cloud.opacity }} />;
+    return <CloudC style={{ ...sharedStyle, opacity: cloud.opacity }} />;
   };
 
   return (
@@ -170,25 +159,26 @@ const SponsorPerks = () => {
       id="sponsorship-perks"
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
-      {/* ── FULL-SECTION PARALLAX CLOUD LAYER ── */}
-      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {/* ── CLOUD LAYER — starts covering, parts on scroll ── */}
+      <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
         {CLOUDS.map((cloud, i) => (
           <div
             key={cloud.id}
             ref={(el) => (cloudRefs.current[i] = el)}
             className="absolute"
             style={{
-              top: cloud.top,
-              left: cloud.left,
+              top:   cloud.top,
+              left:  "0",
               width: cloud.w,
+              // initial x set by GSAP
             }}
           >
-            {getShape(cloud.shape, "w-full h-auto drop-shadow-lg", cloud.opacity)}
+            {renderCloud(cloud, i)}
           </div>
         ))}
       </div>
 
-      {/* ── CONTENT ── */}
+      {/* ── CONTENT (behind clouds until they part) ── */}
       <div className="max-w-6xl mx-auto relative z-20">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -227,7 +217,6 @@ const SponsorPerks = () => {
                 className="rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-amber-700 transition-all duration-300 shadow-2xl group text-amber-950"
               >
                 <div>
-                  {/* Category Header */}
                   <div className="flex items-center justify-between mb-6">
                     <div className={`p-4 rounded-2xl bg-gradient-to-br ${perk.color} text-amber-50 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       <IconComponent className="w-6 h-6 stroke-[2.2]" />

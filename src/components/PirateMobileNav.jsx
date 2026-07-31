@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, HelpCircle, PhoneCall, X, Anchor } from 'lucide-react';
+import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, HelpCircle, PhoneCall, X } from 'lucide-react';
+import hackqubitLogo from '../assets/images/hackqubit_jewel_title.png';
 
 const NAV_ITEMS = [
   { label: 'Home',       href: '#home',     icon: Home },
@@ -80,14 +81,12 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
 
         {/* Header row */}
         <div className="flex items-center justify-between mb-8 pb-5 border-b border-amber-900/20 relative z-10">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-full border-2 border-amber-700/50 bg-amber-500/20 flex items-center justify-center shadow-md">
-              <Anchor className="w-4 h-4 text-amber-900" />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-cinzel text-sm font-black text-amber-950 tracking-wider">HackQubit</span>
-              <span className="font-cinzel text-[8px] text-amber-800 tracking-[0.3em] uppercase">2.0 — Sail &amp; Code</span>
-            </div>
+          <div className="flex items-center gap-2">
+            <img
+              src={hackqubitLogo}
+              alt="HackQubit 2.0"
+              className="h-10 w-auto object-contain drop-shadow-md"
+            />
           </div>
           <button
             onClick={close}
@@ -135,7 +134,7 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
           </a>
           <div className="mt-5 flex items-center gap-3">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-700/30 to-transparent" />
-            <Anchor className="w-3 h-3 text-amber-700/50" />
+            <Compass className="w-3 h-3 text-amber-700/50" />
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-700/30 to-transparent" />
           </div>
           <p className="text-center font-cinzel text-[10px] text-amber-800/70 mt-3 tracking-widest uppercase">
