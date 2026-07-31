@@ -4,6 +4,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { Users, Eye, FileCheck, ShieldCheck, Sparkles, Award } from "lucide-react";
 
+import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
+import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
+import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
+
 gsap.registerPlugin(ScrollTrigger);
 
 /* ── 3 HIGH-QUALITY FLUFFY SVG CUMULUS CLOUDS WITH CSS GRADIENTS & FILTERS ── */
@@ -118,6 +122,7 @@ const PERKS = [
     icon: Users,
     color: "from-amber-600 to-orange-600",
     badge: "Community Direct Access",
+    emblem: emblemSkullAnchor,
     items: [
       "Direct live interactions with 500+ passionate developers & tech pioneers.",
       "Dedicated recruitment desk & speed-networking rounds with top hacker talent.",
@@ -130,6 +135,7 @@ const PERKS = [
     icon: Eye,
     color: "from-amber-600 to-yellow-600",
     badge: "Maximum Reach",
+    emblem: emblemPirateShip,
     items: [
       "Prime logo placement on main stage backdrops, banners, & official website.",
       "Prominent features in official press releases, social media shoutouts & newsletters.",
@@ -142,6 +148,7 @@ const PERKS = [
     icon: FileCheck,
     color: "from-yellow-600 to-amber-700",
     badge: "Long-Term Value",
+    emblem: emblemTreasureChest,
     items: [
       "Full access to opt-in participant resume database & project repositories.",
       "Post-event highlight video inclusion & winner showcase endorsement.",
@@ -264,8 +271,16 @@ const SponsorPerks = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15, duration: 0.6 }}
-                className="rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl p-8 flex flex-col justify-between hover:border-amber-700 transition-all duration-300 shadow-2xl group text-amber-950"
+                className="relative rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl p-8 pt-12 flex flex-col justify-between hover:border-amber-700 transition-all duration-300 shadow-2xl group text-amber-950"
               >
+                {/* Top Middle Vintage Emblem Logo */}
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none w-20 h-20">
+                  <img
+                    src={perk.emblem}
+                    alt={perk.category}
+                    className="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(120,70,10,0.3)] group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div

@@ -1,10 +1,173 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ArrowUpRight, Compass, Zap, Anchor } from "lucide-react";
+import { MapPin, ArrowUpRight, Compass, Zap, Clock, Calendar } from "lucide-react";
 import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.png";
 
 gsap.registerPlugin(ScrollTrigger);
+
+/* ── PURE SVG ANIMATED PIRATE COMPASS CLOCK (NO IMAGE FILE) ── */
+const SVGPirateClock = () => (
+  <svg
+    viewBox="0 0 200 200"
+    className="w-24 h-24 sm:w-32 sm:h-32 drop-shadow-[0_10px_20px_rgba(180,120,20,0.35)]"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="goldDialGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#fef3c7" />
+        <stop offset="50%" stopColor="#fde047" />
+        <stop offset="100%" stopColor="#d97706" />
+      </linearGradient>
+      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#b45309" />
+        <stop offset="50%" stopColor="#78350f" />
+        <stop offset="100%" stopColor="#451a03" />
+      </linearGradient>
+    </defs>
+
+    {/* Outer Pirate Wheel Ring */}
+    <circle cx="100" cy="100" r="92" fill="url(#ringGrad)" stroke="#f59e0b" strokeWidth="3" />
+    <circle cx="100" cy="100" r="82" fill="#fffbebe6" stroke="#b45309" strokeWidth="2" />
+
+    {/* Wheel Handles */}
+    {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+      <line
+        key={angle}
+        x1="100"
+        y1="100"
+        x2={100 + 96 * Math.cos((angle * Math.PI) / 180)}
+        y2={100 + 96 * Math.sin((angle * Math.PI) / 180)}
+        stroke="#78350f"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+    ))}
+
+    {/* Clock Dial Face */}
+    <circle cx="100" cy="100" r="72" fill="url(#goldDialGrad)" stroke="#78350f" strokeWidth="2" />
+    <circle cx="100" cy="100" r="68" fill="none" stroke="#b45309" strokeWidth="1" strokeDasharray="3 3" />
+
+    {/* Compass Rose Star / Ticks */}
+    <path d="M 100 35 L 104 94 L 100 100 L 96 94 Z" fill="#78350f" />
+    <path d="M 100 165 L 104 106 L 100 100 L 96 106 Z" fill="#b45309" />
+    <path d="M 35 100 L 94 96 L 100 100 L 94 104 Z" fill="#78350f" />
+    <path d="M 165 100 L 106 96 L 100 100 L 106 104 Z" fill="#b45309" />
+
+    {/* Roman Numerals */}
+    <text x="100" y="48" textAnchor="middle" fontSize="11" fontWeight="900" fill="#451a03" fontFamily="serif">XII</text>
+    <text x="156" y="104" textAnchor="middle" fontSize="11" fontWeight="900" fill="#451a03" fontFamily="serif">III</text>
+    <text x="100" y="160" textAnchor="middle" fontSize="11" fontWeight="900" fill="#451a03" fontFamily="serif">VI</text>
+    <text x="44" y="104" textAnchor="middle" fontSize="11" fontWeight="900" fill="#451a03" fontFamily="serif">IX</text>
+
+    {/* Hour Hand (Slow rotation) */}
+    <g className="origin-center animate-[spin_60s_linear_infinite]">
+      <path d="M 100 100 L 100 55" stroke="#451a03" strokeWidth="4" strokeLinecap="round" />
+      <polygon points="100,50 96,58 104,58" fill="#451a03" />
+    </g>
+
+    {/* Minute Hand (Faster rotation) */}
+    <g className="origin-center animate-[spin_10s_linear_infinite]">
+      <path d="M 100 100 L 100 42" stroke="#b45309" strokeWidth="2.5" strokeLinecap="round" />
+      <polygon points="100,36 97,44 103,44" fill="#b45309" />
+    </g>
+
+    {/* Center Pin */}
+    <circle cx="100" cy="100" r="5" fill="#78350f" stroke="#fef3c7" strokeWidth="1.5" />
+  </svg>
+);
+
+/* ── LIVE COUNTDOWN HOOK TO OCTOBER 7, 2026 ── */
+const useCountdown = (targetDate) => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const difference = +new Date(targetDate) - +new Date();
+      if (difference > 0) {
+        setTimeLeft({
+          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+          minutes: Math.floor((difference / 1000 / 60) % 60),
+          seconds: Math.floor((difference / 1000) % 60),
+        });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return timeLeft;
+};
+
+/* ── COUNTDOWN BANNER COMPONENT ── */
+const EventCountdownBanner = () => {
+  // Target Date: October 7, 2026 09:00:00 IST
+  const { days, hours, minutes, seconds } = useCountdown("2026-10-07T09:00:00");
+
+  const units = [
+    { label: "Days", value: days },
+    { label: "Hours", value: hours },
+    { label: "Minutes", value: minutes },
+    { label: "Seconds", value: seconds },
+  ];
+
+  return (
+    <div className="relative rounded-3xl border-2 border-amber-900/30 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl mb-16 max-w-4xl mx-auto overflow-hidden text-amber-950">
+      {/* Amber highlight bar */}
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700" />
+
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+        
+        {/* Left: Pure SVG Animated Clock */}
+        <div className="flex flex-col items-center justify-center flex-shrink-0">
+          <SVGPirateClock />
+          <div className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-950 font-cinzel text-[10px] font-black uppercase tracking-wider">
+            <Calendar className="w-3 h-3 text-amber-800" />
+            <span>Oct 7 - 8, 2026</span>
+          </div>
+        </div>
+
+        {/* Center & Right: Title + Live Countdown Cards */}
+        <div className="flex-1 text-center md:text-left">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-black text-xs mb-2">
+            <Clock className="w-3.5 h-3.5 text-amber-800 animate-pulse" />
+            <span>Countdown To Kickoff</span>
+          </div>
+
+          <h3 className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950 leading-snug">
+            Hackathon Voyage Starts On <span className="text-amber-800">October 7th</span>
+          </h3>
+          <p className="font-cinzel text-xs sm:text-sm font-bold text-amber-900 mt-1 mb-5">
+            RVSCET Jamshedpur • 24 Hours of Non-Stop Coding &amp; Innovation
+          </p>
+
+          {/* Countdown Digit Cards */}
+          <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto md:mx-0">
+            {units.map((unit) => (
+              <div
+                key={unit.label}
+                className="flex flex-col items-center justify-center p-3 rounded-2xl bg-gradient-to-b from-amber-50 to-amber-100/90 border border-amber-400/50 shadow-md"
+              >
+                <span className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950 tracking-tight">
+                  {String(unit.value).padStart(2, "0")}
+                </span>
+                <span className="font-cinzel text-[9px] sm:text-[10px] font-extrabold text-amber-800 uppercase tracking-widest mt-0.5">
+                  {unit.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -75,7 +238,7 @@ const About = () => {
     >
       <div className="max-w-[1150px] mx-auto relative z-20">
         {/* Section Header */}
-        <div ref={headerRef} className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-900/40 bg-amber-500/20 mb-4 shadow-sm">
             <Compass className="w-4 h-4 text-amber-900" />
             <span className="font-cinzel text-xs tracking-[0.25em] text-amber-950 uppercase font-extrabold">
@@ -91,6 +254,9 @@ const About = () => {
             A 24-hour national challenge empowering developers to Code, Create &amp; Conquer.
           </p>
         </div>
+
+        {/* ── LIVE COUNTDOWN BANNER (OCTOBER 7-8) WITH PURE SVG CLOCK ── */}
+        <EventCountdownBanner />
 
         {/* ── 2 CARDS IN THE SAME ROW ── */}
         <div
