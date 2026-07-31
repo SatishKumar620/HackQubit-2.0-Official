@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { Flame, Clock, ScrollText, Code2, Cpu, Globe, Rocket } from "lucide-react";
+import { Flame, Clock, ScrollText } from "lucide-react";
 
 import emblemCompassMap from "../assets/images/emblem_compass_map.png";
 import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
@@ -8,10 +8,10 @@ import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 
 const TRACKS = [
-  { icon: Code2, title: "Web & Mobile Dev", badge: "Track 01", emblem: emblemCompassMap },
-  { icon: Cpu, title: "AI & Machine Learning", badge: "Track 02", emblem: emblemSkullAnchor },
-  { icon: Globe, title: "Web3 & Blockchain", badge: "Track 03", emblem: emblemTreasureChest },
-  { icon: Rocket, title: "Open Innovation", badge: "Track 04", emblem: emblemPirateShip },
+  { title: "Web & Mobile Dev", badge: "Track 01", emblem: emblemCompassMap },
+  { title: "AI & Machine Learning", badge: "Track 02", emblem: emblemSkullAnchor },
+  { title: "Web3 & Blockchain", badge: "Track 03", emblem: emblemTreasureChest },
+  { title: "Open Innovation", badge: "Track 04", emblem: emblemPirateShip },
 ];
 
 const ProblemStatements = () => {
@@ -78,36 +78,30 @@ const ProblemStatements = () => {
           </div>
         </div>
 
-        {/* Tracks Grid Preview with Top Vintage Emblems */}
+        {/* Tracks Grid Preview with Top Vintage Emblems (No Inner Duplicate Logos) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
-          {TRACKS.map((t) => {
-            const Icon = t.icon;
-            return (
-              <div
-                key={t.badge}
-                className="relative p-6 pt-10 rounded-2xl border border-amber-900/20 bg-white/90 backdrop-blur-md flex flex-col items-center gap-3 hover:border-amber-700 hover:shadow-xl transition-all duration-300 group"
-              >
-                {/* Top Middle Emblem Logo */}
-                <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-14 h-14">
-                  <img
-                    src={t.emblem}
-                    alt={t.title}
-                    className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-900 group-hover:scale-110 group-hover:bg-amber-800 group-hover:text-amber-50 transition-all">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className="text-[11px] font-black tracking-widest text-amber-800 uppercase">
-                  {t.badge}
-                </span>
-                <h4 className="font-cinzel text-sm sm:text-base font-extrabold text-amber-950">
-                  {t.title}
-                </h4>
+          {TRACKS.map((t) => (
+            <div
+              key={t.badge}
+              className="relative p-6 pt-10 rounded-2xl border border-amber-900/20 bg-white/90 backdrop-blur-md flex flex-col items-center gap-3 hover:border-amber-700 hover:shadow-xl transition-all duration-300 group"
+            >
+              {/* Top Middle Vintage Emblem Logo */}
+              <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-16 h-16">
+                <img
+                  src={t.emblem}
+                  alt={t.title}
+                  className="w-full h-full object-contain filter drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                />
               </div>
-            );
-          })}
+
+              <span className="text-[11px] font-black tracking-widest text-amber-800 uppercase mt-2">
+                {t.badge}
+              </span>
+              <h4 className="font-cinzel text-sm sm:text-base font-extrabold text-amber-950">
+                {t.title}
+              </h4>
+            </div>
+          ))}
         </div>
       </div>
     </section>

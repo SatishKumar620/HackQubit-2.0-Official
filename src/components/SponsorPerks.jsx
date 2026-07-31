@@ -282,12 +282,7 @@ const SponsorPerks = () => {
                   />
                 </div>
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div
-                      className={`p-4 rounded-2xl bg-gradient-to-br ${perk.color} text-amber-50 shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <IconComponent className="w-6 h-6 stroke-[2.2]" />
-                    </div>
+                  <div className="flex items-center justify-end mb-4">
                     <span className="text-[11px] font-black tracking-wider uppercase px-3 py-1 rounded-full bg-amber-100 text-amber-950 border border-amber-300">
                       {perk.badge}
                     </span>
