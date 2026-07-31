@@ -1,9 +1,8 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ArrowUpRight, Compass, Zap } from "lucide-react";
-import pirateHackerCrewImg from "../assets/images/pirate_hacker_crew.png";
-import youngPirateImg from "../assets/images/young_pirate_about.png";
+import { MapPin, ArrowUpRight, Compass, Zap, Anchor } from "lucide-react";
+import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,11 +10,11 @@ const About = () => {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const cardsContainerRef = useRef(null);
-  const pirateRef = useRef(null);
   const crewImgRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Header Animation
       gsap.fromTo(
         headerRef.current,
         { y: 30, opacity: 0 },
@@ -28,6 +27,7 @@ const About = () => {
         }
       );
 
+      // Side-by-side cards Animation
       gsap.fromTo(
         cardsContainerRef.current,
         { y: 40, opacity: 0 },
@@ -40,42 +40,28 @@ const About = () => {
         }
       );
 
+      // Young Pirates Cutout Animation (float + slide up)
       gsap.fromTo(
         crewImgRef.current,
-        { y: 60, opacity: 0, scale: 0.95 },
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          scale: 1,
-          duration: 1.2,
+          duration: 1.1,
           ease: "power3.out",
-          scrollTrigger: { trigger: crewImgRef.current, start: "top 90%" },
+          scrollTrigger: { trigger: crewImgRef.current, start: "top 85%" },
         }
       );
 
-      // Young pirate slide-in from right + float loop
-      if (pirateRef.current) {
-        gsap.fromTo(
-          pirateRef.current,
-          { x: 80, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1.0,
-            ease: "power3.out",
-            scrollTrigger: { trigger: pirateRef.current, start: "top 90%" },
-          }
-        );
-        // Continuous gentle float
-        gsap.to(pirateRef.current, {
-          y: -18,
-          duration: 2.6,
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-          delay: 0.8,
-        });
-      }
+      // Continuous gentle bobbing float effect for the pirates cutout
+      gsap.to(crewImgRef.current, {
+        y: -12,
+        duration: 2.8,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+        delay: 1.1,
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -106,25 +92,13 @@ const About = () => {
           </p>
         </div>
 
-        {/* Young Pirate + Info Cards Row */}
-        <div ref={cardsContainerRef} className="grid grid-cols-1 lg:grid-cols-[auto_1fr_1fr] gap-8 items-center">
-
-          {/* Young Anime Pirate — no background */}
-          <div
-            ref={pirateRef}
-            className="hidden lg:flex items-end justify-center"
-            style={{ minWidth: "180px", maxWidth: "220px" }}
-          >
-            <img
-              src={youngPirateImg}
-              alt="Young Anime Pirate"
-              className="w-full h-auto object-contain drop-shadow-2xl"
-              style={{ filter: "drop-shadow(0 8px 24px rgba(139,90,43,0.35))" }}
-            />
-          </div>
-
+        {/* ── 2 CARDS IN THE SAME ROW ── */}
+        <div
+          ref={cardsContainerRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-20"
+        >
           {/* Card 1: 24-Hour Live Challenge */}
-          <div className="relative p-8 rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl shadow-2xl flex flex-col justify-between">
+          <div className="relative p-8 rounded-3xl border border-amber-900/20 bg-white/95 backdrop-blur-xl shadow-2xl flex flex-col justify-between hover:border-amber-700/50 transition-all duration-300">
             <div className="absolute top-0 left-8 right-8 h-[2.5px] bg-gradient-to-r from-transparent via-amber-700/60 to-transparent" />
 
             <div>
@@ -201,29 +175,24 @@ const About = () => {
           </div>
         </div>
 
-        {/* ── CREW PHOTO: Anime-Style Pirate Hacker Team on Island at the Bottom ── */}
-        <div
-          ref={crewImgRef}
-          className="mt-20 relative rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-900/20"
-        >
-          {/* Gradient overlay so it blends into sky above */}
-          <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-pirate-bg to-transparent z-10 pointer-events-none" />
-
-          {/* Caption Banner */}
-          <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-amber-950/90 via-amber-950/50 to-transparent px-8 py-6">
-            <p className="font-cinzel text-amber-100 font-extrabold text-lg sm:text-2xl tracking-wide">
-              🏴‍☠️ Our Crew Awaits You
-            </p>
-            <p className="font-cinzel text-amber-300 font-bold text-sm mt-1">
-              Join 500+ pirate hackers sailing the high seas of innovation together.
-            </p>
+        {/* ── YOUNG HANDSOME ANIME PIRATES CUTOUT (NO BACKGROUND) ── */}
+        <div ref={crewImgRef} className="flex flex-col items-center justify-center text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-extrabold text-xs mb-4">
+            <Anchor className="w-3.5 h-3.5 text-amber-800" />
+            <span>Meet The Pirate Hacker Crew</span>
           </div>
 
-          <img
-            src={pirateHackerCrewImg}
-            alt="Anime-style Pirate Hacker Crew on Island"
-            className="w-full h-auto object-cover object-center"
-          />
+          <p className="font-cinzel text-xl sm:text-2xl font-black text-amber-950 max-w-xl mx-auto tracking-wide mb-6">
+            Join 500+ developers sailing the digital ocean together!
+          </p>
+
+          <div className="relative max-w-3xl w-full flex items-center justify-center">
+            <img
+              src={youngPiratesCrewImg}
+              alt="Young Handsome Anime Pirate Hackers Cutout"
+              className="w-full h-auto max-h-[500px] object-contain drop-shadow-[0_20px_35px_rgba(120,70,10,0.3)]"
+            />
+          </div>
         </div>
       </div>
     </section>
