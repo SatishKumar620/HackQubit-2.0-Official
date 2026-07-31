@@ -6,75 +6,110 @@ import { Users, Eye, FileCheck, ShieldCheck, Sparkles, Award } from "lucide-reac
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ── Three cloud shapes ── */
-const CloudA = ({ style }) => (
-  <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style={style}>
-    <g fill="white">
-      <ellipse cx="300" cy="150" rx="240" ry="75" />
-      <ellipse cx="180" cy="130" rx="130" ry="80" />
-      <ellipse cx="420" cy="120" rx="145" ry="88" />
-      <ellipse cx="300" cy="105" rx="165" ry="92" />
-      <ellipse cx="75"  cy="155" rx="90"  ry="58" />
-      <ellipse cx="525" cy="148" rx="100" ry="62" />
-      <ellipse cx="300" cy="78"  rx="105" ry="68" />
+/* ── 3 HIGH-QUALITY FLUFFY SVG CUMULUS CLOUDS WITH CSS GRADIENTS & FILTERS ── */
+
+// Cloud 1: Fluffy Top Cumulus Cloud
+const FluffyCloud1 = ({ className, style }) => (
+  <svg
+    viewBox="0 0 1000 450"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    style={style}
+  >
+    <defs>
+      <linearGradient id="cloudGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+        <stop offset="70%" stopColor="#F8FAFC" stopOpacity="0.98" />
+        <stop offset="100%" stopColor="#E2E8F0" stopOpacity="0.95" />
+      </linearGradient>
+      <filter id="cloudShadow1" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="18" stdDeviation="25" floodColor="#0F172A" floodOpacity="0.12" />
+      </filter>
+    </defs>
+    <g filter="url(#cloudShadow1)" fill="url(#cloudGrad1)">
+      <ellipse cx="500" cy="300" rx="420" ry="120" />
+      <ellipse cx="320" cy="260" rx="220" ry="140" />
+      <ellipse cx="680" cy="250" rx="240" ry="145" />
+      <ellipse cx="500" cy="200" rx="270" ry="160" />
+      <ellipse cx="160" cy="300" rx="140" ry="100" />
+      <ellipse cx="840" cy="290" rx="150" ry="105" />
+      <ellipse cx="500" cy="140" rx="180" ry="110" />
     </g>
   </svg>
 );
 
-const CloudB = ({ style }) => (
-  <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" style={style}>
-    <g fill="white">
-      <ellipse cx="250" cy="140" rx="200" ry="68" />
-      <ellipse cx="145" cy="118" rx="115" ry="72" />
-      <ellipse cx="350" cy="112" rx="125" ry="78" />
-      <ellipse cx="250" cy="94"  rx="145" ry="82" />
-      <ellipse cx="55"  cy="142" rx="78"  ry="52" />
-      <ellipse cx="445" cy="136" rx="88"  ry="58" />
+// Cloud 2: Fluffy Middle Cumulus Cloud
+const FluffyCloud2 = ({ className, style }) => (
+  <svg
+    viewBox="0 0 1000 450"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    style={style}
+  >
+    <defs>
+      <linearGradient id="cloudGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+        <stop offset="65%" stopColor="#F1F5F9" stopOpacity="0.98" />
+        <stop offset="100%" stopColor="#CBD5E1" stopOpacity="0.92" />
+      </linearGradient>
+      <filter id="cloudShadow2" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="20" stdDeviation="28" floodColor="#0F172A" floodOpacity="0.14" />
+      </filter>
+    </defs>
+    <g filter="url(#cloudShadow2)" fill="url(#cloudGrad2)">
+      <ellipse cx="500" cy="310" rx="440" ry="125" />
+      <ellipse cx="280" cy="270" rx="240" ry="150" />
+      <ellipse cx="720" cy="260" rx="230" ry="140" />
+      <ellipse cx="500" cy="190" rx="280" ry="165" />
+      <ellipse cx="140" cy="320" rx="130" ry="95" />
+      <ellipse cx="860" cy="310" rx="140" ry="100" />
+      <ellipse cx="380" cy="150" rx="170" ry="115" />
+      <ellipse cx="620" cy="160" rx="160" ry="110" />
     </g>
   </svg>
 );
 
-const CloudC = ({ style }) => (
-  <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style={style}>
-    <g fill="white">
-      <ellipse cx="350" cy="160" rx="280" ry="82" />
-      <ellipse cx="200" cy="138" rx="155" ry="90" />
-      <ellipse cx="500" cy="130" rx="165" ry="96" />
-      <ellipse cx="350" cy="112" rx="190" ry="100" />
-      <ellipse cx="80"  cy="165" rx="105" ry="65" />
-      <ellipse cx="620" cy="158" rx="118" ry="70" />
-      <ellipse cx="350" cy="82"  rx="120" ry="75" />
+// Cloud 3: Fluffy Bottom Cumulus Cloud
+const FluffyCloud3 = ({ className, style }) => (
+  <svg
+    viewBox="0 0 1000 450"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    style={style}
+  >
+    <defs>
+      <linearGradient id="cloudGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+        <stop offset="70%" stopColor="#F8FAFC" stopOpacity="0.97" />
+        <stop offset="100%" stopColor="#E2E8F0" stopOpacity="0.94" />
+      </linearGradient>
+      <filter id="cloudShadow3" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="16" stdDeviation="24" floodColor="#0F172A" floodOpacity="0.12" />
+      </filter>
+    </defs>
+    <g filter="url(#cloudShadow3)" fill="url(#cloudGrad3)">
+      <ellipse cx="500" cy="290" rx="430" ry="120" />
+      <ellipse cx="340" cy="250" rx="230" ry="145" />
+      <ellipse cx="660" cy="240" rx="250" ry="150" />
+      <ellipse cx="500" cy="180" rx="260" ry="155" />
+      <ellipse cx="150" cy="290" rx="135" ry="98" />
+      <ellipse cx="850" cy="280" rx="145" ry="102" />
+      <ellipse cx="500" cy="130" rx="175" ry="105" />
     </g>
   </svg>
 );
 
 /*
-  Cloud config:
-  - Each cloud starts covering the section (x: 0, fully visible from its position)
-  - On scroll it moves off to left (negative) or right (positive) by a large amount
-  - dir: 'L' = moves left, 'R' = moves right
-  - Clouds are large enough (60-80vw) so they cover the section fully when centred
+  EXACTLY 3 EXTRA-LARGE CLOUDS COVERING THE SECTION
+  On scroll, Cloud 1 exits left, Cloud 2 exits right, Cloud 3 exits left
 */
-const CLOUDS = [
-  // TOP band — covers full width with left+right pair
-  { id: 0, shape: "C", top: "-6%",  startX: "-5%",   endX: "-120%", w: "70vw", opacity: 0.95, scrub: 1.2 },
-  { id: 1, shape: "A", top: "-4%",  startX: "38%",   endX: "120%",  w: "72vw", opacity: 0.90, scrub: 1.0 },
-
-  // UPPER-MID band
-  { id: 2, shape: "B", top: "16%",  startX: "-8%",   endX: "-130%", w: "65vw", opacity: 0.88, scrub: 1.4 },
-  { id: 3, shape: "A", top: "18%",  startX: "42%",   endX: "125%",  w: "68vw", opacity: 0.85, scrub: 1.1 },
-
-  // MID band
-  { id: 4, shape: "C", top: "36%",  startX: "-5%",   endX: "-115%", w: "75vw", opacity: 0.92, scrub: 1.3 },
-  { id: 5, shape: "B", top: "38%",  startX: "36%",   endX: "118%",  w: "70vw", opacity: 0.88, scrub: 0.9 },
-
-  // LOWER-MID band
-  { id: 6, shape: "A", top: "58%",  startX: "-10%",  endX: "-120%", w: "68vw", opacity: 0.90, scrub: 1.5 },
-  { id: 7, shape: "C", top: "56%",  startX: "40%",   endX: "122%",  w: "72vw", opacity: 0.86, scrub: 1.0 },
-
-  // BOTTOM band
-  { id: 8, shape: "B", top: "78%",  startX: "-6%",   endX: "-118%", w: "66vw", opacity: 0.93, scrub: 1.2 },
-  { id: 9, shape: "A", top: "80%",  startX: "44%",   endX: "120%",  w: "70vw", opacity: 0.88, scrub: 1.1 },
+const CLOUDS_CONFIG = [
+  // Cloud 1: Top (Starts covering top half, moves left on scroll)
+  { id: 1, top: "-10%", left: "-15%", w: "105vw", startX: "0%", endX: "-120%", scrub: 1.2 },
+  // Cloud 2: Middle (Starts covering center half, moves right on scroll)
+  { id: 2, top: "28%",  left: "10%",  w: "105vw", startX: "0%", endX: "120%",  scrub: 1.4 },
+  // Cloud 3: Bottom (Starts covering lower half, moves left on scroll)
+  { id: 3, top: "65%",  left: "-15%", w: "105vw", startX: "0%", endX: "-120%", scrub: 1.3 },
 ];
 
 const PERKS = [
@@ -118,25 +153,24 @@ const PERKS = [
 
 const SponsorPerks = () => {
   const sectionRef = useRef(null);
-  const cloudRefs  = useRef([]);
+  const cloudRefs = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       cloudRefs.current.forEach((el, i) => {
         if (!el) return;
-        const cloud = CLOUDS[i];
-        // Start at startX (covering section), animate to endX (moved off screen)
+        const config = CLOUDS_CONFIG[i];
         gsap.fromTo(
           el,
-          { x: cloud.startX },
+          { x: config.startX },
           {
-            x: cloud.endX,
+            x: config.endX,
             ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 80%",   // start parting early
-              end:   "center center", // fully gone by mid-section
-              scrub: cloud.scrub,
+              start: "top 80%",
+              end: "center center",
+              scrub: config.scrub,
             },
           }
         );
@@ -146,39 +180,55 @@ const SponsorPerks = () => {
     return () => ctx.revert();
   }, []);
 
-  const renderCloud = (cloud, idx) => {
-    const sharedStyle = { width: "100%", height: "auto" };
-    if (cloud.shape === "A") return <CloudA style={{ ...sharedStyle, opacity: cloud.opacity }} />;
-    if (cloud.shape === "B") return <CloudB style={{ ...sharedStyle, opacity: cloud.opacity }} />;
-    return <CloudC style={{ ...sharedStyle, opacity: cloud.opacity }} />;
-  };
-
   return (
     <section
       ref={sectionRef}
       id="sponsorship-perks"
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
-      {/* ── CLOUD LAYER — starts covering, parts on scroll ── */}
+      {/* ── 3 HUGE FLUFFY PARALLAX SVG CLOUDS COVERING SECTION ── */}
       <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-        {CLOUDS.map((cloud, i) => (
-          <div
-            key={cloud.id}
-            ref={(el) => (cloudRefs.current[i] = el)}
-            className="absolute"
-            style={{
-              top:   cloud.top,
-              left:  "0",
-              width: cloud.w,
-              // initial x set by GSAP
-            }}
-          >
-            {renderCloud(cloud, i)}
-          </div>
-        ))}
+        {/* Cloud 1 */}
+        <div
+          ref={(el) => (cloudRefs.current[0] = el)}
+          className="absolute"
+          style={{
+            top: CLOUDS_CONFIG[0].top,
+            left: CLOUDS_CONFIG[0].left,
+            width: CLOUDS_CONFIG[0].w,
+          }}
+        >
+          <FluffyCloud1 className="w-full h-auto" />
+        </div>
+
+        {/* Cloud 2 */}
+        <div
+          ref={(el) => (cloudRefs.current[1] = el)}
+          className="absolute"
+          style={{
+            top: CLOUDS_CONFIG[1].top,
+            left: CLOUDS_CONFIG[1].left,
+            width: CLOUDS_CONFIG[1].w,
+          }}
+        >
+          <FluffyCloud2 className="w-full h-auto" />
+        </div>
+
+        {/* Cloud 3 */}
+        <div
+          ref={(el) => (cloudRefs.current[2] = el)}
+          className="absolute"
+          style={{
+            top: CLOUDS_CONFIG[2].top,
+            left: CLOUDS_CONFIG[2].left,
+            width: CLOUDS_CONFIG[2].w,
+          }}
+        >
+          <FluffyCloud3 className="w-full h-auto" />
+        </div>
       </div>
 
-      {/* ── CONTENT (behind clouds until they part) ── */}
+      {/* ── SECTION CONTENT (behind clouds until they part) ── */}
       <div className="max-w-6xl mx-auto relative z-20">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -218,7 +268,9 @@ const SponsorPerks = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className={`p-4 rounded-2xl bg-gradient-to-br ${perk.color} text-amber-50 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className={`p-4 rounded-2xl bg-gradient-to-br ${perk.color} text-amber-50 shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
                       <IconComponent className="w-6 h-6 stroke-[2.2]" />
                     </div>
                     <span className="text-[11px] font-black tracking-wider uppercase px-3 py-1 rounded-full bg-amber-100 text-amber-950 border border-amber-300">
