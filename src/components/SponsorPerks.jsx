@@ -4,10 +4,91 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { Users, Eye, FileCheck, ShieldCheck, Sparkles, Award } from "lucide-react";
 
-import cloudLeftImg from "../assets/images/cloud_left.svg";
-import cloudRightImg from "../assets/images/cloud_right.svg";
-
 gsap.registerPlugin(ScrollTrigger);
+
+// Pure inline SVG cloud shapes — no external file needed
+const CloudSVG = ({ className, opacity = 0.9 }) => (
+  <svg
+    className={className}
+    viewBox="0 0 500 200"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ opacity }}
+  >
+    <g fill="white">
+      <ellipse cx="250" cy="130" rx="200" ry="70" />
+      <ellipse cx="150" cy="110" rx="110" ry="70" />
+      <ellipse cx="340" cy="105" rx="120" ry="75" />
+      <ellipse cx="250" cy="90" rx="140" ry="80" />
+      <ellipse cx="100" cy="130" rx="80" ry="55" />
+      <ellipse cx="400" cy="125" rx="90" ry="60" />
+    </g>
+  </svg>
+);
+
+const CloudSVG2 = ({ className, opacity = 0.85 }) => (
+  <svg
+    className={className}
+    viewBox="0 0 600 220"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ opacity }}
+  >
+    <g fill="white">
+      <ellipse cx="300" cy="140" rx="240" ry="80" />
+      <ellipse cx="180" cy="120" rx="130" ry="80" />
+      <ellipse cx="420" cy="115" rx="140" ry="85" />
+      <ellipse cx="300" cy="100" rx="160" ry="90" />
+      <ellipse cx="80"  cy="145" rx="90"  ry="60" />
+      <ellipse cx="520" cy="140" rx="100" ry="65" />
+      <ellipse cx="300" cy="75"  rx="100" ry="65" />
+    </g>
+  </svg>
+);
+
+const CloudSVG3 = ({ className, opacity = 0.8 }) => (
+  <svg
+    className={className}
+    viewBox="0 0 400 180"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ opacity }}
+  >
+    <g fill="white">
+      <ellipse cx="200" cy="120" rx="170" ry="60" />
+      <ellipse cx="110" cy="100" rx="100" ry="65" />
+      <ellipse cx="290" cy="95"  rx="110" ry="68" />
+      <ellipse cx="200" cy="80"  rx="130" ry="70" />
+      <ellipse cx="50"  cy="120" rx="70"  ry="48" />
+      <ellipse cx="350" cy="115" rx="80"  ry="50" />
+    </g>
+  </svg>
+);
+
+// Cloud configuration: position, size, shape, scroll speed & direction
+const CLOUDS = [
+  // ── TOP ROW ──
+  { id: 0, top: "2%",  left: "-10%",  w: "38vw", shape: 1, speed: -60,  dir: "x", opacity: 0.92 },
+  { id: 1, top: "1%",  left: "30%",   w: "30vw", shape: 3, speed: 40,   dir: "x", opacity: 0.85 },
+  { id: 2, top: "0%",  left: "65%",   w: "42vw", shape: 2, speed: -50,  dir: "x", opacity: 0.90 },
+
+  // ── UPPER-MID ROW ──
+  { id: 3, top: "18%", left: "-15%",  w: "45vw", shape: 2, speed: 55,   dir: "x", opacity: 0.80 },
+  { id: 4, top: "22%", left: "45%",   w: "36vw", shape: 1, speed: -45,  dir: "x", opacity: 0.75 },
+  { id: 5, top: "15%", left: "72%",   w: "35vw", shape: 3, speed: 35,   dir: "x", opacity: 0.82 },
+
+  // ── MIDDLE ROW ──
+  { id: 6, top: "42%", left: "-8%",   w: "40vw", shape: 3, speed: -70,  dir: "x", opacity: 0.78 },
+  { id: 7, top: "45%", left: "38%",   w: "50vw", shape: 2, speed: 60,   dir: "x", opacity: 0.72 },
+  { id: 8, top: "40%", left: "70%",   w: "38vw", shape: 1, speed: -40,  dir: "x", opacity: 0.80 },
+
+  // ── LOWER ROW ──
+  { id: 9,  top: "65%", left: "-12%", w: "44vw", shape: 1, speed: 65,   dir: "x", opacity: 0.85 },
+  { id: 10, top: "68%", left: "42%",  w: "34vw", shape: 3, speed: -55,  dir: "x", opacity: 0.80 },
+  { id: 11, top: "63%", left: "68%",  w: "46vw", shape: 2, speed: 45,   dir: "x", opacity: 0.88 },
+
+  // ── BOTTOM ROW ──
+  { id: 12, top: "85%", left: "-5%",  w: "36vw", shape: 2, speed: -50,  dir: "x", opacity: 0.90 },
+  { id: 13, top: "88%", left: "35%",  w: "42vw", shape: 1, speed: 40,   dir: "x", opacity: 0.82 },
+  { id: 14, top: "83%", left: "70%",  w: "40vw", shape: 3, speed: -60,  dir: "x", opacity: 0.87 },
+];
 
 const PERKS = [
   {
@@ -50,47 +131,38 @@ const PERKS = [
 
 const SponsorPerks = () => {
   const sectionRef = useRef(null);
-  const cloudLeftRef = useRef(null);
-  const cloudRightRef = useRef(null);
+  const cloudRefs = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Scroll-triggered clouds parting animation (Left cloud moves left, Right cloud moves right)
-      if (cloudLeftRef.current && cloudRightRef.current) {
+      cloudRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const cloud = CLOUDS[i];
         gsap.fromTo(
-          cloudLeftRef.current,
-          { x: "0%" },
+          el,
+          { x: 0 },
           {
-            x: "-100%",
-            ease: "power1.inOut",
+            x: cloud.speed,
+            ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 90%",
-              end: "bottom 30%",
-              scrub: 1.2,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.5 + (i % 4) * 0.3,
             },
           }
         );
-
-        gsap.fromTo(
-          cloudRightRef.current,
-          { x: "0%" },
-          {
-            x: "100%",
-            ease: "power1.inOut",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 90%",
-              end: "bottom 30%",
-              scrub: 1.2,
-            },
-          }
-        );
-      }
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
+
+  const getShape = (shape, className, opacity) => {
+    if (shape === 1) return <CloudSVG className={className} opacity={opacity} />;
+    if (shape === 2) return <CloudSVG2 className={className} opacity={opacity} />;
+    return <CloudSVG3 className={className} opacity={opacity} />;
+  };
 
   return (
     <section
@@ -98,33 +170,25 @@ const SponsorPerks = () => {
       id="sponsorship-perks"
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
-      {/* ── PARALLEL SCROLLING PURE WHITE SVG CLOUDS ── */}
-      <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-        {/* Left White Vector Cloud */}
-        <div
-          ref={cloudLeftRef}
-          className="absolute top-1/2 -left-32 -translate-y-1/2 w-[70vw] md:w-[55vw] max-w-[800px]"
-        >
-          <img
-            src={cloudLeftImg}
-            alt="Left White Cloud"
-            className="w-full h-auto object-contain"
-          />
-        </div>
-
-        {/* Right White Vector Cloud */}
-        <div
-          ref={cloudRightRef}
-          className="absolute top-1/2 -right-32 -translate-y-1/2 w-[70vw] md:w-[55vw] max-w-[800px]"
-        >
-          <img
-            src={cloudRightImg}
-            alt="Right White Cloud"
-            className="w-full h-auto object-contain"
-          />
-        </div>
+      {/* ── FULL-SECTION PARALLAX CLOUD LAYER ── */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        {CLOUDS.map((cloud, i) => (
+          <div
+            key={cloud.id}
+            ref={(el) => (cloudRefs.current[i] = el)}
+            className="absolute"
+            style={{
+              top: cloud.top,
+              left: cloud.left,
+              width: cloud.w,
+            }}
+          >
+            {getShape(cloud.shape, "w-full h-auto drop-shadow-lg", cloud.opacity)}
+          </div>
+        ))}
       </div>
 
+      {/* ── CONTENT ── */}
       <div className="max-w-6xl mx-auto relative z-20">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -144,7 +208,8 @@ const SponsorPerks = () => {
             Sponsorship <span className="text-amber-800">Perks</span>
           </h2>
           <p className="mt-4 font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Partner with HackQubit 2.0 to unlock unparalleled developer engagement, brand prominence, and post-event talent access.
+            Partner with HackQubit 2.0 to unlock unparalleled developer engagement,
+            brand prominence, and post-event talent access.
           </p>
         </div>
 
@@ -176,7 +241,6 @@ const SponsorPerks = () => {
                     {perk.category}
                   </h3>
 
-                  {/* List of Perks */}
                   <ul className="space-y-3 font-cinzel text-xs sm:text-sm text-amber-900 font-bold leading-relaxed">
                     {perk.items.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2.5">
@@ -188,7 +252,7 @@ const SponsorPerks = () => {
                 </div>
 
                 <div className="mt-8 pt-4 border-t border-amber-200 flex items-center justify-between text-xs text-amber-950 font-black font-cinzel">
-                  <span>Included in Gold & Platinum</span>
+                  <span>Included in Gold &amp; Platinum</span>
                   <Award className="w-4 h-4 text-amber-700" />
                 </div>
               </motion.div>
