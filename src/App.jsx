@@ -57,11 +57,6 @@ function App() {
         <BottomLand />
         <ProblemStatements />
 
-        {/* Gallery */}
-        <TopLand />
-        <Gallery />
-        <BottomLand />
-
         {/* Sponsor Package → Sponsor Perks → Our Sponsors */}
         <TopLand />
         <SponsorPackage />
@@ -69,6 +64,11 @@ function App() {
         <SponsorPerks />
         <TopLand />
         <OurSponsors />
+        <BottomLand />
+
+        {/* Our Past Gallery (Placed Just Above FAQ) */}
+        <TopLand />
+        <Gallery />
         <BottomLand />
 
         {/* FAQ → Footer */}
