@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { MapPin, ArrowUpRight, Compass, Zap, Anchor, Calendar, ShieldCheck } from "lucide-react";
+import { MapPin, ArrowUpRight, Compass, Zap, Anchor, Calendar, ShieldCheck, Clock } from "lucide-react";
 import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.png";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const SVGDarkPirateClock = () => (
   <svg
     viewBox="0 0 200 200"
-    className="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
+    className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[0_8px_16px_rgba(0,0,0,0.3)] shrink-0"
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
@@ -23,11 +23,6 @@ const SVGDarkPirateClock = () => (
         <stop offset="0%" stopColor="#784421" />
         <stop offset="40%" stopColor="#45220c" />
         <stop offset="100%" stopColor="#281105" />
-      </linearGradient>
-      <linearGradient id="copperRim" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#d97706" />
-        <stop offset="50%" stopColor="#b45309" />
-        <stop offset="100%" stopColor="#78350f" />
       </linearGradient>
     </defs>
 
@@ -103,8 +98,8 @@ const useCountdown = (targetDate) => {
   return timeLeft;
 };
 
-/* ── WOODEN ADDRESS / DIRECTION SIGN BOARD WITH LIVE COUNTDOWN (NO YELLOW) ── */
-const WoodenAddressSignboard = () => {
+/* ── PREMIUM PIRATE COUNTDOWN CARD COMPONENT ── */
+const EventCountdownCard = () => {
   const { days, hours, minutes, seconds } = useCountdown("2026-10-07T09:00:00");
 
   const units = [
@@ -115,162 +110,65 @@ const WoodenAddressSignboard = () => {
   ];
 
   return (
-    <div className="relative w-full max-w-md mx-auto flex flex-col items-center select-none">
-      {/* Hanging Ropes from Top */}
-      <div className="flex justify-between w-48 mb-[-6px] relative z-10">
-        <div className="w-2.5 h-8 bg-amber-900/60 rounded-t border-x border-amber-950/40 shadow-inner" />
-        <div className="w-2.5 h-8 bg-amber-900/60 rounded-t border-x border-amber-950/40 shadow-inner" />
-      </div>
+    <div className="relative w-full rounded-3xl border-2 border-amber-900/20 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-2xl overflow-hidden text-amber-950 flex flex-col justify-between hover:border-amber-700/50 transition-all duration-300">
+      {/* Top Gradient Highlight Bar */}
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-900" />
 
-      {/* Main Wooden Plank Sign Board */}
-      <div
-        className="w-full rounded-2xl p-6 sm:p-7 relative z-20 shadow-[0_20px_35px_rgba(0,0,0,0.4)] border-4 border-[#3e2312]"
-        style={{
-          background: "linear-gradient(180deg, #6e3d1b 0%, #522d13 50%, #3e2312 100%)",
-          boxShadow: "inset 0 2px 4px rgba(255,255,255,0.15), inset 0 -4px 8px rgba(0,0,0,0.6), 0 16px 30px rgba(0,0,0,0.35)",
-        }}
-      >
-        {/* Brass Corner Bolts */}
-        <div className="absolute top-2.5 left-2.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-amber-700 to-amber-950 border border-amber-900/80 shadow-sm" />
-        <div className="absolute top-2.5 right-2.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-amber-700 to-amber-950 border border-amber-900/80 shadow-sm" />
-        <div className="absolute bottom-2.5 left-2.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-amber-700 to-amber-950 border border-amber-900/80 shadow-sm" />
-        <div className="absolute bottom-2.5 right-2.5 w-3.5 h-3.5 rounded-full bg-gradient-to-br from-amber-700 to-amber-950 border border-amber-900/80 shadow-sm" />
-
-        {/* Inner Engraved Border */}
-        <div className="border-2 border-dashed border-amber-800/40 rounded-xl p-4 bg-amber-950/30 backdrop-blur-xs text-center flex flex-col items-center">
-          
-          {/* Header Row: Clock + Address Title */}
-          <div className="flex items-center gap-3 mb-4">
-            <SVGDarkPirateClock />
-            <div className="text-left">
-              <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-900/60 border border-amber-700/50 text-amber-100 font-cinzel text-[9px] font-black uppercase tracking-widest">
-                <Calendar className="w-2.5 h-2.5 text-amber-300" />
-                <span>Voyage Date</span>
-              </div>
-              <h4 className="font-cinzel text-lg sm:text-xl font-black text-amber-100 tracking-wider mt-1 drop-shadow-md">
-                OCTOBER 7 – 8
-              </h4>
-              <p className="font-cinzel text-[10px] text-amber-200/80 font-extrabold uppercase tracking-wider">
-                RVSCET • JAMSHEDPUR
-              </p>
+      {/* Header Info */}
+      <div>
+        <div className="flex items-center gap-3 mb-5">
+          <SVGDarkPirateClock />
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel text-[10px] font-black uppercase tracking-wider mb-1">
+              <Calendar className="w-3 h-3 text-amber-800" />
+              <span>Official Event Date</span>
             </div>
+            <h4 className="font-cinzel text-xl sm:text-2xl font-black text-amber-950 tracking-wide">
+              October 7 – 8, 2026
+            </h4>
+            <p className="font-cinzel text-xs text-amber-900 font-bold">
+              RVSCET • Jamshedpur, Jharkhand
+            </p>
           </div>
+        </div>
 
-          {/* Subtitle */}
-          <p className="font-cinzel text-xs font-bold text-amber-200/90 mb-4 tracking-wide">
-            🏴‍☠️ Set Sail In:
-          </p>
+        {/* Live Countdown Section Header */}
+        <div className="flex items-center gap-2 mb-3">
+          <Clock className="w-4 h-4 text-amber-800 animate-pulse" />
+          <span className="font-cinzel text-xs font-black text-amber-950 uppercase tracking-widest">
+            Set Sail Countdown
+          </span>
+        </div>
 
-          {/* Wooden Countdown Digit Cards (No Yellow) */}
-          <div className="grid grid-cols-4 gap-2 w-full">
-            {units.map((unit) => (
-              <div
-                key={unit.label}
-                className="flex flex-col items-center justify-center p-2 sm:p-2.5 rounded-xl border border-amber-800/60 shadow-inner"
-                style={{ background: "linear-gradient(180deg, #381b0a 0%, #220e04 100%)" }}
-              >
-                <span className="font-cinzel text-xl sm:text-2xl font-black text-amber-100 drop-shadow">
-                  {String(unit.value).padStart(2, "0")}
-                </span>
-                <span className="font-cinzel text-[8px] sm:text-[9px] font-extrabold text-amber-300/80 uppercase tracking-widest mt-0.5">
-                  {unit.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 pt-3 border-t border-amber-900/40 w-full flex items-center justify-center gap-1.5 text-[10px] font-cinzel font-black text-amber-200">
-            <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-            <span>24-Hour Live On-Spot Hackathon</span>
-          </div>
-
+        {/* Countdown Pill Cards Grid */}
+        <div className="grid grid-cols-4 gap-2 sm:gap-3 mb-6">
+          {units.map((unit) => (
+            <div
+              key={unit.label}
+              className="flex flex-col items-center justify-center p-3 rounded-2xl bg-amber-50/90 border border-amber-300/70 shadow-sm"
+            >
+              <span className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950">
+                {String(unit.value).padStart(2, "0")}
+              </span>
+              <span className="font-cinzel text-[9px] sm:text-[10px] font-extrabold text-amber-800 uppercase tracking-widest mt-0.5">
+                {unit.label}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Supporting Wooden Posts into Ground */}
-      <div className="flex justify-between w-64 mt-[-6px] relative z-10">
-        <div className="w-4 h-10 bg-gradient-to-b from-[#3e2312] to-[#281105] rounded-b border-x border-[#1c0b03]" />
-        <div className="w-4 h-10 bg-gradient-to-b from-[#3e2312] to-[#281105] rounded-b border-x border-[#1c0b03]" />
+      {/* Footer Feature Info */}
+      <div className="pt-4 border-t border-amber-900/15 flex items-center justify-between text-xs font-cinzel text-amber-950 font-black">
+        <span className="flex items-center gap-1.5">
+          <ShieldCheck className="w-4 h-4 text-amber-800" />
+          <span>24-Hour Live Challenge</span>
+        </span>
+        <span>✦ Spot Reveal</span>
       </div>
     </div>
   );
 };
-
-/* ── SVG LUSH GREEN LAND & BUSHES / HERBS DECORATION ── */
-const GreenLandAndHerbsDecoration = () => (
-  <div className="relative w-full overflow-hidden pointer-events-none select-none mt-6">
-    
-    {/* 🌿 BOTTOM LEFT HERBS & TROPICAL BUSHES */}
-    <div className="absolute bottom-0 left-0 z-30 w-36 sm:w-48 h-32 sm:h-40 pointer-events-none">
-      <svg viewBox="0 0 200 160" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        {/* Deep Green Foliage */}
-        <path d="M 0 160 Q 30 100 70 120 Q 110 80 140 160 Z" fill="#15803d" opacity="0.9" />
-        <path d="M 0 160 Q 20 70 50 110 Q 90 60 120 160 Z" fill="#16a34a" />
-        {/* Palm-like Herb Fronds */}
-        <path d="M 10 160 Q 40 40 90 90 Q 50 120 10 160 Z" fill="#22c55e" />
-        <path d="M 0 160 Q 60 50 130 110 Q 70 140 0 160 Z" fill="#4ade80" opacity="0.8" />
-        {/* Tufted Grass Blades */}
-        <path d="M 60 160 L 70 110 L 80 160 L 95 100 L 110 160 Z" fill="#166534" />
-      </svg>
-    </div>
-
-    {/* 🌿 BOTTOM RIGHT HERBS & TROPICAL BUSHES */}
-    <div className="absolute bottom-0 right-0 z-30 w-36 sm:w-48 h-32 sm:h-40 pointer-events-none transform scale-x-[-1]">
-      <svg viewBox="0 0 200 160" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 0 160 Q 30 100 70 120 Q 110 80 140 160 Z" fill="#15803d" opacity="0.9" />
-        <path d="M 0 160 Q 20 70 50 110 Q 90 60 120 160 Z" fill="#16a34a" />
-        <path d="M 10 160 Q 40 40 90 90 Q 50 120 10 160 Z" fill="#22c55e" />
-        <path d="M 0 160 Q 60 50 130 110 Q 70 140 0 160 Z" fill="#4ade80" opacity="0.8" />
-        <path d="M 60 160 L 70 110 L 80 160 L 95 100 L 110 160 Z" fill="#166534" />
-      </svg>
-    </div>
-
-    {/* 🌱 GREEN LAND HILL GROUND UNDER BOTH YOUNG PIRATES & WOODEN BOARD */}
-    <div className="relative w-full h-24 sm:h-28 z-20">
-      <svg
-        className="w-full h-full"
-        viewBox="0 0 1200 100"
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <linearGradient id="grassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#22c55e" />
-            <stop offset="40%" stopColor="#16a34a" />
-            <stop offset="80%" stopColor="#15803d" />
-            <stop offset="100%" stopColor="#166534" />
-          </linearGradient>
-        </defs>
-
-        {/* Back Grass Hill Layer */}
-        <path
-          d="M 0 40 Q 300 10 600 35 Q 900 60 1200 25 L 1200 100 L 0 100 Z"
-          fill="#15803d"
-          opacity="0.85"
-        />
-
-        {/* Front Vibrant Green Grass Ground */}
-        <path
-          d="M 0 25 Q 300 55 600 20 Q 900 45 1200 15 L 1200 100 L 0 100 Z"
-          fill="url(#grassGrad)"
-        />
-
-        {/* Scattered Grass Blades Details along the edge */}
-        {[50, 150, 280, 420, 560, 700, 840, 980, 1100].map((x, i) => (
-          <path
-            key={i}
-            d={`M ${x} 25 L ${x + 6} 8 L ${x + 12} 27 M ${x + 10} 27 L ${x + 16} 12 L ${x + 22} 30`}
-            stroke="#4ade80"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-        ))}
-      </svg>
-    </div>
-
-  </div>
-);
 
 const About = () => {
   const sectionRef = useRef(null);
@@ -443,39 +341,34 @@ const About = () => {
           </div>
         </div>
 
-        {/* ── BOTTOM FEATURE: YOUNG ANIME PIRATES (LEFT) + WOODEN ADDRESS COUNTDOWN SIGNBOARD (RIGHT) ── */}
-        <div className="relative z-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        {/* ── BOTTOM FEATURE: YOUNG ANIME PIRATES (LEFT) + EVENT COUNTDOWN CARD (RIGHT) ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-            {/* Left: Young Anime Pirates Cutout */}
-            <div ref={crewImgRef} className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-extrabold text-xs mb-3">
-                <Anchor className="w-3.5 h-3.5 text-amber-800" />
-                <span>Meet The Pirate Hacker Crew</span>
-              </div>
-
-              <h3 className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950 tracking-wide mb-4">
-                500+ Developers Sailing Together!
-              </h3>
-
-              <div className="relative w-full max-w-lg">
-                <img
-                  src={youngPiratesCrewImg}
-                  alt="Young Anime Pirate Hackers Cutout"
-                  className="w-full h-auto max-h-[420px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)]"
-                />
-              </div>
+          {/* Left: Young Anime Pirates Cutout */}
+          <div ref={crewImgRef} className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-extrabold text-xs mb-3">
+              <Anchor className="w-3.5 h-3.5 text-amber-800" />
+              <span>Meet The Pirate Hacker Crew</span>
             </div>
 
-            {/* Right: Wooden Address Signboard with Live Countdown & SVG Dark Clock */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end pb-2">
-              <WoodenAddressSignboard />
-            </div>
+            <h3 className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950 tracking-wide mb-4">
+              500+ Developers Sailing Together!
+            </h3>
 
+            <div className="relative w-full max-w-lg">
+              <img
+                src={youngPiratesCrewImg}
+                alt="Young Anime Pirate Hackers Cutout"
+                className="w-full h-auto max-h-[420px] object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.35)]"
+              />
+            </div>
           </div>
 
-          {/* Green Land, Herbs & Bushes at Bottom Corners */}
-          <GreenLandAndHerbsDecoration />
+          {/* Right: Premium Event Countdown Card */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end">
+            <EventCountdownCard />
+          </div>
+
         </div>
 
       </div>
