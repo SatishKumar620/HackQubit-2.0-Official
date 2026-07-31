@@ -5,6 +5,7 @@ import {
   Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ
 } from "./components";
 import PirateCaptainGuide from "./components/PirateCaptainGuide";
+import PirateParrotCompanion from "./components/PirateParrotCompanion";
 import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
@@ -75,8 +76,13 @@ function App() {
         <Footer />
         <ScrollToTop />
 
-        {/* Fixed Position Pirate Captain Guide with Speech Bubbles */}
-        {!loading && <PirateCaptainGuide />}
+        {/* Fixed Position Pirate Captain Guide & Interactive Parrot Companion */}
+        {!loading && (
+          <>
+            <PirateCaptainGuide />
+            <PirateParrotCompanion />
+          </>
+        )}
       </main>
     </ErrorBoundary>
   );
