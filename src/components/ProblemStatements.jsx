@@ -10,6 +10,7 @@ import femalePirateNavigator from "../assets/images/female_pirate_navigator.webp
 import bgStoryProblemStatements from "../assets/images/bg_story_problem_statements.webp";
 import GoldRainParticles from "./GoldRainParticles";
 import TiltCard from "./TiltCard";
+import PirateRopeCannonSidebar from "./PirateRopeCannonSidebar";
 
 const TRACKS = [
   { title: "Web & Mobile Dev", badge: "Track 01", emblem: emblemCompassMap },
@@ -28,6 +29,7 @@ const ProblemStatements = () => {
       className="relative py-24 px-6 bg-pirate-bg text-slate-900 overflow-hidden"
     >
       <GoldRainParticles />
+      <PirateRopeCannonSidebar side="left" />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
       <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">

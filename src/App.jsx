@@ -53,33 +53,23 @@ function App() {
       </AnimatePresence>
 
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
-        {/* Hero Section at the top */}
+        {/* Hero Section at the top (NO Dividers or Sidebars) */}
         <Hero onOpenRegister={() => setIsRegisterModalOpen(true)} />
 
-        <PirateWaveDivider />
         <About onOpenRegister={() => setIsRegisterModalOpen(true)} />
-        <PirateWaveDivider flip />
 
         {/* Timeline → Prize Pool → Problem Statements */}
         <Timeline />
-        <PirateWaveDivider />
         <PrizePool />
-        <PirateWaveDivider flip />
         <ProblemStatements />
 
         {/* Sponsor Package → Sponsor Perks → Our Sponsors */}
-        <PirateWaveDivider />
         <SponsorPackage />
-        <PirateWaveDivider flip />
         <SponsorPerks />
-        <PirateWaveDivider />
         <OurSponsors />
-        <PirateWaveDivider flip />
 
-        {/* Our Past Gallery (Placed Just Above FAQ) */}
-        <PirateWaveDivider />
+        {/* Our Past Gallery */}
         <Gallery />
-        <PirateWaveDivider flip />
 
         {/* FAQ → Footer */}
         <FAQ />

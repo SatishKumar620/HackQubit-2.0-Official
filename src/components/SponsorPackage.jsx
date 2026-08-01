@@ -7,6 +7,7 @@ import pirateFemaleImg from "../assets/images/pirate_female.webp";
 import pirateSwashbucklerImg from "../assets/images/pirate_swashbuckler.webp";
 import bgStorySponsorPackage from "../assets/images/bg_story_sponsor_package.webp";
 import GoldRainParticles from "./GoldRainParticles";
+import PirateRopeCannonSidebar from "./PirateRopeCannonSidebar";
 
 /* ─── Thick Side Ropes ─── */
 const SideThickRopes = () => (
@@ -103,6 +104,7 @@ const SponsorPackage = () => {
   return (
     <section id="sponsorship" className="py-28 relative px-6 max-w-7xl mx-auto overflow-hidden text-amber-950">
       <GoldRainParticles />
+      <PirateRopeCannonSidebar side="right" />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
       <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">

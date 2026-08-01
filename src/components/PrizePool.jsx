@@ -10,6 +10,7 @@ import prize2ndImg from "../assets/images/prize_2nd_silver.webp";
 import prize3rdImg from "../assets/images/prize_3rd_bronze.webp";
 import bgStoryPrizes from "../assets/images/bg_story_prizes.webp";
 import GoldRainParticles from "./GoldRainParticles";
+import PirateRopeCannonSidebar from "./PirateRopeCannonSidebar";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -184,6 +185,7 @@ const PrizePool = () => {
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
       <GoldRainParticles />
+      <PirateRopeCannonSidebar side="right" />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
       <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
