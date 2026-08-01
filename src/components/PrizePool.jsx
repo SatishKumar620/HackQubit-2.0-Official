@@ -185,7 +185,6 @@ const PrizePool = () => {
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
       <GoldRainParticles />
-      <PirateRopeCannonSidebar side="right" />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
       <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
