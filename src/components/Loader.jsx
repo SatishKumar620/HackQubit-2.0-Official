@@ -10,7 +10,7 @@ const Loader = ({ onLoadingComplete }) => {
   useEffect(() => {
     let animationFrameId;
     const startTime = performance.now();
-    const duration = 1500; // 1.5 seconds smooth loading
+    const duration = 800; // 0.8s super-fast snappy loading
 
     const updateProgress = (now) => {
       const elapsed = now - startTime;
@@ -29,13 +29,13 @@ const Loader = ({ onLoadingComplete }) => {
 
     animationFrameId = requestAnimationFrame(updateProgress);
 
-    // Safety fallback: force unmount after 1.8s no matter what
+    // Safety fallback: force unmount after 0.95s max
     const fallbackTimer = setTimeout(() => {
       setProgress(100);
       if (typeof onLoadingComplete === "function") {
         onLoadingComplete();
       }
-    }, 1800);
+    }, 950);
 
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
