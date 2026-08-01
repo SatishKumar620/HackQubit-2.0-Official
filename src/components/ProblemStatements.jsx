@@ -7,6 +7,7 @@ import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
 import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 import femalePirateNavigator from "../assets/images/female_pirate_navigator.png";
+import bgStoryProblemStatements from "../assets/images/bg_story_problem_statements.png";
 import GoldRainParticles from "./GoldRainParticles";
 import TiltCard from "./TiltCard";
 
@@ -27,6 +28,16 @@ const ProblemStatements = () => {
       className="relative py-24 px-6 bg-pirate-bg text-slate-900 overflow-hidden"
     >
       <GoldRainParticles />
+
+      {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
+      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+        <img
+          src={bgStoryProblemStatements}
+          alt="Pirate Strategy Cabin Story"
+          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+      </div>
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         {/* Badge */}
         <motion.div

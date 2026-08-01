@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import femalePirateLookout from "../assets/images/female_pirate_lookout.png";
+import bgStoryGallery from "../assets/images/bg_story_gallery.png";
 import GoldRainParticles from "./GoldRainParticles";
 
 const Gallery = () => {
@@ -16,6 +17,16 @@ const Gallery = () => {
   return (
     <section className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
       <GoldRainParticles />
+
+      {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
+      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+        <img
+          src={bgStoryGallery}
+          alt="Pirate Beach Campfire Story"
+          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+      </div>
       {/* Female Pirate Lookout Cutout Overlay (Looking through Spyglass) */}
       <div className="absolute top-4 right-4 sm:right-12 z-20 pointer-events-none hidden lg:block">
         <img

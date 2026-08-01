@@ -6,6 +6,7 @@ import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
 import femalePirateTreasurer from "../assets/images/female_pirate_treasurer.png";
+import bgStorySponsorPerks from "../assets/images/bg_story_sponsor_perks.png";
 import GoldRainParticles from "./GoldRainParticles";
 
 const PERKS = [
@@ -51,6 +52,16 @@ const SponsorPerks = () => {
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
       <GoldRainParticles />
+
+      {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
+      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+        <img
+          src={bgStorySponsorPerks}
+          alt="Pirate Alliance Port Story"
+          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+      </div>
       <div className="max-w-6xl mx-auto relative z-20">
         {/* Female Pirate Treasurer Standing Cutout Overlay (Top Right Empty Area) */}
         <div className="absolute -top-12 -right-4 sm:-right-8 z-30 pointer-events-none hidden xl:block">

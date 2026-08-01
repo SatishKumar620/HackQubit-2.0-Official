@@ -8,6 +8,7 @@ import { Award, Trophy, Sparkles } from "lucide-react";
 import prize1stImg from "../assets/images/prize_1st_gold.png";
 import prize2ndImg from "../assets/images/prize_2nd_silver.png";
 import prize3rdImg from "../assets/images/prize_3rd_bronze.png";
+import bgStoryPrizes from "../assets/images/bg_story_prizes.png";
 import GoldRainParticles from "./GoldRainParticles";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -183,6 +184,16 @@ const PrizePool = () => {
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
       <GoldRainParticles />
+
+      {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
+      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+        <img
+          src={bgStoryPrizes}
+          alt="Pirate Treasure Beach Story"
+          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+      </div>
       {/* ── 3 HUGE FLUFFY PARALLAX SVG CLOUDS COVERING PRIZES SECTION ── */}
       <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
         <div ref={(el) => (cloudRefs.current[0] = el)} className="absolute" style={{ top: CLOUDS_CONFIG[0].top, left: CLOUDS_CONFIG[0].left, width: CLOUDS_CONFIG[0].w }}>
