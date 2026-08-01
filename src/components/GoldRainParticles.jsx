@@ -205,7 +205,7 @@ const GoldRainParticles = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-auto overflow-hidden z-10 select-none">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-10 select-none">
       <canvas ref={canvasRef} className="w-full h-full block pointer-events-none" />
     </div>
   );

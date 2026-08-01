@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useCallback } from "react";
 import {
   Hero, About, Timeline, PrizePool, ProblemStatements,
   SponsorPackage, SponsorPerks, OurSponsors,
@@ -39,13 +39,17 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
+  const handleLoadingComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
+
   return (
     <ErrorBoundary>
       {/* Interactive Doubloon Gold Spark Cursor Trail */}
       {!loading && <DoubloonCursorTrail />}
 
-      <AnimatePresence>
-        {loading && <Loader key="loader" onLoadingComplete={() => setLoading(false)} />}
+      <AnimatePresence mode="wait">
+        {loading && <Loader key="loader" onLoadingComplete={handleLoadingComplete} />}
       </AnimatePresence>
 
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>

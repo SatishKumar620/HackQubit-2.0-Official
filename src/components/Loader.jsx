@@ -9,8 +9,8 @@ const Loader = ({ onLoadingComplete }) => {
 
   useEffect(() => {
     // Simulate loading progress
-    const duration = 2500; // 2.5 seconds
-    const intervalTime = 50;
+    const duration = 2000; // 2 seconds
+    const intervalTime = 40;
     const steps = duration / intervalTime;
     let currentStep = 0;
 
@@ -21,14 +21,14 @@ const Loader = ({ onLoadingComplete }) => {
 
       if (currentStep >= steps) {
         clearInterval(timer);
-        setTimeout(() => {
+        if (typeof onLoadingComplete === "function") {
           onLoadingComplete();
-        }, 400);
+        }
       }
     }, intervalTime);
 
     return () => clearInterval(timer);
-  }, [onLoadingComplete]);
+  }, []);
 
   return (
     <motion.div
