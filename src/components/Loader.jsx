@@ -8,34 +8,48 @@ const Loader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress
-    const duration = 2000; // 2 seconds
-    const intervalTime = 40;
-    const steps = duration / intervalTime;
-    let currentStep = 0;
+    let animationFrameId;
+    const startTime = performance.now();
+    const duration = 1500; // 1.5 seconds smooth loading
 
-    const timer = setInterval(() => {
-      currentStep++;
-      const currentProgress = Math.min(100, Math.floor((currentStep / steps) * 100));
-      setProgress(currentProgress);
+    const updateProgress = (now) => {
+      const elapsed = now - startTime;
+      const pct = Math.min(100, Math.floor((elapsed / duration) * 100));
+      setProgress(pct);
 
-      if (currentStep >= steps) {
-        clearInterval(timer);
+      if (elapsed < duration) {
+        animationFrameId = requestAnimationFrame(updateProgress);
+      } else {
+        setProgress(100);
         if (typeof onLoadingComplete === "function") {
           onLoadingComplete();
         }
       }
-    }, intervalTime);
+    };
 
-    return () => clearInterval(timer);
-  }, []);
+    animationFrameId = requestAnimationFrame(updateProgress);
+
+    // Safety fallback: force unmount after 1.8s no matter what
+    const fallbackTimer = setTimeout(() => {
+      setProgress(100);
+      if (typeof onLoadingComplete === "function") {
+        onLoadingComplete();
+      }
+    }, 1800);
+
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      clearTimeout(fallbackTimer);
+    };
+  }, [onLoadingComplete]);
 
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.7, ease: "easeInOut" }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-amber-100 px-6 overflow-hidden select-none"
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-amber-100 px-6 overflow-hidden select-none cursor-pointer"
+      onClick={() => onLoadingComplete && onLoadingComplete()}
     >
       {/* Decorative ambient background glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
@@ -88,8 +102,7 @@ const Loader = ({ onLoadingComplete }) => {
         <div className="w-full max-w-xs h-3 bg-amber-950/20 rounded-full p-0.5 border border-amber-900/30 shadow-inner relative overflow-hidden">
           <motion.div
             className="h-full rounded-full bg-gradient-to-r from-amber-700 via-amber-500 to-amber-800 shadow-md"
-            initial={{ width: "0%" }}
-            animate={{ width: `${progress}%` }}
+            style={{ width: `${progress}%` }}
             transition={{ ease: "linear", duration: 0.05 }}
           />
         </div>
@@ -99,6 +112,10 @@ const Loader = ({ onLoadingComplete }) => {
           <span className="uppercase tracking-widest text-amber-400">Setting Sail...</span>
           <span className="tracking-wider text-amber-300">{progress}%</span>
         </div>
+
+        <span className="mt-4 text-[10px] font-cinzel text-amber-400/60 uppercase tracking-widest">
+          Click anywhere to skip
+        </span>
 
       </div>
     </motion.div>
