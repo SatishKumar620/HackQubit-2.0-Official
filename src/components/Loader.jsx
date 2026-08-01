@@ -8,6 +8,12 @@ const Loader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Eagerly cache preloader images in browser memory immediately
+    [shipWheelImg, islandBgImg, hackqubitLogo].forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
     let animationFrameId;
     const startTime = performance.now();
     const duration = 800; // 0.8s super-fast snappy loading
@@ -65,6 +71,9 @@ const Loader = ({ onLoadingComplete }) => {
             <img
               src={islandBgImg}
               alt="Pirate Island Center"
+              loading="eager"
+              fetchpriority="high"
+              decoding="sync"
               className="w-full h-full object-cover transform scale-110"
             />
           </div>
@@ -78,6 +87,9 @@ const Loader = ({ onLoadingComplete }) => {
             <img
               src={shipWheelImg}
               alt="Captain's Ship Steering Wheel"
+              loading="eager"
+              fetchpriority="high"
+              decoding="sync"
               className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)]"
             />
           </motion.div>
@@ -94,6 +106,9 @@ const Loader = ({ onLoadingComplete }) => {
           <img
             src={hackqubitLogo}
             alt="HackQubit 2.0 Title Logo"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
             className="h-14 sm:h-16 w-auto object-contain filter drop-shadow-[0_6px_12px_rgba(120,70,10,0.35)]"
           />
         </motion.div>

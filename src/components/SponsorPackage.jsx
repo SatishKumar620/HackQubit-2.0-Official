@@ -2,9 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Import 3 Pirate Character Assets
-import pirateCaptainImg from "../assets/images/pirate_captain.png";
-import pirateFemaleImg from "../assets/images/pirate_female.png";
-import pirateSwashbucklerImg from "../assets/images/pirate_swashbuckler.png";
+import pirateCaptainImg from "../assets/images/pirate_captain.webp";
+import pirateFemaleImg from "../assets/images/pirate_female.webp";
+import pirateSwashbucklerImg from "../assets/images/pirate_swashbuckler.webp";
+import bgStorySponsorPackage from "../assets/images/bg_story_sponsor_package.webp";
+import GoldRainParticles from "./GoldRainParticles";
 
 /* ─── Thick Side Ropes ─── */
 const SideThickRopes = () => (
@@ -44,44 +46,46 @@ const SideThickRopes = () => (
   </>
 );
 
-const packages = [
+const SPONSOR_TIERS = [
   {
-    name: "Silver Package",
-    price: "₹15,000+",
-    borderColor: "border-slate-300",
-    textColor: "text-slate-700",
-    color: "from-slate-600 to-slate-800",
-    characterImg: pirateFemaleImg,
-    characterAlt: "Young Pirate Female Officer",
-    features: [
-      "Logo on official website & event banners",
-      "Distribution of digital swag & promo codes",
-      "Access to participant resume database",
-      "Social media shoutout across platforms",
-    ],
-  },
-  {
-    name: "Gold Package",
-    price: "₹30,000+",
-    borderColor: "border-amber-400 font-extrabold",
-    textColor: "text-amber-700 font-bold",
-    color: "from-amber-600 to-yellow-600",
+    title: "Bronze Doubloon",
+    badge: "Quartermaster Tier",
+    price: "₹15,000",
+    color: "from-amber-900/10 via-amber-800/15 to-amber-900/10 border-amber-900/40 text-amber-950",
+    badgeColor: "bg-amber-900/20 text-amber-950 border-amber-900/40",
     characterImg: pirateCaptainImg,
-    characterAlt: "Handsome Pirate Captain",
+    characterAlt: "Pirate Captain",
     features: [
-      "Everything in Silver Tier",
-      "Keynote speaking opportunity (10 mins)",
-      "Dedicated booth / recruitment desk at venue",
-      "Custom track / prize category sponsorship",
-      "Prominent logo on main stage backdrop",
+      "Logo on event website & social media shoutout",
+      "Option to distribute digital swag & vouchers",
+      "Mention in opening & closing ceremonies",
+      "1 booth space in virtual / physical expo",
+      "Access to opt-in hacker resume database",
     ],
   },
   {
-    name: "Title Sponsor",
+    title: "Silver Treasure",
+    badge: "First Mate Tier",
+    price: "₹30,000",
+    color: "from-slate-300/30 via-slate-200/40 to-slate-400/30 border-slate-400/60 text-slate-900",
+    badgeColor: "bg-slate-700/20 text-slate-950 border-slate-500/50",
+    characterImg: pirateFemaleImg,
+    characterAlt: "Pirate Female Navigator",
+    features: [
+      "Medium logo on website, banners & t-shirts",
+      "5-minute product demo / workshop slot",
+      "Distribute physical swag & branded merchandise",
+      "2 mentor seats for your technical team",
+      "Direct channel in event Discord for support",
+      "Access to full hacker resume database",
+    ],
+  },
+  {
+    title: "Gold Chest",
+    badge: "Captain Tier",
     price: "₹50,000+",
-    borderColor: "border-amber-600 font-extrabold",
-    textColor: "text-amber-800 font-bold",
-    color: "from-amber-700 to-amber-900",
+    color: "from-amber-400/25 via-amber-300/35 to-amber-500/25 border-amber-500/70 text-amber-950",
+    badgeColor: "bg-amber-500/30 text-amber-950 border-amber-600/60 font-bold",
     characterImg: pirateSwashbucklerImg,
     characterAlt: "Pirate Swashbuckler Hero",
     features: [
@@ -98,6 +102,20 @@ const packages = [
 const SponsorPackage = () => {
   return (
     <section id="sponsorship" className="py-28 relative px-6 max-w-7xl mx-auto overflow-hidden text-amber-950">
+      <GoldRainParticles />
+
+      {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
+      <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
+        <img
+          src={bgStorySponsorPackage}
+          alt="Pirate Sponsorship Story"
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-bottom opacity-85"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/40 to-pirate-bg" />
+      </div>
+
       {/* Thick Side Ropes with Shadow */}
       <SideThickRopes />
 
@@ -118,14 +136,14 @@ const SponsorPackage = () => {
 
       {/* Packages Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-8 pt-16 relative z-10">
-        {packages.map((pkg, index) => (
+        {SPONSOR_TIERS.map((pkg, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.2 }}
-            className={`relative bg-white/95 backdrop-blur-xl rounded-3xl p-8 pt-20 shadow-2xl border-2 ${pkg.borderColor} flex flex-col justify-between hover:border-amber-600 transition-all duration-300`}
+            className={`relative bg-white/95 backdrop-blur-xl rounded-3xl p-8 pt-20 shadow-2xl border-2 border-amber-800/40 flex flex-col justify-between hover:border-amber-600 transition-all duration-300`}
           >
             {/* ── TOP MIDDLE BIGGER PIRATE CHARACTER (CLEAN CUTOUT, NO BACKGROUND) ── */}
             <div className="absolute -top-24 sm:-top-28 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex justify-center">
@@ -133,22 +151,29 @@ const SponsorPackage = () => {
                 <img
                   src={pkg.characterImg}
                   alt={pkg.characterAlt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain filter drop-shadow-[0_14px_24px_rgba(120,70,10,0.35)]"
                 />
               </div>
             </div>
 
             <div>
-              <h3 className={`text-2xl font-black font-cinzel mb-2 text-center ${pkg.textColor}`}>
-                {pkg.name}
+              <div className="text-center mb-2">
+                <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-cinzel font-black uppercase tracking-widest border ${pkg.badgeColor}`}>
+                  {pkg.badge}
+                </span>
+              </div>
+              <h3 className="text-2xl font-black font-cinzel mb-2 text-center text-amber-950">
+                {pkg.title}
               </h3>
-              <div className="text-3xl sm:text-4xl font-black text-amber-950 mb-6 text-center font-cinzel">
+              <div className="text-3xl sm:text-4xl font-black text-amber-900 mb-6 text-center font-cinzel">
                 {pkg.price}
               </div>
 
               <ul className="flex-grow space-y-3 mb-8">
                 {pkg.features.map((feature, i) => (
-                  <li key={i} className="flex items-start text-amber-900 font-bold font-cinzel text-xs sm:text-sm leading-relaxed">
+                  <li key={i} className="flex items-start text-amber-950 font-bold font-cinzel text-xs sm:text-sm leading-relaxed">
                     <span className="text-amber-700 font-bold mr-2 shrink-0">✦</span>
                     {feature}
                   </li>
@@ -156,7 +181,7 @@ const SponsorPackage = () => {
               </ul>
             </div>
 
-            <button className={`w-full py-3.5 rounded-xl font-black text-amber-50 bg-gradient-to-r ${pkg.color} hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 font-cinzel tracking-wider uppercase text-xs sm:text-sm`}>
+            <button className={`w-full py-3.5 rounded-xl font-black text-amber-50 bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 hover:from-amber-700 hover:to-amber-800 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 font-cinzel tracking-wider uppercase text-xs sm:text-sm`}>
               Become a Sponsor
             </button>
           </motion.div>
