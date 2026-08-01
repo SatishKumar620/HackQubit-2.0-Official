@@ -1,13 +1,12 @@
 import React, { useEffect, useRef } from "react";
 
 const TREASURE_TYPES = [
-  { symbol: "🪙", type: "coin", mass: 1.5, size: 22 },
+  { symbol: "🪙", type: "coin", mass: 1.4, size: 22 },
   { symbol: "💎", type: "gem", mass: 0.5, size: 18 },
-  { symbol: "🏆", type: "trophy", mass: 1.8, size: 24 },
+  { symbol: "🏆", type: "trophy", mass: 1.6, size: 24 },
   { symbol: "✨", type: "sparkle", mass: 0.3, size: 16 },
-  { symbol: "👑", type: "crown", mass: 1.4, size: 22 },
+  { symbol: "👑", type: "crown", mass: 1.3, size: 22 },
   { symbol: "💎", type: "ruby", mass: 0.6, size: 19 },
-  { symbol: "🪙", type: "doubloon", mass: 1.3, size: 20 },
 ];
 
 const GoldRainParticles = () => {
@@ -20,23 +19,25 @@ const GoldRainParticles = () => {
     if (!container || !canvas) return;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
     let animationFrameId;
     let particles = [];
-    const gravity = 0.15;
+    const gravity = 0.12;
     const mouse = { x: -1000, y: -1000, active: false };
 
-    // Resize canvas to match section container size
     const updateSize = () => {
+      if (!container || !canvas) return;
       const rect = container.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      canvas.width = rect.width || 800;
+      canvas.height = rect.height || 600;
     };
 
     updateSize();
     window.addEventListener("resize", updateSize);
 
-    // Mouse & Touch Interaction Handlers
     const handlePointerMove = (clientX, clientY) => {
+      if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
       mouse.x = clientX - rect.left;
       mouse.y = clientY - rect.top;
@@ -45,7 +46,7 @@ const GoldRainParticles = () => {
 
     const onMouseMove = (e) => handlePointerMove(e.clientX, e.clientY);
     const onTouchMove = (e) => {
-      if (e.touches.length > 0) {
+      if (e.touches && e.touches.length > 0) {
         handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
       }
     };
@@ -59,82 +60,69 @@ const GoldRainParticles = () => {
     container.addEventListener("touchmove", onTouchMove, { passive: true });
     container.addEventListener("touchend", onPointerLeave);
 
-    // Spawn initial particles
-    const spawnParticle = (startY = -30) => {
-      const itemConfig = TREASURE_TYPES[Math.floor(Math.random() * TREASURE_TYPES.length)];
+    const spawnParticle = (startY = -20) => {
+      const item = TREASURE_TYPES[Math.floor(Math.random() * TREASURE_TYPES.length)];
       return {
-        symbol: itemConfig.symbol,
-        type: itemConfig.type,
-        mass: itemConfig.mass,
-        size: itemConfig.size + Math.random() * 6 - 3,
+        symbol: item.symbol,
+        type: item.type,
+        mass: item.mass,
+        size: item.size + Math.random() * 4 - 2,
         x: Math.random() * (canvas.width || 800),
         y: startY,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: Math.random() * 1.5 + 1.0,
+        vx: (Math.random() - 0.5) * 1.0,
+        vy: Math.random() * 1.2 + 0.8,
         rotation: Math.random() * Math.PI * 2,
-        vRot: (Math.random() - 0.5) * 0.08,
+        vRot: (Math.random() - 0.5) * 0.06,
         swayAngle: Math.random() * Math.PI * 2,
-        swaySpeed: Math.random() * 0.04 + 0.02,
+        swaySpeed: Math.random() * 0.03 + 0.015,
         isGrounded: false,
         groundTimer: 0,
-        opacity: 0.9,
+        opacity: 0.85,
       };
     };
 
-    // Pre-populate particles
-    const particleCount = Math.min(35, Math.floor((canvas.width || 800) / 30));
-    for (let i = 0; i < particleCount; i++) {
+    const maxParticles = Math.min(20, Math.floor((canvas.width || 800) / 45));
+    for (let i = 0; i < maxParticles; i++) {
       particles.push(spawnParticle(Math.random() * (canvas.height || 600)));
     }
 
-    let time = 0;
-
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 0.05;
 
-      const groundY = canvas.height - 24;
-
-      // Continuously maintain particle count
-      if (particles.length < particleCount && Math.random() < 0.1) {
+      if (particles.length < maxParticles && Math.random() < 0.08) {
         particles.push(spawnParticle(-20));
       }
+
+      const groundY = canvas.height - 20;
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
 
         if (!p.isGrounded) {
-          // Gravity acceleration weighted by mass
           p.vy += gravity * p.mass;
 
-          // Light gems drift with sine sway like ice floating in air
           if (p.type === "gem" || p.type === "sparkle" || p.type === "ruby") {
             p.swayAngle += p.swaySpeed;
-            p.vx = Math.sin(p.swayAngle) * 1.2;
+            p.vx = Math.sin(p.swayAngle) * 1.0;
           }
 
-          // Update position & rotation
           p.x += p.vx;
           p.y += p.vy;
           p.rotation += p.vRot;
 
-          // Check landing ground collection collision
-          if (p.y >= groundY - Math.random() * 8) {
-            p.y = groundY - Math.random() * 8;
-            p.vy = -p.vy * 0.25; // Gentle bounce
-            p.vx *= 0.6; // Ground friction
-            p.vRot *= 0.3;
+          if (p.y >= groundY) {
+            p.y = groundY;
+            p.vy = -p.vy * 0.2;
+            p.vx *= 0.5;
 
-            if (Math.abs(p.vy) < 0.5) {
+            if (Math.abs(p.vy) < 0.4) {
               p.isGrounded = true;
               p.vy = 0;
             }
           }
         } else {
-          // Grounded items accumulate at the bottom pile
           p.groundTimer += 1;
-          // Fade out settled ground items slowly after 6 seconds to recycle
-          if (p.groundTimer > 360) {
+          if (p.groundTimer > 240) {
             p.opacity -= 0.02;
             if (p.opacity <= 0) {
               particles.splice(i, 1);
@@ -143,47 +131,34 @@ const GoldRainParticles = () => {
           }
         }
 
-        // ── MOUSE / TOUCH REPULSION & TOUCH INTERACTION ──
         if (mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const maxDist = 100;
-
-          if (dist < maxDist && dist > 0) {
-            const force = (maxDist - dist) / maxDist;
-            const pushX = (dx / dist) * force * 6;
-            const pushY = (dy / dist) * force * 6;
-
+          if (dist < 90 && dist > 0) {
+            const force = (90 - dist) / 90;
+            const pushX = (dx / dist) * force * 5;
+            const pushY = (dy / dist) * force * 5;
             p.x += pushX;
             p.y += pushY;
-            p.vx += pushX * 0.3;
-            p.vy += pushY * 0.3;
-            p.vRot += (Math.random() - 0.5) * 0.2;
-            p.isGrounded = false; // Kick back into air when touched/hovered!
+            p.vx += pushX * 0.2;
+            p.vy += pushY * 0.2;
+            p.isGrounded = false;
             p.groundTimer = 0;
-            p.opacity = 1;
+            p.opacity = 0.85;
           }
         }
 
-        // Screen edge wrapping
-        if (p.x < -30) p.x = canvas.width + 20;
-        if (p.x > canvas.width + 30) p.x = -20;
+        if (p.x < -20) p.x = canvas.width + 10;
+        if (p.x > canvas.width + 20) p.x = -10;
 
-        // Render Canvas Symbol
         ctx.save();
         ctx.globalAlpha = p.opacity;
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rotation);
-        ctx.font = `${p.size}px serif`;
+        ctx.font = `${p.size}px sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-
-        // Soft drop shadow for 3D depth
-        ctx.shadowColor = "rgba(120, 70, 10, 0.4)";
-        ctx.shadowBlur = 8;
-        ctx.shadowOffsetY = 4;
-
         ctx.fillText(p.symbol, 0, 0);
         ctx.restore();
       }
@@ -200,7 +175,7 @@ const GoldRainParticles = () => {
       container.removeEventListener("touchstart", onTouchMove);
       container.removeEventListener("touchmove", onTouchMove);
       container.removeEventListener("touchend", onPointerLeave);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
