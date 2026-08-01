@@ -7,7 +7,6 @@ import {
 import PirateCaptainGuide from "./components/PirateCaptainGuide";
 import PirateParrotCompanion from "./components/PirateParrotCompanion";
 import DoubloonCursorTrail from "./components/DoubloonCursorTrail";
-import TreasureMapQuest from "./components/TreasureMapQuest";
 import PirateRegistrationModal from "./components/PirateRegistrationModal";
 import { AnimatePresence } from "framer-motion";
 
@@ -55,10 +54,6 @@ function App() {
 
         <TopLand />
         <About onOpenRegister={() => setIsRegisterModalOpen(true)} />
-        <BottomLand />
-
-        {/* Interactive Treasure Map & Quest Route */}
-        <TreasureMapQuest />
         <BottomLand />
 
         {/* Timeline → Prize Pool → Problem Statements */}
