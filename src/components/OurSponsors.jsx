@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ShieldAlert, Sparkles, Anchor } from "lucide-react";
-import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
-import femalePirateQuartermaster from "../assets/images/female_pirate_quartermaster.png";
-import bgStoryOurSponsors from "../assets/images/bg_story_our_sponsors.png";
+import emblemPirateShip from "../assets/images/emblem_pirate_ship.webp";
+import femalePirateQuartermaster from "../assets/images/female_pirate_quartermaster.webp";
+import bgStoryOurSponsors from "../assets/images/bg_story_our_sponsors.webp";
 import GoldRainParticles from "./GoldRainParticles";
 
 const OurSponsors = () => {
@@ -19,6 +19,8 @@ const OurSponsors = () => {
         <img
           src={bgStoryOurSponsors}
           alt="Pirate Sponsors Armada Story"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />

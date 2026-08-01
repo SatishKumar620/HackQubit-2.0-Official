@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import femalePirateLookout from "../assets/images/female_pirate_lookout.png";
-import bgStoryGallery from "../assets/images/bg_story_gallery.png";
+import femalePirateLookout from "../assets/images/female_pirate_lookout.webp";
+import bgStoryGallery from "../assets/images/bg_story_gallery.webp";
 import GoldRainParticles from "./GoldRainParticles";
 
 const Gallery = () => {
@@ -23,6 +23,8 @@ const Gallery = () => {
         <img
           src={bgStoryGallery}
           alt="Pirate Beach Campfire Story"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />

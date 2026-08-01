@@ -5,7 +5,7 @@ import HeroContent from "./HeroContent";
 import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
 
-import animeOceanIslandImg from "../assets/images/anime_ocean_island.png";
+import animeOceanIslandImg from "../assets/images/anime_ocean_island.webp";
 
 const Hero = () => {
   const navbarRef = useRef(null);

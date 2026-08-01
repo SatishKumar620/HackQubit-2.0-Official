@@ -2,12 +2,12 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { Flame, Clock, ScrollText } from "lucide-react";
 
-import emblemCompassMap from "../assets/images/emblem_compass_map.png";
-import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
-import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
-import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
-import femalePirateNavigator from "../assets/images/female_pirate_navigator.png";
-import bgStoryProblemStatements from "../assets/images/bg_story_problem_statements.png";
+import emblemCompassMap from "../assets/images/emblem_compass_map.webp";
+import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.webp";
+import emblemTreasureChest from "../assets/images/emblem_treasure_chest.webp";
+import emblemPirateShip from "../assets/images/emblem_pirate_ship.webp";
+import femalePirateNavigator from "../assets/images/female_pirate_navigator.webp";
+import bgStoryProblemStatements from "../assets/images/bg_story_problem_statements.webp";
 import GoldRainParticles from "./GoldRainParticles";
 import TiltCard from "./TiltCard";
 
@@ -34,6 +34,8 @@ const ProblemStatements = () => {
         <img
           src={bgStoryProblemStatements}
           alt="Pirate Strategy Cabin Story"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
@@ -63,13 +65,15 @@ const ProblemStatements = () => {
         {/* Main Announcement Banner with Top Vintage Emblem Logo & Female Pirate Navigator Overlay */}
         <div className="relative rounded-3xl border-2 border-amber-700/40 bg-white/95 backdrop-blur-xl p-8 sm:p-12 shadow-2xl mb-20 max-w-3xl mx-auto text-amber-950">
           {/* Female Pirate Navigator Standing Cutout Overlay (Empty Right Space) */}
-          <div className="absolute -bottom-4 -right-16 sm:-right-24 z-20 pointer-events-none hidden md:block">
-            <img
-              src={femalePirateNavigator}
-              alt="Female Pirate Navigator"
-              className="w-44 sm:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)] transform hover:scale-105 transition-transform duration-500"
-            />
-          </div>
+          <div className="absolute -top-12 -right-4 sm:-right-8 z-30 pointer-events-none hidden xl:block">
+          <img
+            src={femalePirateNavigator}
+            alt="Female Pirate Navigator"
+            loading="lazy"
+            decoding="async"
+            className="w-48 sm:w-56 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-500"
+          />
+        </div>
           {/* Top Middle Vintage Emblem Badge Logo */}
           <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex justify-center">
             <div className="w-24 h-24 sm:w-28 sm:h-28 transition-transform duration-500 hover:scale-110">

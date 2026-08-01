@@ -2,8 +2,8 @@ import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, ArrowUpRight, Compass, Zap, Anchor, Calendar, ShieldCheck, Clock } from "lucide-react";
-import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.png";
-import bgStoryAbout from "../assets/images/bg_story_about.png";
+import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.webp";
+import bgStoryAbout from "../assets/images/bg_story_about.webp";
 import GoldRainParticles from "./GoldRainParticles";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -249,6 +249,8 @@ const About = () => {
         <img
           src={bgStoryAbout}
           alt="Pirate Voyage Deck Story"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />

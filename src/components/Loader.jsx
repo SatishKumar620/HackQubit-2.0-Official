@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import shipWheelImg from "../assets/images/captain_ship_wheel.png";
-import islandBgImg from "../assets/images/wheel_island_bg.png";
-import hackqubitLogo from "../assets/images/hackqubit_jewel_title.png";
+import shipWheelImg from "../assets/images/captain_ship_wheel.webp";
+import islandBgImg from "../assets/images/wheel_island_bg.webp";
+import hackqubitLogo from "../assets/images/hackqubit_jewel_title.webp";
 
 const Loader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);

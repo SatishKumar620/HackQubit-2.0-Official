@@ -2,11 +2,11 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ShieldCheck, Sparkles, Award } from "lucide-react";
 
-import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
-import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
-import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
-import femalePirateTreasurer from "../assets/images/female_pirate_treasurer.png";
-import bgStorySponsorPerks from "../assets/images/bg_story_sponsor_perks.png";
+import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.webp";
+import emblemPirateShip from "../assets/images/emblem_pirate_ship.webp";
+import emblemTreasureChest from "../assets/images/emblem_treasure_chest.webp";
+import femalePirateTreasurer from "../assets/images/female_pirate_treasurer.webp";
+import bgStorySponsorPerks from "../assets/images/bg_story_sponsor_perks.webp";
 import GoldRainParticles from "./GoldRainParticles";
 
 const PERKS = [
@@ -58,6 +58,8 @@ const SponsorPerks = () => {
         <img
           src={bgStorySponsorPerks}
           alt="Pirate Alliance Port Story"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />

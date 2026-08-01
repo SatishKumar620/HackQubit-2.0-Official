@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { Award, Trophy, Sparkles } from "lucide-react";
 
 // Custom Generated 3D Cutout Assets
-import prize1stImg from "../assets/images/prize_1st_gold.png";
-import prize2ndImg from "../assets/images/prize_2nd_silver.png";
-import prize3rdImg from "../assets/images/prize_3rd_bronze.png";
-import bgStoryPrizes from "../assets/images/bg_story_prizes.png";
+import prize1stImg from "../assets/images/prize_1st_gold.webp";
+import prize2ndImg from "../assets/images/prize_2nd_silver.webp";
+import prize3rdImg from "../assets/images/prize_3rd_bronze.webp";
+import bgStoryPrizes from "../assets/images/bg_story_prizes.webp";
 import GoldRainParticles from "./GoldRainParticles";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -190,6 +190,8 @@ const PrizePool = () => {
         <img
           src={bgStoryPrizes}
           alt="Pirate Treasure Beach Story"
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
