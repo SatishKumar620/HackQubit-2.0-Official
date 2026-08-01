@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import femalePirateLookout from "../assets/images/female_pirate_lookout.png";
+import GoldRainParticles from "./GoldRainParticles";
 
 const Gallery = () => {
   const images = [
@@ -14,6 +15,7 @@ const Gallery = () => {
 
   return (
     <section className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
+      <GoldRainParticles />
       {/* Female Pirate Lookout Cutout Overlay (Looking through Spyglass) */}
       <div className="absolute top-4 right-4 sm:right-12 z-20 pointer-events-none hidden lg:block">
         <img

@@ -7,6 +7,8 @@ import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
 import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 import femalePirateNavigator from "../assets/images/female_pirate_navigator.png";
+import GoldRainParticles from "./GoldRainParticles";
+import TiltCard from "./TiltCard";
 
 const TRACKS = [
   { title: "Web & Mobile Dev", badge: "Track 01", emblem: emblemCompassMap },
@@ -24,6 +26,7 @@ const ProblemStatements = () => {
       id="problem-statements"
       className="relative py-24 px-6 bg-pirate-bg text-slate-900 overflow-hidden"
     >
+      <GoldRainParticles />
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         {/* Badge */}
         <motion.div
@@ -84,12 +87,12 @@ const ProblemStatements = () => {
           </div>
         </div>
 
-        {/* Tracks Grid Preview with Top Vintage Emblems (No Inner Duplicate Logos) */}
+        {/* Tracks Grid Preview with Top Vintage Emblems & 3D Tilt */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-6">
           {TRACKS.map((t) => (
-            <div
+            <TiltCard
               key={t.badge}
-              className="relative p-6 pt-10 rounded-2xl border border-amber-900/20 bg-white/90 backdrop-blur-md flex flex-col items-center gap-3 hover:border-amber-700 hover:shadow-xl transition-all duration-300 group"
+              className="p-6 pt-10 rounded-2xl border border-amber-900/20 bg-white/90 backdrop-blur-md flex flex-col items-center gap-3 hover:border-amber-700 hover:shadow-xl transition-all duration-300 group"
             >
               {/* Top Middle Vintage Emblem Logo */}
               <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none w-16 h-16">
@@ -106,7 +109,7 @@ const ProblemStatements = () => {
               <h4 className="font-cinzel text-sm sm:text-base font-extrabold text-amber-950">
                 {t.title}
               </h4>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>

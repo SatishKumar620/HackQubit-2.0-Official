@@ -6,6 +6,7 @@ import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
 import femalePirateTreasurer from "../assets/images/female_pirate_treasurer.png";
+import GoldRainParticles from "./GoldRainParticles";
 
 const PERKS = [
   {
@@ -49,6 +50,7 @@ const SponsorPerks = () => {
       id="sponsorship-perks"
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
+      <GoldRainParticles />
       <div className="max-w-6xl mx-auto relative z-20">
         {/* Female Pirate Treasurer Standing Cutout Overlay (Top Right Empty Area) */}
         <div className="absolute -top-12 -right-4 sm:-right-8 z-30 pointer-events-none hidden xl:block">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Anchor } from 'lucide-react';
+import GoldRainParticles from './GoldRainParticles';
 
 const faqs = [
   {
@@ -42,6 +43,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="py-24 px-6 bg-pirate-bg relative z-10 overflow-hidden">
+      <GoldRainParticles />
 
       {/* Decorative blurred ambient blobs */}
       <div className="pointer-events-none absolute top-10 left-10 w-64 h-40 rounded-full bg-amber-300/20 blur-3xl" />

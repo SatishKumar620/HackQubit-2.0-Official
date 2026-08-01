@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MapPin, ArrowUpRight, Compass, Zap, Anchor, Calendar, ShieldCheck, Clock } from "lucide-react";
 import youngPiratesCrewImg from "../assets/images/young_anime_pirates_crew_transparent.png";
+import GoldRainParticles from "./GoldRainParticles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -240,6 +241,7 @@ const About = () => {
       id="about"
       className="relative w-full py-24 px-6 sm:px-10 lg:px-16 overflow-hidden bg-pirate-bg text-amber-950"
     >
+      <GoldRainParticles />
       <div className="max-w-[1150px] mx-auto relative z-20">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-16">

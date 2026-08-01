@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ShieldAlert, Sparkles, Anchor } from "lucide-react";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 import femalePirateQuartermaster from "../assets/images/female_pirate_quartermaster.png";
+import GoldRainParticles from "./GoldRainParticles";
 
 const OurSponsors = () => {
   return (
@@ -10,6 +11,7 @@ const OurSponsors = () => {
       id="our-sponsors"
       className="relative py-24 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
+      <GoldRainParticles />
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         {/* Badge */}
         <motion.div

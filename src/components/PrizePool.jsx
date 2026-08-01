@@ -8,6 +8,7 @@ import { Award, Trophy, Sparkles } from "lucide-react";
 import prize1stImg from "../assets/images/prize_1st_gold.png";
 import prize2ndImg from "../assets/images/prize_2nd_silver.png";
 import prize3rdImg from "../assets/images/prize_3rd_bronze.png";
+import GoldRainParticles from "./GoldRainParticles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -181,6 +182,7 @@ const PrizePool = () => {
       id="prizes"
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
+      <GoldRainParticles />
       {/* ── 3 HUGE FLUFFY PARALLAX SVG CLOUDS COVERING PRIZES SECTION ── */}
       <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
         <div ref={(el) => (cloudRefs.current[0] = el)} className="absolute" style={{ top: CLOUDS_CONFIG[0].top, left: CLOUDS_CONFIG[0].left, width: CLOUDS_CONFIG[0].w }}>

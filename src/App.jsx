@@ -6,6 +6,9 @@ import {
 } from "./components";
 import PirateCaptainGuide from "./components/PirateCaptainGuide";
 import PirateParrotCompanion from "./components/PirateParrotCompanion";
+import DoubloonCursorTrail from "./components/DoubloonCursorTrail";
+import TreasureMapQuest from "./components/TreasureMapQuest";
+import PirateRegistrationModal from "./components/PirateRegistrationModal";
 import { AnimatePresence } from "framer-motion";
 
 class ErrorBoundary extends Component {
@@ -35,19 +38,27 @@ class ErrorBoundary extends Component {
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
   return (
     <ErrorBoundary>
+      {/* Interactive Doubloon Gold Spark Cursor Trail */}
+      {!loading && <DoubloonCursorTrail />}
+
       <AnimatePresence>
         {loading && <Loader key="loader" onLoadingComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
         {/* Hero Section at the top */}
-        <Hero />
+        <Hero onOpenRegister={() => setIsRegisterModalOpen(true)} />
 
         <TopLand />
-        <About />
+        <About onOpenRegister={() => setIsRegisterModalOpen(true)} />
+        <BottomLand />
+
+        {/* Interactive Treasure Map & Quest Route */}
+        <TreasureMapQuest />
         <BottomLand />
 
         {/* Timeline → Prize Pool → Problem Statements */}
@@ -75,6 +86,12 @@ function App() {
         <FAQ />
         <Footer />
         <ScrollToTop />
+
+        {/* Unfurlable Vintage Wax-Sealed Registration Scroll Modal */}
+        <PirateRegistrationModal
+          isOpen={isRegisterModalOpen}
+          onClose={() => setIsRegisterModalOpen(false)}
+        />
 
         {/* Fixed Position Pirate Captain Guide & Interactive Parrot Companion */}
         {!loading && (
