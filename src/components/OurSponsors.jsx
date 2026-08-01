@@ -15,17 +15,28 @@ const OurSponsors = () => {
       <GoldRainParticles />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
-      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
         <img
           src={bgStoryOurSponsors}
           alt="Pirate Sponsors Armada Story"
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+          className="w-full h-full object-cover object-bottom opacity-85"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/40 to-pirate-bg" />
       </div>
+
       <div className="max-w-5xl mx-auto relative z-10 text-center">
+        {/* Female Pirate Quartermaster Overlay (Prominent Position) */}
+        <div className="absolute -top-12 -left-2 md:-left-6 z-30 pointer-events-none block">
+          <img
+            src={femalePirateQuartermaster}
+            alt="Female Pirate Quartermaster"
+            loading="lazy"
+            decoding="async"
+            className="w-36 sm:w-48 lg:w-56 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)] transform hover:scale-105 transition-transform duration-500"
+          />
+        </div>
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -47,16 +58,8 @@ const OurSponsors = () => {
           The esteemed industry leaders and visionaries backing HackQubit 2.0.
         </p>
 
-        {/* Announcement Card with Top Vintage Emblem Logo & Female Pirate Quartermaster */}
+        {/* Announcement Card with Top Vintage Emblem Logo */}
         <div className="relative rounded-3xl border-2 border-dashed border-amber-700/40 bg-white/95 backdrop-blur-xl p-10 sm:p-14 shadow-2xl max-w-3xl mx-auto text-amber-950">
-          {/* Female Pirate Quartermaster Overlay (Empty Left Space) */}
-          <div className="absolute -bottom-4 -left-16 sm:-left-24 z-20 pointer-events-none hidden md:block">
-            <img
-              src={femalePirateQuartermaster}
-              alt="Female Pirate Quartermaster"
-              className="w-44 sm:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)] transform hover:scale-105 transition-transform duration-500"
-            />
-          </div>
           {/* Top Middle Vintage Pirate Emblem Logo */}
           <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex justify-center">
             <div className="w-24 h-24 sm:w-28 sm:h-28 transition-transform duration-500 hover:scale-110">

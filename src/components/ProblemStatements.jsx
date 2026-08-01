@@ -30,17 +30,28 @@ const ProblemStatements = () => {
       <GoldRainParticles />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
-      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
         <img
           src={bgStoryProblemStatements}
           alt="Pirate Strategy Cabin Story"
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+          className="w-full h-full object-cover object-bottom opacity-85"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/40 to-pirate-bg" />
       </div>
+
       <div className="max-w-5xl mx-auto relative z-10 text-center">
+        {/* Female Pirate Navigator Cutout Overlay (Prominent Right Side) */}
+        <div className="absolute -top-6 -right-4 md:right-0 z-30 pointer-events-none block">
+          <img
+            src={femalePirateNavigator}
+            alt="Female Pirate Navigator"
+            loading="lazy"
+            decoding="async"
+            className="w-36 sm:w-48 lg:w-56 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)] transform hover:scale-105 transition-transform duration-500"
+          />
+        </div>
         {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,18 +73,8 @@ const ProblemStatements = () => {
           The secret pirate challenges will be unveiled live at the opening ceremony!
         </p>
 
-        {/* Main Announcement Banner with Top Vintage Emblem Logo & Female Pirate Navigator Overlay */}
+        {/* Main Announcement Banner with Top Vintage Emblem Logo */}
         <div className="relative rounded-3xl border-2 border-amber-700/40 bg-white/95 backdrop-blur-xl p-8 sm:p-12 shadow-2xl mb-20 max-w-3xl mx-auto text-amber-950">
-          {/* Female Pirate Navigator Standing Cutout Overlay (Empty Right Space) */}
-          <div className="absolute -top-12 -right-4 sm:-right-8 z-30 pointer-events-none hidden xl:block">
-          <img
-            src={femalePirateNavigator}
-            alt="Female Pirate Navigator"
-            loading="lazy"
-            decoding="async"
-            className="w-48 sm:w-56 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-500"
-          />
-        </div>
           {/* Top Middle Vintage Emblem Badge Logo */}
           <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex justify-center">
             <div className="w-24 h-24 sm:w-28 sm:h-28 transition-transform duration-500 hover:scale-110">

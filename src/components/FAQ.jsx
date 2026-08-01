@@ -47,15 +47,15 @@ const FAQ = () => {
       <GoldRainParticles />
 
       {/* ── LANDSCAPE ANIME STORY BACKGROUND AT BOTTOM WITH TOP GRADIENT BLEND ── */}
-      <div className="absolute inset-x-0 bottom-0 h-[380px] sm:h-[460px] pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
         <img
           src={bgStoryFaq}
           alt="Pirate Captain Library Story"
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover object-bottom opacity-40 mix-blend-multiply"
+          className="w-full h-full object-cover object-bottom opacity-85"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/60 to-pirate-bg" />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-pirate-bg/40 to-pirate-bg" />
       </div>
 
       {/* Decorative blurred ambient blobs */}
