@@ -2,7 +2,7 @@ import React, { Component, useState, useCallback } from "react";
 import {
   Hero, About, Timeline, PrizePool, ProblemStatements,
   SponsorPackage, SponsorPerks, OurSponsors,
-  Footer, ScrollToTop, Loader, TopLand, BottomLand, Gallery, FAQ
+  Footer, ScrollToTop, Loader, PirateWaveDivider, Gallery, FAQ
 } from "./components";
 import PirateCaptainGuide from "./components/PirateCaptainGuide";
 import PirateParrotCompanion from "./components/PirateParrotCompanion";
@@ -56,30 +56,30 @@ function App() {
         {/* Hero Section at the top */}
         <Hero onOpenRegister={() => setIsRegisterModalOpen(true)} />
 
-        <TopLand />
+        <PirateWaveDivider />
         <About onOpenRegister={() => setIsRegisterModalOpen(true)} />
-        <BottomLand />
+        <PirateWaveDivider flip />
 
         {/* Timeline → Prize Pool → Problem Statements */}
         <Timeline />
-        <BottomLand />
+        <PirateWaveDivider />
         <PrizePool />
-        <BottomLand />
+        <PirateWaveDivider flip />
         <ProblemStatements />
 
         {/* Sponsor Package → Sponsor Perks → Our Sponsors */}
-        <TopLand />
+        <PirateWaveDivider />
         <SponsorPackage />
-        <BottomLand />
+        <PirateWaveDivider flip />
         <SponsorPerks />
-        <TopLand />
+        <PirateWaveDivider />
         <OurSponsors />
-        <BottomLand />
+        <PirateWaveDivider flip />
 
         {/* Our Past Gallery (Placed Just Above FAQ) */}
-        <TopLand />
+        <PirateWaveDivider />
         <Gallery />
-        <BottomLand />
+        <PirateWaveDivider flip />
 
         {/* FAQ → Footer */}
         <FAQ />

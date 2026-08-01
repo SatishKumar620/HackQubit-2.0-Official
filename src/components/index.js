@@ -20,3 +20,4 @@ export { default as OurSponsors } from "./OurSponsors";
 export { default as PastSponsors } from "./PastSponsors";
 export { default as Gallery } from "./Gallery";
 export { default as FAQ } from "./FAQ";
+export { default as PirateWaveDivider } from "./PirateWaveDivider";
