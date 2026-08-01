@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import femalePirateLookout from "../assets/images/female_pirate_lookout.png";
 
 const Gallery = () => {
   const images = [
@@ -12,7 +13,16 @@ const Gallery = () => {
   ];
 
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto">
+    <section className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
+      {/* Female Pirate Lookout Cutout Overlay (Looking through Spyglass) */}
+      <div className="absolute top-4 right-4 sm:right-12 z-20 pointer-events-none hidden lg:block">
+        <img
+          src={femalePirateLookout}
+          alt="Female Pirate Lookout with Spyglass"
+          className="w-44 sm:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+
       <div className="text-center mb-12">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

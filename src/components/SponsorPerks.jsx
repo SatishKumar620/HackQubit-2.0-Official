@@ -5,6 +5,7 @@ import { ShieldCheck, Sparkles, Award } from "lucide-react";
 import emblemSkullAnchor from "../assets/images/emblem_skull_anchor.png";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
 import emblemTreasureChest from "../assets/images/emblem_treasure_chest.png";
+import femalePirateTreasurer from "../assets/images/female_pirate_treasurer.png";
 
 const PERKS = [
   {
@@ -49,6 +50,14 @@ const SponsorPerks = () => {
       className="relative py-28 px-6 bg-pirate-bg text-amber-950 overflow-hidden"
     >
       <div className="max-w-6xl mx-auto relative z-20">
+        {/* Female Pirate Treasurer Standing Cutout Overlay (Top Right Empty Area) */}
+        <div className="absolute -top-12 -right-4 sm:-right-8 z-30 pointer-events-none hidden xl:block">
+          <img
+            src={femalePirateTreasurer}
+            alt="Female Pirate Treasurer"
+            className="w-48 sm:w-56 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.3)] transform hover:scale-105 transition-transform duration-500"
+          />
+        </div>
         {/* Section Header */}
         <div className="text-center mb-20">
           <motion.div

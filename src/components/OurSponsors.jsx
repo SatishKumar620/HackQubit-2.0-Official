@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ShieldAlert, Sparkles, Anchor } from "lucide-react";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.png";
+import femalePirateQuartermaster from "../assets/images/female_pirate_quartermaster.png";
 
 const OurSponsors = () => {
   return (
@@ -31,8 +32,16 @@ const OurSponsors = () => {
           The esteemed industry leaders and visionaries backing HackQubit 2.0.
         </p>
 
-        {/* Announcement Card with Top Vintage Emblem Logo */}
+        {/* Announcement Card with Top Vintage Emblem Logo & Female Pirate Quartermaster */}
         <div className="relative rounded-3xl border-2 border-dashed border-amber-700/40 bg-white/95 backdrop-blur-xl p-10 sm:p-14 shadow-2xl max-w-3xl mx-auto text-amber-950">
+          {/* Female Pirate Quartermaster Overlay (Empty Left Space) */}
+          <div className="absolute -bottom-4 -left-16 sm:-left-24 z-20 pointer-events-none hidden md:block">
+            <img
+              src={femalePirateQuartermaster}
+              alt="Female Pirate Quartermaster"
+              className="w-44 sm:w-52 h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.35)] transform hover:scale-105 transition-transform duration-500"
+            />
+          </div>
           {/* Top Middle Vintage Pirate Emblem Logo */}
           <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-30 pointer-events-none flex justify-center">
             <div className="w-24 h-24 sm:w-28 sm:h-28 transition-transform duration-500 hover:scale-110">
