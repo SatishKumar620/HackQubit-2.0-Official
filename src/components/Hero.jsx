@@ -6,6 +6,8 @@ import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
 
 import animeOceanIslandImg from "../assets/images/anime_ocean_island.webp";
+import flyingShipImg from "../assets/images/flying_ship_hero.webp";
+import waterShipImg from "../assets/images/water_ship_hero.webp";
 
 const Hero = () => {
   const navbarRef = useRef(null);
@@ -16,6 +18,8 @@ const Hero = () => {
   const buttonsRef = useRef(null);
   const socialRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
+  const flyingShipRef = useRef(null);
+  const waterShipRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -24,6 +28,20 @@ const Hero = () => {
         [subtitleRef.current, headingLine1Ref.current, headingLine2Ref.current, descriptionRef.current, buttonsRef.current],
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }
+      );
+
+      // Flying Ship floating entrance
+      gsap.fromTo(
+        flyingShipRef.current,
+        { opacity: 0, x: -80, y: -40 },
+        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 }
+      );
+
+      // Water Ship entrance
+      gsap.fromTo(
+        waterShipRef.current,
+        { opacity: 0, x: 80, y: 40 },
+        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.5 }
       );
     });
 
@@ -47,13 +65,12 @@ const Hero = () => {
       {/* Soft Sky Gradient Overlay */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-pirate-bg/60 via-transparent to-pirate-bg/80 pointer-events-none" />
 
-      {/* ── 2. TOP FOREGROUND: Corner-to-Corner Diagonal Rigging Rope (Touches Top-Left & Bottom-Right Corners on All Screen Sizes) ── */}
+      {/* ── 2. TOP FOREGROUND: Corner-to-Corner Diagonal Rigging Rope ── */}
       <svg
         className="absolute inset-0 w-full h-full z-20 pointer-events-none overflow-visible"
         viewBox="0 0 1000 1000"
         preserveAspectRatio="none"
       >
-        {/* Main Thick Braided Rigging Rope stretching exactly from (0,0) to (1000,1000) */}
         <path
           d="M 0 0 C 350 250, 650 750, 1000 1000"
           fill="none"
@@ -71,10 +88,36 @@ const Hero = () => {
         />
       </svg>
 
+      {/* ── 3. FLYING PIRATE SHIP (LEFT SKY - FLOATING UP & DOWN SLOWLY) ── */}
+      <div
+        ref={flyingShipRef}
+        className="absolute top-20 left-2 sm:left-6 lg:left-12 z-20 pointer-events-none w-56 sm:w-72 md:w-80 lg:w-[420px] max-w-[45vw] animate-[floatSky_6s_ease-in-out_infinite]"
+      >
+        <img
+          src={flyingShipImg}
+          alt="Flying Pirate Ship with Crew"
+          className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]"
+          loading="eager"
+        />
+      </div>
+
+      {/* ── 4. WATER ENEMY PIRATE SHIP (RIGHT SEA - BOBBING ON WAVES) ── */}
+      <div
+        ref={waterShipRef}
+        className="absolute bottom-16 right-2 sm:right-6 lg:right-12 z-20 pointer-events-none w-56 sm:w-72 md:w-80 lg:w-[420px] max-w-[45vw] animate-[bobSea_5s_ease-in-out_infinite]"
+      >
+        <img
+          src={waterShipImg}
+          alt="Enemy Pirate Ship on Water"
+          className="w-full h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+          loading="eager"
+        />
+      </div>
+
       {/* Navbar */}
       <Navbar ref={navbarRef} />
 
-      {/* ── 3. HERO MAIN CONTENT ── */}
+      {/* ── 5. HERO MAIN CONTENT ── */}
       <HeroContent
         refs={{
           subtitle: subtitleRef,
@@ -90,8 +133,21 @@ const Hero = () => {
         <SocialIcons ref={socialRef} />
         <ScrollIndicator ref={scrollIndicatorRef} />
       </div>
+
+      {/* Floating Keyframe Styles */}
+      <style>{`
+        @keyframes floatSky {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-16px) rotate(1.5deg); }
+        }
+        @keyframes bobSea {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(12px) rotate(-1.5deg); }
+        }
+      `}</style>
     </section>
   );
 };
 
 export default Hero;
+
