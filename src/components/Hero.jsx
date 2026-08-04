@@ -8,6 +8,7 @@ import ScrollIndicator from "./ScrollIndicator";
 import animeOceanIslandImg from "../assets/images/anime_ocean_island.webp";
 import flyingShipImg from "../assets/images/flying_ship_hero.webp";
 import waterShipImg from "../assets/images/water_ship_hero.webp";
+import flyingDragonImg from "../assets/images/flying_dragon_hero.webp";
 
 const Hero = () => {
   const navbarRef = useRef(null);
@@ -20,6 +21,7 @@ const Hero = () => {
   const scrollIndicatorRef = useRef(null);
   const flyingShipRef = useRef(null);
   const waterShipRef = useRef(null);
+  const dragonRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -30,18 +32,25 @@ const Hero = () => {
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }
       );
 
+      // Dragon entrance from far left
+      gsap.fromTo(
+        dragonRef.current,
+        { opacity: 0, x: -120, y: -20 },
+        { opacity: 1, x: 0, y: 0, duration: 1.4, ease: "power3.out", delay: 0.2 }
+      );
+
       // Flying Ship floating entrance
       gsap.fromTo(
         flyingShipRef.current,
         { opacity: 0, x: -80, y: -40 },
-        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.3 }
+        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.4 }
       );
 
       // Water Ship entrance
       gsap.fromTo(
         waterShipRef.current,
         { opacity: 0, x: 80, y: 40 },
-        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.5 }
+        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.6 }
       );
     });
 
@@ -88,28 +97,41 @@ const Hero = () => {
         />
       </svg>
 
-      {/* ── 3. FLYING PIRATE SHIP (LEFT SKY - FLOATING UP & DOWN SLOWLY) ── */}
+      {/* ── 3. FLYING DRAGON (FAR LEFT SKY - LOOKING DOWN TOWARDS WATER SHIP) ── */}
       <div
-        ref={flyingShipRef}
-        className="absolute top-20 left-2 sm:left-6 lg:left-12 z-20 pointer-events-none w-56 sm:w-72 md:w-80 lg:w-[420px] max-w-[45vw] animate-[floatSky_6s_ease-in-out_infinite]"
+        ref={dragonRef}
+        className="absolute top-12 left-0 sm:left-2 lg:left-4 z-20 pointer-events-none w-48 sm:w-64 md:w-80 lg:w-[440px] max-w-[45vw] animate-[floatDragon_7s_ease-in-out_infinite]"
       >
         <img
-          src={flyingShipImg}
-          alt="Flying Pirate Ship with Crew"
-          className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]"
+          src={flyingDragonImg}
+          alt="Flying Sea Dragon"
+          className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)]"
           loading="eager"
         />
       </div>
 
-      {/* ── 4. WATER ENEMY PIRATE SHIP (RIGHT SEA - BOBBING ON WAVES) ── */}
+      {/* ── 4. FLYING PIRATE SHIP (LEFT SKY - LARGER & CLOSER TO CENTER) ── */}
+      <div
+        ref={flyingShipRef}
+        className="absolute top-16 left-10 sm:left-20 lg:left-36 z-20 pointer-events-none w-64 sm:w-80 md:w-[450px] lg:w-[540px] max-w-[50vw] animate-[floatSky_6s_ease-in-out_infinite]"
+      >
+        <img
+          src={flyingShipImg}
+          alt="Flying Pirate Ship with Crew"
+          className="w-full h-auto object-contain filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
+          loading="eager"
+        />
+      </div>
+
+      {/* ── 5. WATER ENEMY PIRATE SHIP (RIGHT SEA - LARGER & CLOSER TO CENTER) ── */}
       <div
         ref={waterShipRef}
-        className="absolute bottom-16 right-2 sm:right-6 lg:right-12 z-20 pointer-events-none w-56 sm:w-72 md:w-80 lg:w-[420px] max-w-[45vw] animate-[bobSea_5s_ease-in-out_infinite]"
+        className="absolute bottom-12 right-4 sm:right-12 lg:right-28 z-20 pointer-events-none w-64 sm:w-80 md:w-[450px] lg:w-[540px] max-w-[50vw] animate-[bobSea_5s_ease-in-out_infinite]"
       >
         <img
           src={waterShipImg}
           alt="Enemy Pirate Ship on Water"
-          className="w-full h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+          className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)]"
           loading="eager"
         />
       </div>
@@ -117,7 +139,7 @@ const Hero = () => {
       {/* Navbar */}
       <Navbar ref={navbarRef} />
 
-      {/* ── 5. HERO MAIN CONTENT ── */}
+      {/* ── 6. HERO MAIN CONTENT ── */}
       <HeroContent
         refs={{
           subtitle: subtitleRef,
@@ -136,6 +158,10 @@ const Hero = () => {
 
       {/* Floating Keyframe Styles */}
       <style>{`
+        @keyframes floatDragon {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-18px) rotate(2deg); }
+        }
         @keyframes floatSky {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
           50% { transform: translateY(-16px) rotate(1.5deg); }

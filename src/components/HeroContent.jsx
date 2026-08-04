@@ -17,11 +17,11 @@ const HeroContent = ({ refs }) => {
 
       {/* Main Heading Graphic: "HACKQUBIT 2.0" where individual letters wear crowns, necklaces, rings & gems */}
       <div className="relative mb-6 group select-none">
-        <div ref={refs.headingLine1} className="w-full max-w-[650px]">
+        <div ref={refs.headingLine1} className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px]">
           <img
             src={hackqubitJewelTitleImg}
             alt="HACKQUBIT 2.0 Pirate Jewelry Title"
-            className="w-full h-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.25)]"
+            className="w-full h-auto object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)]"
           />
         </div>
       </div>
