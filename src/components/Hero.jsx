@@ -100,7 +100,7 @@ const Hero = () => {
       {/* ── 3. FLYING SEA DRAGON (TOP-LEFT SKY - HIGH IN AIR, NO OVERLAP WITH WATER SHIP) ── */}
       <div
         ref={dragonRef}
-        className="absolute top-16 sm:top-20 lg:top-24 left-2 sm:left-4 lg:left-8 z-20 pointer-events-none w-44 sm:w-60 md:w-[360px] lg:w-[440px] max-w-[40vw] animate-[floatDragon_7s_ease-in-out_infinite]"
+        className="absolute top-12 sm:top-16 lg:top-20 left-0 sm:left-2 lg:left-4 z-20 pointer-events-none w-56 sm:w-72 md:w-[420px] lg:w-[520px] xl:w-[580px] max-w-[46vw] animate-[floatDragon_7s_ease-in-out_infinite]"
       >
         <img
           src={flyingDragonImg}
@@ -113,7 +113,7 @@ const Hero = () => {
       {/* ── 4. WATER PIRATE SHIP (BOTTOM-LEFT SEA - FACING RIGHT & UPWARDS) ── */}
       <div
         ref={waterShipRef}
-        className="absolute bottom-4 sm:bottom-8 lg:bottom-12 left-2 sm:left-6 lg:left-12 z-20 pointer-events-none w-60 sm:w-80 md:w-[480px] lg:w-[560px] xl:w-[620px] max-w-[48vw] animate-[bobSea_5s_ease-in-out_infinite]"
+        className="absolute bottom-0 sm:bottom-4 lg:bottom-8 left-0 sm:left-2 lg:left-6 z-20 pointer-events-none w-72 sm:w-96 md:w-[520px] lg:w-[640px] xl:w-[740px] max-w-[52vw] animate-[bobSea_5s_ease-in-out_infinite]"
       >
         <img
           src={waterShipImg}
@@ -126,7 +126,7 @@ const Hero = () => {
       {/* ── 5. FLYING PIRATE SHIP (TOP-RIGHT SKY - FACING LEFT & DOWNWARDS) ── */}
       <div
         ref={flyingShipRef}
-        className="absolute top-14 sm:top-18 lg:top-20 right-2 sm:right-6 lg:right-12 z-20 pointer-events-none w-60 sm:w-80 md:w-[480px] lg:w-[560px] xl:w-[620px] max-w-[48vw] animate-[floatSky_6s_ease-in-out_infinite]"
+        className="absolute top-10 sm:top-14 lg:top-16 right-0 sm:right-2 lg:right-6 z-20 pointer-events-none w-72 sm:w-96 md:w-[520px] lg:w-[640px] xl:w-[740px] max-w-[52vw] animate-[floatSky_6s_ease-in-out_infinite]"
       >
         <img
           src={flyingShipImg}
