@@ -6,7 +6,6 @@ import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
 
 import animeOceanIslandImg from "../assets/images/anime_ocean_island.webp";
-import flyingShipImg from "../assets/images/flying_ship_top_right.webp";
 import waterShipImg from "../assets/images/water_ship_bottom_left.webp";
 import flyingDragonImg from "../assets/images/flying_dragon_hero.webp";
 
@@ -19,7 +18,6 @@ const Hero = () => {
   const buttonsRef = useRef(null);
   const socialRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
-  const flyingShipRef = useRef(null);
   const waterShipRef = useRef(null);
   const dragonRef = useRef(null);
 
@@ -44,13 +42,6 @@ const Hero = () => {
         waterShipRef.current,
         { opacity: 0, x: -80, y: 40 },
         { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.4 }
-      );
-
-      // Flying Ship floating entrance from top-right
-      gsap.fromTo(
-        flyingShipRef.current,
-        { opacity: 0, x: 80, y: -40 },
-        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.6 }
       );
     });
 
@@ -123,18 +114,7 @@ const Hero = () => {
         />
       </div>
 
-      {/* ── 5. FLYING PIRATE SHIP (TOP-RIGHT SKY - FACING LEFT & DOWNWARDS) ── */}
-      <div
-        ref={flyingShipRef}
-        className="absolute top-10 sm:top-14 lg:top-16 right-0 sm:right-2 lg:right-6 z-20 pointer-events-none w-72 sm:w-96 md:w-[520px] lg:w-[640px] xl:w-[740px] max-w-[52vw] animate-[floatSky_6s_ease-in-out_infinite]"
-      >
-        <img
-          src={flyingShipImg}
-          alt="Flying Pirate Ship with Crew"
-          className="w-full h-auto object-contain filter drop-shadow-[0_14px_28px_rgba(0,0,0,0.65)]"
-          loading="eager"
-        />
-      </div>
+
 
       {/* Navbar */}
       <Navbar ref={navbarRef} />
