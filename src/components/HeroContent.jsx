@@ -16,7 +16,7 @@ const HeroContent = ({ refs }) => {
       </div>
 
       {/* Main Heading Graphic: "HACKQUBIT 2.0" where individual letters wear crowns, necklaces, rings & gems */}
-      <div className="relative mb-6 group select-none">
+      <div className="relative mb-6 group select-none self-end">
         <div ref={refs.headingLine1} className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px]">
           <img
             src={hackqubitJewelTitleImg}
