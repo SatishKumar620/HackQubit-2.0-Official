@@ -3,7 +3,7 @@ import hackqubitJewelTitleImg from "../assets/images/hackqubit_jewel_title.png";
 
 const HeroContent = ({ refs }) => {
   return (
-    <div className="relative z-20 flex flex-col items-start justify-center max-w-4xl px-6 sm:px-12 lg:px-20 pt-28 pb-16 text-left">
+    <div className="relative z-20 flex flex-col items-start justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-28 pb-16 text-left">
       {/* Small Badge / Tagline */}
       <div
         ref={refs.subtitle}
