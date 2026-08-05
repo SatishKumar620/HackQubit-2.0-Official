@@ -38,7 +38,9 @@ const HeroContent = ({ refs }) => {
       <div ref={refs.buttons} className="flex flex-wrap items-center gap-4 sm:gap-6">
         {/* Registration Button */}
         <a
-          href="#register"
+          href="https://forms.gle/STi1SKZ8uK1fCVQr7"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-8 sm:px-10 py-4 rounded-xl font-cinzel text-sm sm:text-base font-extrabold text-amber-50 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 shadow-xl hover:shadow-amber-900/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-amber-600/40"
         >
           Registration
