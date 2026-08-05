@@ -5,17 +5,58 @@ import bgStoryGallery from "../assets/images/bg_story_gallery.webp";
 import GoldRainParticles from "./GoldRainParticles";
 
 const Gallery = () => {
-  const images = [
-    { id: 1, src: '/memory-1.jpeg', top: '2%',  size: 'w-40 sm:w-56', dir: 1, duration: 14 },
-    { id: 2, src: '/memory-2.jpeg', top: '18%', size: 'w-28 sm:w-40', dir: -1, duration: 11 },
-    { id: 3, src: '/memory-3.jpeg', top: '34%', size: 'w-32 sm:w-44', dir: 1, duration: 16 },
-    { id: 4, src: '/memory-4.jpeg', top: '50%', size: 'w-36 sm:w-48', dir: -1, duration: 13 },
-    { id: 5, src: '/memory-5.jpeg', top: '64%', size: 'w-28 sm:w-40', dir: 1, duration: 12 },
-    { id: 6, src: '/memory-6.jpeg', top: '78%', size: 'w-40 sm:w-56', dir: -1, duration: 15 },
-    { id: 7, src: '/memory-7.jpg',  top: '90%', size: 'w-32 sm:w-44', dir: 1, duration: 10 },
+  const topRow = [
+    { id: 1, src: '/memory-1.jpeg' },
+    { id: 2, src: '/memory-2.jpeg' },
+    { id: 3, src: '/memory-3.jpeg' },
+    { id: 4, src: '/memory-4.jpeg' },
+  ];
+
+  const bottomRow = [
+    { id: 5, src: '/memory-5.jpeg' },
+    { id: 6, src: '/memory-6.jpeg' },
+    { id: 7, src: '/memory-7.jpg' },
   ];
 
   const [activeId, setActiveId] = useState(null);
+
+  const renderRow = (row, direction, duration) => {
+    // Duplicate the row so the loop feels seamless
+    const looped = [...row, ...row];
+    return (
+      <div className="relative w-full overflow-hidden">
+        <motion.div
+          className="flex gap-4 w-max"
+          animate={{ x: direction === 'left' ? ['0%', '-50%'] : ['-50%', '0%'] }}
+          transition={{ duration, repeat: Infinity, ease: 'linear' }}
+        >
+          {looped.map((img, i) => {
+            const isActive = activeId === `${img.id}-${i}`;
+            return (
+              <div
+                key={`${img.id}-${i}`}
+                onMouseEnter={() => setActiveId(`${img.id}-${i}`)}
+                onMouseLeave={() => setActiveId(null)}
+                onTouchStart={() => setActiveId(`${img.id}-${i}`)}
+                onTouchEnd={() => setActiveId(null)}
+                className="w-56 sm:w-72 h-40 sm:h-52 rounded-xl overflow-hidden shadow-xl shrink-0 cursor-pointer"
+              >
+                <img
+                  src={img.src}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className={`w-full h-full object-cover transition-all duration-500 ${
+                    isActive ? 'grayscale-0' : 'grayscale'
+                  }`}
+                />
+              </div>
+            );
+          })}
+        </motion.div>
+      </div>
+    );
+  };
 
   return (
     <section className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
@@ -54,36 +95,9 @@ const Gallery = () => {
         <p className="text-lg text-slate-600">Glimpses from our previous adventures.</p>
       </div>
 
-      {/* Full-width traveling photo lane */}
-      <div className="relative w-full h-[1400px] sm:h-[1000px] overflow-hidden z-10">
-        {images.map((img) => {
-          const isActive = activeId === img.id;
-          const startX = img.dir === 1 ? '-30vw' : '130vw';
-          const endX = img.dir === 1 ? '130vw' : '-30vw';
-          return (
-            <motion.div
-              key={img.id}
-              className={`absolute ${img.size} rounded-xl overflow-hidden shadow-xl cursor-pointer`}
-              style={{ top: img.top }}
-              animate={{ x: isActive ? undefined : [startX, endX] }}
-              transition={{ duration: img.duration, repeat: Infinity, ease: 'linear' }}
-              onMouseEnter={() => setActiveId(img.id)}
-              onMouseLeave={() => setActiveId(null)}
-              onTouchStart={() => setActiveId(img.id)}
-              onTouchEnd={() => setActiveId(null)}
-            >
-              <img
-                src={img.src}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className={`w-full h-full object-cover transition-all duration-500 ${
-                  isActive ? 'grayscale-0' : 'grayscale'
-                }`}
-              />
-            </motion.div>
-          );
-        })}
+      <div className="relative z-10 flex flex-col gap-6">
+        {renderRow(topRow, 'left', 18)}
+        {renderRow(bottomRow, 'right', 16)}
       </div>
     </section>
   );
