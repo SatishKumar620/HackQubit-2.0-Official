@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ShieldAlert, Sparkles, Anchor } from "lucide-react";
+import { ShieldAlert, Sparkles, Anchor, Download } from "lucide-react";
 import emblemPirateShip from "../assets/images/emblem_pirate_ship.webp";
 import femalePirateQuartermaster from "../assets/images/female_pirate_quartermaster.webp";
 import bgStoryOurSponsors from "../assets/images/bg_story_our_sponsors.webp";
@@ -54,9 +54,19 @@ const OurSponsors = () => {
         <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 mb-4 tracking-wide">
           Our <span className="text-amber-800">Sponsors</span>
         </h2>
-        <p className="font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-xl mx-auto mb-16">
+        <p className="font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-xl mx-auto mb-6">
           The esteemed industry leaders and visionaries backing HackQubit 2.0.
         </p>
+
+        {/* Download Sponsorship Brochure Button */}
+        <a
+          href="/HackQubit2SponsorshipBrochure.pdf"
+          download
+          className="inline-flex items-center gap-2 px-8 py-4 mb-16 rounded-xl font-cinzel text-sm sm:text-base font-extrabold text-amber-50 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 shadow-xl hover:shadow-amber-900/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-amber-600/40"
+        >
+          <Download className="w-5 h-5" />
+          Download Sponsorship Brochure
+        </a>
 
         {/* Announcement Card with Top Vintage Emblem Logo */}
         <div className="relative rounded-3xl border-2 border-dashed border-amber-700/40 bg-white/95 backdrop-blur-xl p-10 sm:p-14 shadow-2xl max-w-3xl mx-auto text-amber-950">
