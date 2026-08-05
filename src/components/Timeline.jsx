@@ -383,7 +383,50 @@ const TreasureMapTimeline = () => {
       </div>
 
       {/* ── MAP AREA ── */}
-      <div className="relative z-10 mx-auto" style={{ maxWidth: 750, minHeight: 1850 }}>
+              {/* MOBILE TIMELINE: simple stacked list, avoids overlap on small screens */}
+        <div className="sm:hidden px-4 space-y-5 relative z-10">
+          {MILESTONES.map((ms) => (
+            <div
+              key={ms.id}
+              className="rounded-xl p-4 relative overflow-hidden"
+              style={{
+                background: "linear-gradient(135deg, rgba(248,238,216,0.98) 0%, rgba(238,220,188,0.98) 100%)",
+                border: `1px solid ${ms.color}66`,
+                boxShadow: `0 15px 35px -5px rgba(80,50,20,0.35), 0 0 20px ${ms.color}22`,
+              }}
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center border-2 shrink-0"
+                  style={{ background: `${ms.color}33`, borderColor: ms.color }}
+                >
+                  <ms.Icon className="w-5 h-5 text-white" strokeWidth={2.2} />
+                </div>
+                <div>
+                  <span
+                    className="text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider mr-2"
+                    style={{ background: ms.color + "22", color: ms.color, border: `1px solid ${ms.color}44` }}
+                  >
+                    {ms.day}
+                  </span>
+                  <span className="text-[11px] text-amber-900/80 font-['Cinzel'] font-semibold">{ms.time}</span>
+                </div>
+              </div>
+              <h3 className="font-['Pirata_One'] text-lg text-amber-950 leading-tight mb-0.5">{ms.title}</h3>
+              <p className="text-[11px] font-bold text-amber-800/90 uppercase tracking-wider mb-1.5 font-['Cinzel']">{ms.subtitle}</p>
+              <p className="text-[12.5px] text-amber-950/80 leading-relaxed font-['Cormorant_Garamond'] italic">{ms.desc}</p>
+              {ms.isFinal && (
+                <div className="mt-2.5 pt-2 border-t border-amber-700/20 text-center flex items-center justify-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                  <span className="text-amber-700 font-bold text-[11px] font-['Cinzel'] uppercase tracking-widest">X Marks The Spot</span>
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto hidden sm:block" style={{ maxWidth: 750, minHeight: 1850 }}>
         {/* Hand-Drawn Paper Map Sketch Overlay */}
         <PaperMapSketches />
 
