@@ -187,7 +187,7 @@ const GoldRainParticles = () => {
       id: i,
       Component: ALL_PIRATE_TREASURES[i % ALL_PIRATE_TREASURES.length],
       left: `${(i * 4.5 + 2) % 95}%`,
-      size: `${20 + (i % 4) * 6}px`,
+      size: `${10 + (i % 4) * 3}px`,
       duration: `${4.5 + (i % 4) * 2}s`,
       delay: `${(i % 5) * 0.7}s`,
       opacity: 0.8 + (i % 3) * 0.1,
