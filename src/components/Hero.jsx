@@ -91,7 +91,7 @@ const Hero = () => {
       {/* ── 3. FLYING SEA DRAGON (TOP-LEFT SKY - HIGH IN AIR, NO OVERLAP WITH WATER SHIP) ── */}
       <div
         ref={dragonRef}
-        className="absolute top-12 sm:top-16 lg:top-20 left-0 sm:left-2 lg:left-4 z-20 pointer-events-none w-56 sm:w-72 md:w-[420px] lg:w-[520px] xl:w-[580px] max-w-[46vw] animate-[floatDragon_7s_ease-in-out_infinite]"
+        className="absolute top-12 sm:top-16 lg:top-20 left-6 sm:left-12 lg:left-20 z-20 pointer-events-none w-56 sm:w-72 md:w-[420px] lg:w-[520px] xl:w-[580px] max-w-[46vw] animate-[floatDragon_7s_ease-in-out_infinite]"
       >
         <img
           src={flyingDragonImg}
