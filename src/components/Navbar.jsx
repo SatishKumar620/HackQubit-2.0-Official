@@ -52,7 +52,7 @@ const Navbar = forwardRef((props, ref) => {
               {/* RVSCET */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-11 h-11 rounded-full bg-white border-2 border-amber-400/40 hover:border-amber-400 hover:shadow-[0_0_14px_rgba(212,175,55,0.5)] transition-all duration-300 overflow-hidden p-0.5 shadow-md"
+                className="group flex items-center justify-center w-11 h-11 rounded-full bg-white border-2 border-amber-400/40 hover:border-amber-400 hover:shadow-[0_0_14px_rgba(212,175,55,0.5)] transition-all duration-300 overflow-hidden p-1.5 shadow-md"
                 title="RVSCET"
               >
                 <img
