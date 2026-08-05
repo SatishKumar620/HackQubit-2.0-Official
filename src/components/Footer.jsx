@@ -2,7 +2,7 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Compass, Mail, MapPin, MessageSquare, Anchor, Award, ExternalLink } from "lucide-react";
-import { FaTwitter, FaLinkedinIn, FaGithub, FaDiscord } from "react-icons/fa";
+import { FaLinkedinIn, FaDiscord, FaYoutube, FaFacebookF, FaInstagram } from "react-icons/fa";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,14 +113,17 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-3">
               {[
-                { icon: <FaDiscord className="w-4 h-4" />, label: "Discord", href: "#" },
-                { icon: <FaTwitter className="w-4 h-4" />, label: "Twitter", href: "#" },
-                { icon: <FaLinkedinIn className="w-4 h-4" />, label: "LinkedIn", href: "#" },
-                { icon: <FaGithub className="w-4 h-4" />, label: "GitHub", href: "#" },
+                { icon: <FaDiscord className="w-4 h-4" />, label: "Discord", href: "https://discord.gg/3nJdTFxK" },
+                { icon: <FaYoutube className="w-4 h-4" />, label: "YouTube", href: "https://www.youtube.com/channel/UCRR5Cgctq1cX-63U3o86G_A" },
+                { icon: <FaFacebookF className="w-4 h-4" />, label: "Facebook", href: "https://www.facebook.com/people/Helix-The-Tech-AI-Club/61575162227587/" },
+                { icon: <FaLinkedinIn className="w-4 h-4" />, label: "LinkedIn", href: "https://www.linkedin.com/company/helixrvscet/posts/?feedView=all" },
+                { icon: <FaInstagram className="w-4 h-4" />, label: "Instagram", href: "https://www.instagram.com/helixrvscet?igsh=MXBicHRjbmdscTg4bQ==" },
               ].map((s, i) => (
                 <a
                   key={i}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-10 h-10 rounded-xl border border-slate-800 bg-slate-900 flex items-center justify-center text-slate-300 hover:text-amber-400 hover:border-amber-500/40 hover:bg-amber-500/10 hover:-translate-y-1 transition-all duration-200"
                 >
