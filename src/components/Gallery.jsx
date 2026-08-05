@@ -6,13 +6,13 @@ import GoldRainParticles from "./GoldRainParticles";
 
 const Gallery = () => {
   const images = [
-    { id: 1, src: '/memory-1.jpeg', title: 'Hacking Begins', span: 'col-span-2 row-span-2', dir: 1 },
-    { id: 2, src: '/memory-2.jpeg', title: 'Mentorship', span: 'col-span-1 row-span-1', dir: -1 },
-    { id: 3, src: '/memory-3.jpeg', title: 'Midnight Snacks', span: 'col-span-1 row-span-1', dir: 1 },
-    { id: 4, src: '/memory-4.jpeg', title: 'Presentations', span: 'col-span-1 row-span-2', dir: -1 },
-    { id: 5, src: '/memory-5.jpeg', title: 'Winners', span: 'col-span-1 row-span-1', dir: 1 },
-    { id: 6, src: '/memory-6.jpeg', title: 'Swag Distribution', span: 'col-span-2 row-span-1', dir: -1 },
-    { id: 7, src: '/memory-7.jpg', title: 'Crew Moments', span: 'col-span-1 row-span-1', dir: 1 },
+    { id: 1, src: '/memory-1.jpeg', span: 'col-span-2 row-span-2', dir: 1 },
+    { id: 2, src: '/memory-2.jpeg', span: 'col-span-1 row-span-1', dir: -1 },
+    { id: 3, src: '/memory-3.jpeg', span: 'col-span-1 row-span-1', dir: 1 },
+    { id: 4, src: '/memory-4.jpeg', span: 'col-span-1 row-span-2', dir: -1 },
+    { id: 5, src: '/memory-5.jpeg', span: 'col-span-1 row-span-1', dir: 1 },
+    { id: 6, src: '/memory-6.jpeg', span: 'col-span-2 row-span-1', dir: -1 },
+    { id: 7, src: '/memory-7.jpg', span: 'col-span-1 row-span-1', dir: 1 },
   ];
 
   const [activeId, setActiveId] = useState(null);
@@ -70,29 +70,17 @@ const Gallery = () => {
               onTouchEnd={() => setActiveId(null)}
               className={`${img.span} bg-slate-200 rounded-xl overflow-hidden relative shadow-xl`}
             >
-              {/* Continuous horizontal drift wrapper */}
-              <motion.div
-                className="w-full h-full"
-                animate={{ x: [0, img.dir * 14, 0] }}
-                transition={{ duration: 5 + i * 0.4, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <img
-                  src={img.src}
-                  alt={img.title}
-                  loading="lazy"
-                  decoding="async"
-                  className={`w-full h-full object-cover transition-all duration-500 ${
-                    isActive ? 'grayscale-0 scale-105' : 'grayscale'
-                  }`}
-                />
-              </motion.div>
-              <div
-                className={`absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent flex items-end p-4 transition-opacity duration-300 ${
-                  isActive ? 'opacity-100' : 'opacity-0'
+              <motion.img
+                src={img.src}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                animate={{ x: [0, img.dir * 60, 0] }}
+                transition={{ duration: 6 + i * 0.5, repeat: Infinity, ease: 'easeInOut' }}
+                className={`w-[130%] h-full object-cover transition-all duration-500 ${
+                  isActive ? 'grayscale-0' : 'grayscale'
                 }`}
-              >
-                <span className="text-white font-bold text-lg">{img.title}</span>
-              </div>
+              />
             </motion.div>
           );
         })}
